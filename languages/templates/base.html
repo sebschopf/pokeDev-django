@@ -1,0 +1,33 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PokeDev{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'languages:language_list' %}" class="text-2xl font-bold">PokeDev</a>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="{% url 'languages:language_list' %}" class="hover:underline">Langages</a></li>
+                    <li><a href="{% url 'admin:index' %}" class="hover:underline">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; {% now "Y" %} PokeDev - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>
