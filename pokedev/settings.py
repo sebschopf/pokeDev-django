@@ -1,15 +1,25 @@
 import os
 import dj_database_url
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement depuis .env
+# Ajout de cette ligne pour charger le fichier .env
+load_dotenv()
+
+# Vérification du chargement des variables (à supprimer après débogage)
+db_url = os.environ.get('DATABASE_URL')
+print(f"DATABASE_URL chargé: {'Oui' if db_url else 'Non'}")
+if db_url:
+    print(f"DATABASE_URL commence par: {db_url[:20]}...")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Correction : DEBUG doit être un booléen, pas une chaîne de caractères
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'pokedev-django-production.up.railway.app,localhost,127.0.0.1').split(',')
@@ -23,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'languages',
+    'users',
+    'stats',
 ]
 
 MIDDLEWARE = [
@@ -57,13 +69,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pokedev.wsgi.application'
 
 # Database
-# Utiliser explicitement DATABASE_URL de Railway
+# Option 1: Utiliser dj_database_url avec la variable d'environnement
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL', 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')),
         conn_max_age=600
     )
 }
+
+# Option 2 (décommenter si l'option 1 ne fonctionne pas): Configuration directe
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'eJlCScgwMuMlmiBgZtCpWGRJqmxFhOqJ',
+#         'HOST': 'yamanote.proxy.rlwy.net',
+#         'PORT': '14365',
+#     }
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -82,14 +106,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# Mise à jour pour le français
 LANGUAGE_CODE = 'fr-fr'
 TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'  # Ajout du slash initial
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -106,7 +129,7 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     # Désactivation de SECURE_SSL_REDIRECT pour cause de boucle
-    #  de redirection infinie avec Railway
+    # de redirection infinie avec Railway
     #SECURE_SSL_REDIRECT = True
 
     # Ajout de la configuration de sécurité pour les en-têtes HTTP derrière un proxy

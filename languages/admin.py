@@ -1,17 +1,17 @@
 # languages/admin.py
 from django.contrib import admin
-from .models import ProgrammingLanguage, Framework
+from .models import Languages, LanguagesFramework
 
-@admin.register(ProgrammingLanguage)
-class ProgrammingLanguageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'creator', 'year_created', 'is_popular')
+@admin.register(Languages)
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'creator', 'year_created', 'is_open_source')
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'description')
-    list_filter = ('is_popular', 'year_created')
+    list_filter = ('is_open_source', 'year_created')
 
-@admin.register(Framework)
+@admin.register(LanguagesFramework)
 class FrameworkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'language')
+    list_display = ('name', 'language_id')
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'description')
-    list_filter = ('language',)
+    list_filter = ('language_id',)
