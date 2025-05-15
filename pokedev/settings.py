@@ -26,8 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-vj9p9$q@0q@y*$^2^(j!)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Change this to your domain or IP address in production
-
+ALLOWED_HOSTS = ['pokedev-django-production.up.railway.app', 'localhost', '127.0.0.1']
 
 # Application definition
 

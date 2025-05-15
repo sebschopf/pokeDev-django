@@ -1,0 +1,64 @@
+<!-- languages/templates/languages/language_detail.html -->
+{% extends "base.html" %}
+
+{% block title %}{{ language.name }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-3xl font-bold">{{ language.name }}</h1>
+                {% if language.is_popular %}
+                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Populaire</span>
+                {% endif %}
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <p class="text-gray-700"><span class="font-semibold">Créateur:</span> {{ language.creator|default:"Non spécifié" }}</p>
+                    <p class="text-gray-700"><span class="font-semibold">Année de création:</span> {{ language.year_created|default:"Non spécifiée" }}</p>
+                    {% if language.website %}
+                    <p class="text-gray-700"><span class="font-semibold">Site officiel:</span> <a href="{{ language.website }}" class="text-blue-600 hover:underline" target="_blank">{{ language.website }}</a></p>
+                    {% endif %}
+                    {% if language.github_repo %}
+                    <p class="text-gray-700"><span class="font-semibold">GitHub:</span> <a href="{{ language.github_repo }}" class="text-blue-600 hover:underline" target="_blank">{{ language.github_repo }}</a></p>
+                    {% endif %}
+                </div>
+                
+                {% if language.logo %}
+                <div class="flex justify-center">
+                    <img src="{{ language.logo.url }}" alt="{{ language.name }}" class="max-h-48 object-contain">
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-2">Description</h2>
+                <p class="text-gray-700">{{ language.description|linebreaks }}</p>
+            </div>
+            
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Frameworks</h2>
+                {% if language.frameworks.all %}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for framework in language.frameworks.all %}
+                    <a href="{% url 'languages:framework_detail' language.slug framework.slug %}" class="block bg-gray-50 p-4 rounded-lg hover:bg-gray-100">
+                        <h3 class="font-medium text-lg">{{ framework.name }}</h3>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-gray-600">Aucun framework disponible pour ce langage.</p>
+                {% endif %}
+            </div>
+            
+            <div class="mt-6">
+                <a href="{% url 'languages:language_list' %}" class="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">
+                    Retour à la liste
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
