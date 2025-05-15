@@ -1,1 +1,1 @@
-web: gunicorn pokedev.wsgi
+web: python --version && gunicorn pokedev.wsgi --log-file -
