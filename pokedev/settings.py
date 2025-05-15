@@ -105,7 +105,12 @@ if not DEBUG:
     # HTTPS settings
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
+    # Désactivation de SECURE_SSL_REDIRECT pour cause de boucle
+    #  de redirection infinie avec Railway
+    #SECURE_SSL_REDIRECT = True
+
+    # Ajout de la configuration de sécurité pour les en-têtes HTTP derrière un proxy
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
