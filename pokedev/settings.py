@@ -168,12 +168,9 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],  # Utiliser à la fois console et file
+            'handlers': ['console'],
             'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': False,
         },
     },
 }
-
-# s'assurer que le dossier logs existe
-os.makedirs(os.path.join(BASE_DIR, 'logs'), exist_ok=True)
