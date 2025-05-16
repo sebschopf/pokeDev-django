@@ -161,11 +161,6 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
-        'file': {
-            'class': 'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': os.path.join(BASE_DIR, 'logs', 'django.log'),
-        },
     },
     'root': {
         'handlers': ['console'],
@@ -175,11 +170,6 @@ LOGGING = {
         'django': {
             'handlers': ['console', 'file'],  # Utiliser à la fois console et file
             'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
-            'propagate': False,
-        },
-        'pokedev': {  # Logger spécifique pour l'application
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
             'propagate': False,
         },
     },
