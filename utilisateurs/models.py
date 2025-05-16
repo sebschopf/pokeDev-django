@@ -15,8 +15,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=150, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # Utilisation de ImageField au lieu de URLField pour l'avatar
-    avatar_url = models.URLField(blank=True, null=True)  # Gardé pour compatibilité
+    avatar_url = models.URLField(blank=True, null=True)
     full_name = models.CharField(max_length=255, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     website = models.URLField(blank=True, null=True)
