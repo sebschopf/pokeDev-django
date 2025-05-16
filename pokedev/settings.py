@@ -4,22 +4,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Charger les variables d'environnement depuis .env
-# Ajout de cette ligne pour charger le fichier .env
 load_dotenv()
 
-# Vérification du chargement des variables (à supprimer après débogage)
-db_url = os.environ.get('DATABASE_URL')
-print(f"DATABASE_URL chargé: {'Oui' if db_url else 'Non'}")
-if db_url:
-    print(f"DATABASE_URL commence par: {db_url[:20]}...")
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Construction des chemins à l'intérieur du projet: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: Garder la clef secrète... secrète!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-development')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: Pas de mode débug en production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'pokedev-django-production.up.railway.app,localhost,127.0.0.1').split(',')
@@ -32,9 +25,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'languages',
-    'utilisateurs',
+    'utilisateurs.apps.UtilisateursConfig',
     'stats',
+
 ]
 
 MIDDLEWARE = [
@@ -69,25 +64,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pokedev.wsgi.application'
 
 # Database
-# Option 1: Utiliser dj_database_url avec la variable d'environnement
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL', 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')),
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=not DEBUG, # Utiliser SSL en production
     )
 }
-
-# Option 2 (décommenter si l'option 1 ne fonctionne pas): Configuration directe
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'eJlCScgwMuMlmiBgZtCpWGRJqmxFhOqJ',
-#         'HOST': 'yamanote.proxy.rlwy.net',
-#         'PORT': '14365',
-#     }
-# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -114,6 +97,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
@@ -122,6 +108,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# URL de redirection après connexion/déconnexion
+LOGIN_REDIRECT_URL = 'utilisateurs/profile/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = 'utilisateurs/login/'
+
+# Configuration email pour la réinitialisation de mot de passe
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Pour le développement en production, utilisez un backend réel comme SMTP:
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.example.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your_email@example.com'
+# EMAIL_HOST_PASSWORD = 'your_password'
 
 # Configuration de sécurité supplémentaire pour la production
 if not DEBUG:
@@ -134,9 +135,46 @@ if not DEBUG:
 
     # Ajout de la configuration de sécurité pour les en-têtes HTTP derrière un proxy
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_SECONDS = 31536000  # 1 an
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
+
+    # configuration de logging
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': '{levelname} {asctime} {module} {message}',
+                'style': '{',
+            },
+            'simple': {
+                'format': '{levelname} {message}',
+                'style': '{',
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose',
+            },
+            'file': {
+                'class': 'logging.FileHandler',
+                'formatter': 'verbose',
+            },
+        },
+        'root': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
+                'propagate': False,
+            },
+        },
+    }

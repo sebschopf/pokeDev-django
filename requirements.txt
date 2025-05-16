@@ -11,3 +11,4 @@ tzdata==2025.2
 whitenoise==6.9.0
 python-dotenv==1.0.0
 Pillow
+requests==2.32.3
