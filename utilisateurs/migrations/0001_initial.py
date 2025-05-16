@@ -23,7 +23,6 @@ class Migration(migrations.Migration):
                 ('username', models.CharField(blank=True, max_length=150, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('avatar', models.ImageField(blank=True, null=True, upload_to=utilisateurs.models.user_avatar_path)),
                 ('avatar_url', models.URLField(blank=True, null=True)),
                 ('full_name', models.CharField(blank=True, max_length=255, null=True)),
                 ('bio', models.TextField(blank=True, null=True)),
