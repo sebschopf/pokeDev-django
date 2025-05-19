@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestion des rôles{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-6">Gestion des rôles utilisateurs</h1>
+    
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left">Utilisateur</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left">Email</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left">Rôle actuel</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ profile.username }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ profile.user.email }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ profile.get_role_display }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">
+                            <form method="post" class="flex items-center">
+                                {% csrf_token %}
+                                <input type="hidden" name="profile_id" value="{{ profile.id }}">
+                                <select name="role" class="mr-2 border rounded py-1 px-2 form-control">
+                                    {% for role_value, role_name in role_choices %}
+                                    <option value="{{ role_value }}" {% if profile.role == role_value %}selected{% endif %}>
+                                        {{ role_name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded">
+                                    Mettre à jour
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="py-2 px-4 border-b border-gray-200 text-center">Aucun utilisateur trouvé</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

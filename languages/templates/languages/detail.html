@@ -1,103 +1,191 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ language.name }}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <div class="p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h1 class="text-3xl font-bold">{{ language.name }}</h1>
-                {% if language.is_popular %}
-                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Populaire</span>
-                {% endif %}
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <p class="text-gray-700"><span class="font-semibold">Créateur:</span> {{ language.creator|default:"Non spécifié" }}</p>
-                    <p class="text-gray-700"><span class="font-semibold">Année de création:</span> {{ language.year_created|default:"Non spécifiée" }}</p>
-                    {% if language.website %}
-                    <p class="text-gray-700"><span class="font-semibold">Site officiel:</span> <a href="{{ language.website }}" class="text-blue-600 hover:underline" target="_blank">{{ language.website }}</a></p>
-                    {% endif %}
-                    {% if language.github_repo %}
-                    <p class="text-gray-700"><span class="font-semibold">GitHub:</span> <a href="{{ language.github_repo }}" class="text-blue-600 hover:underline" target="_blank">{{ language.github_repo }}</a></p>
-                    {% endif %}
-                </div>
-                
-                {% if language.logo %}
-                <div class="flex justify-center">
-                    <img src="{{ language.logo.url }}" alt="{{ language.name }}" class="max-h-48 object-contain">
-                </div>
-                {% endif %}
-            </div>
-            
-            <div class="mb-8">
-                <h2 class="text-xl font-semibold mb-2">Description</h2>
-                <p class="text-gray-700">{{ language.description|linebreaks }}</p>
-            </div>
-
-            <div class="mb-8">
-                <h2 class="text-xl font-semibold mb-2">Courte Description</h2>
-                <p class="text-gray-700">{{ language.short_description|linebreaks }}</p>
-            </div>
-
-            <div class="mb-8">
-                <h2 class="text-xl font-semibold mb-2">Type</h2>
-                <p class="text-gray-700">{{ language.type|default:"Non spécifié" }}</p>
-            </div>
-
-            <div class="mb-8">
-                <h2 class="text-xl font-semibold mb-2">Utilisé pour</h2>
-                <p class="text-gray-700">{{ language.used_for|linebreaks }}</p>
-            </div>
-
-             <div class="mb-8">
-                <h2 class="text-xl font-semibold mb-2">Taux d'utilisation</h2>
-                <p class="text-gray-700">{{ language.usage_rate|default:"Non spécifié" }}</p>
-            </div>
-
-            <div class="mb-8">
-                <h2 class="text-xl font-semibold mb-2">Est Open Source</h2>
-                <p class="text-gray-700">{% if language.is_open_source %}Oui{% else %}Non{% endif %}</p>
-            </div>
-            
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Frameworks</h2>
-                {% if language.popular_frameworks %}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {% for framework in language.popular_frameworks %}
-                    <div class="bg-gray-50 p-4 rounded-lg hover:bg-gray-100">
-                        <h3 class="font-medium text-lg">{{ framework }}</h3>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% else %}
-                <p class="text-gray-600">Aucun framework disponible pour ce langage.</p>
-                {% endif %}
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Points forts</h2>
-                {% if language.strengths %}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {% for strength in language.strengths %}
-                    <div class="bg-gray-50 p-4 rounded-lg hover:bg-gray-100">
-                        <h3 class="font-medium text-lg">{{ strength }}</h3>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% else %}
-                <p class="text-gray-600">Aucun point fort disponible pour ce langage.</p>
-                {% endif %}
-            </div>
-            
-            <div class="mt-6">
-                <a href="{% url 'languages:list' %}" class="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">
-                    Retour à la liste
-                </a>
-            </div>
+<div class="page-background">
+  <div class="container mx-auto px-4 py-8">
+    <div class="detail-card">
+      <div class="p-6">
+        <!-- En-tête avec nom et badge -->
+        <div class="flex items-center justify-between mb-6">
+          <h1 class="title-black-bg">{{ language.name }}</h1>
+          {% if language.usage_rate and language.usage_rate > 5 %}
+          <span class="category-badge">Populaire</span>
+          {% endif %}
         </div>
+        
+        <!-- Informations principales et logo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <!-- Informations de base -->
+            <div class="mb-6">
+              {% if language.creator %}
+              <p class="text-gray-700 mb-2"><span class="font-semibold">Créateurice:</span> {{ language.creator }}</p>
+              {% endif %}
+              
+              {% if language.year_created %}
+              <p class="text-gray-700 mb-2"><span class="font-semibold">Année de création:</span> {{ language.year_created }}</p>
+              {% endif %}
+              
+              {% if language.type %}
+              <p class="text-gray-700 mb-2"><span class="font-semibold">Type:</span> {{ language.type }}</p>
+              {% endif %}
+              
+              {% if language.is_open_source is not None %}
+              <p class="text-gray-700 mb-2"><span class="font-semibold">Licence:</span> 
+                {% if language.is_open_source %}Open Source{% else %}Propriétaire{% endif %}
+              </p>
+              {% endif %}
+              
+              {% if language.website %}
+              <p class="text-gray-700 mb-2"><span class="font-semibold">Site officiel:</span> 
+                <a href="{{ language.website }}" class="text-blue-600 hover:underline" target="_blank">{{ language.website }}</a>
+              </p>
+              {% endif %}
+            </div>
+            
+            <!-- Popularité -->
+            {% if language.usage_rate %}
+            <div class="mb-6">
+              <h2 class="section-title text-3xl font-black mb-4">POPULARITÉ</h2>
+              <div class="progress-container">
+                <div class="progress-bar progress-width-{{ language.usage_rate|floatformat:0 }}"></div>
+              </div>
+              <p class="text-gray-700 font-bold">{{ language.usage_rate }}% des développeureuses utilisent ce langage</p>
+            </div>
+            {% endif %}
+            
+            <!-- Description -->
+            {% if language.description %}
+            <div class="mb-6">
+              <h2 class="section-title text-3xl font-black mb-4">DESCRIPTION</h2>
+              <p class="text-gray-700 font-bold">{{ language.description|linebreaks }}</p>
+            </div>
+            {% endif %}
+          </div>
+          
+          <!-- Logo sans fond blanc -->
+          {% if language.logo_svg %}
+          <div class="flex justify-center items-center">
+            <div class="language-detail" data-no-tailwind>
+              {{ language.logo_svg|safe }}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        
+        <!-- Points forts et Utilisé pour dans un cadre - Utilisation de classes Tailwind -->
+        <div class="neo-section points-forts-container">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% if language.strengths %}
+            <div>
+              <h2 class="section-title text-3xl font-black mb-4">POINTS FORTS</h2>
+              <ul class="neo-list-big">
+                {% for strength in language.strengths %}
+                <li>{{ strength }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            {% if language.used_for %}
+            <div>
+              <h2 class="section-title text-3xl font-black mb-4">UTILISÉ POUR</h2>
+              <ul class="neo-list-big">
+                {% load used_for_filters %}
+
+                {% for use in language.used_for|split_by:"," %}
+                <li>{{ use|strip }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Outils associés par catégorie -->
+        <div class="mb-8">
+          <h2 class="section-title text-3xl font-black mb-4">OUTILS ASSOCIÉS</h2>
+          
+          <!-- Utilisation de classes Tailwind pour le conteneur d'outils -->
+          <div class="neo-section tools-container">
+            <!-- Frameworks -->
+            {% if language.popular_frameworks %}
+            <div class="mb-4">
+              <h3 class="font-black text-xl mb-2">FRAMEWORKS</h3>
+              <div class="flex flex-wrap">
+                {% for framework in language.popular_frameworks %}
+                <a href="{% url 'tools:detail' framework|slugify %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
+                  <span class="font-black text-lg uppercase mb-2">{{ framework }}</span>
+                  <span class="text-sm text-gray-600">Framework pour {{ language.name }}</span>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Bibliothèques -->
+            {% if language.libraries.all %}
+            <div class="mb-4">
+              <h3 class="font-black text-xl mb-2">BIBLIOTHÈQUES</h3>
+              <div class="flex flex-wrap">
+                {% for library in language.libraries.all %}
+                <a href="{% url 'tools:detail' library.slug %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
+                  <span class="font-black text-lg uppercase mb-2">{{ library.name }}</span>
+                  <span class="text-sm text-gray-600">{{ library.description|truncatechars:60|default:"Bibliothèque pour "|add:language.name }}</span>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Moteurs -->
+            {% if language.engines.all %}
+            <div class="mb-4">
+              <h3 class="font-black text-xl mb-2">MOTEURS</h3>
+              <div class="flex flex-wrap">
+                {% for engine in language.engines.all %}
+                <a href="{% url 'tools:detail' engine.slug %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
+                  <span class="font-black text-lg uppercase mb-2">{{ engine.name }}</span>
+                  <span class="text-sm text-gray-600">{{ engine.description|truncatechars:60|default:"Moteur pour "|add:language.name }}</span>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Outils de développement -->
+            {% if language.dev_tools.all %}
+            <div class="mb-4">
+              <h3 class="font-black text-xl mb-2">OUTILS DE DÉVELOPPEMENT</h3>
+              <div class="flex flex-wrap">
+                {% for tool in language.dev_tools.all %}
+                <a href="{% url 'tools:detail' tool.slug %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
+                  <span class="font-black text-lg uppercase mb-2">{{ tool.name }}</span>
+                  <span class="text-sm text-gray-600">{{ tool.description|truncatechars:60|default:"Outil pour "|add:language.name }}</span>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="mt-6 flex space-x-4">
+          <a href="{% url 'languages:list' %}" class="view-more-btn">
+            RETOUR À LA LISTE
+          </a>
+          
+          {% if user.is_authenticated and user.profile.can_submit_corrections %}
+          <button class="correction-button" onclick="alert('Fonctionnalité en cours de développement')">
+            PROPOSER UNE CORRECTION
+          </button>
+          {% endif %}
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

@@ -6,37 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}PokeDev{% endblock %}</title>
     {% load static %}
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{% static 'js/tailwind-config.js' %}"></script>
+    <!-- Remplacer le CDN par le fichier CSS compilé -->
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
     <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/svg-styles.css' %}">
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Styles inline -->
+    <style>
+    </style>
 </head>
 <body class="min-h-screen">
-    <header class="text-white p-4">
+    <header class="p-4" style="background-color: white; border-bottom: 3px solid black;">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'languages:list' %}" class="text-2xl font-bold">PokeDev</a>
+            <a href="{% url 'languages:list' %}" class="text-2xl font-bold text-black">PokeDev</a>
             <nav class="flex items-center">
                 <ul class="flex space-x-4 mr-6">
-                    <li><a href="{% url 'languages:list' %}" class="hover:underline">Langages</a></li>
+                    <li><a href="{% url 'languages:list' %}" class="py-1 px-3 text-sm neo-button">Langages</a></li>
                     {% if user.is_staff %}
-                        <li><a href="{% url 'admin:index' %}" class="hover:underline">Admin</a></li>
+                        <li><a href="{% url 'admin:index' %}" class="py-1 px-3 text-sm neo-button">Admin</a></li>
                     {% endif %}
                 </ul>
                 
                 <!-- Boutons d'authentification -->
                 <div class="flex items-center space-x-2">
                     {% if user.is_authenticated %}
-                        <span class="mr-2">{{ user.username }}</span>
-                        <a href="{% url 'utilisateurs:profile' %}" class="py-1 px-3 text-sm">
+                        <span class="mr-2 text-black">{{ user.username }}</span>
+                        <a href="{% url 'utilisateurs:profile' %}" class="py-1 px-3 text-sm neo-button">
                             Profil
                         </a>
-                        <a href="{% url 'utilisateurs:logout' %}" class="py-1 px-3 text-sm">
+                        <a href="{% url 'utilisateurs:logout' %}" class="py-1 px-3 text-sm neo-button">
                             Déconnexion
                         </a>
                     {% else %}
-                        <a href="{% url 'utilisateurs:login' %}" class="py-1 px-3 text-sm">
+                        <a href="{% url 'utilisateurs:login' %}" class="py-1 px-3 text-sm neo-button">
                             Connexion
                         </a>
-                        <a href="{% url 'utilisateurs:register' %}" class="py-1 px-3 text-sm">
+                        <a href="{% url 'utilisateurs:register' %}" class="py-1 px-3 text-sm neo-button">
                             Inscription
                         </a>
                     {% endif %}
@@ -49,7 +55,7 @@
         {% if messages %}
             <div class="container mx-auto mt-4">
                 {% for message in messages %}
-                    <div class="p-4 mb-2 rounded">
+                    <div class="p-4 mb-2">
                         {{ message }}
                     </div>
                 {% endfor %}
@@ -59,10 +65,23 @@
         {% block content %}{% endblock %}
     </main>
     
-    <footer class="p-4 mt-8">
+    <footer class="p-4 mt-8" style="background-color: white; border-top: 3px solid black;">
         <div class="container mx-auto text-center">
-            <p>&copy; {% now "Y" %} PokeDev - Tous droits réservés</p>
+            <p class="text-black">&copy; {% now "Y" %} PokeDev - Tous droits réservés</p>
         </div>
     </footer>
+    
+    <script>
+        // Script pour initialiser la barre de progression
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                if (width) {
+                    bar.style.width = width + '%';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

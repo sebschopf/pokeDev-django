@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-6">Tableau de bord</h1>
+    
+    <!-- Informations de profil -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Bienvenue, {{ user.username }}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <p class="mb-2"><span class="font-semibold">Rôle :</span> {{ profile.get_role_display }}</p>
+                <p class="mb-2"><span class="font-semibold">Membre depuis :</span> {{ user.date_joined|date:"d/m/Y" }}</p>
+                {% if profile.full_name %}
+                <p class="mb-2"><span class="font-semibold">Nom complet :</span> {{ profile.full_name }}</p>
+                {% endif %}
+            </div>
+            <div class="flex justify-center md:justify-end">
+                {% if profile.avatar_url %}
+                    <img src="{{ profile.avatar_url }}" alt="Avatar de {{ profile.username }}" class="rounded-full h-24 w-24 object-cover">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" alt="Avatar par défaut" class="rounded-full h-24 w-24 object-cover">
+                {% endif %}
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{% url 'utilisateurs:edit_profile' %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Modifier mon profil
+            </a>
+        </div>
+    </div>
+    
+    <!-- Section pour tous les utilisateurices enregistrés -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3">Actions disponibles</h3>
+            <ul class="space-y-2">
+                <li>
+                    <a href="{% url 'languages:list' %}" class="text-blue-500 hover:underline">
+                        Parcourir les langages
+                    </a>
+                </li>
+                {% if profile.can_submit_corrections %}
+                <li>
+                    <a href="{% url 'languages:submit_correction' %}" class="text-blue-500 hover:underline">
+                        Soumettre une correction
+                    </a>
+                </li>
+                {% endif %}
+                
+                {% if profile.can_submit_new_content %}
+                <li>
+                    <a href="{% url 'languages:submit_language' %}" class="text-blue-500 hover:underline">
+                        Proposer un nouveau langage
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'languages:submit_library' %}" class="text-blue-500 hover:underline">
+                        Proposer une nouvelle bibliothèque
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        
+        {% if profile.is_verified %}
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3">Statistiques de base</h3>
+            <ul class="space-y-2">
+                <li>Langages: {{ languages_count }}</li>
+                <li>Bibliothèques: {{ libraries_count }}</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Section pour les validateurices -->
+    {% if profile.is_validator %}
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Espace validateur</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Corrections en attente</h3>
+                <p class="text-2xl font-bold">{{ pending_corrections }}</p>
+                <a href="{% url 'languages:review_corrections' %}" class="mt-3 inline-block bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">
+                    Examiner les corrections
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Section pour les administrateurices -->
+    {% if profile.is_admin %}
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Administration</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Utilisateurices</h3>
+                <p class="text-2xl font-bold">{{ users_count }}</p>
+                <div class="mt-3">
+                    <a href="{% url 'utilisateurs:manage_roles' %}" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded">
+                        Gérer les rôles
+                    </a>
+                </div>
+                <div class="mt-3">
+                    <a href="{% url 'utilisateurs:manage_language_experts' %}" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">
+                        Gérer les expert.es de langages
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Langages populaires</h3>
+                <ul class="space-y-2">
+                    {% for lang in top_languages %}
+                    <li>{{ lang.language.name }} - {{ lang.views_count }} vues</li>
+                    {% empty %}
+                    <li>Aucune donnée disponible</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Statistiques complètes</h3>
+                <a href="{% url 'utilisateurs:stats' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                    Voir toutes les statistiques
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
