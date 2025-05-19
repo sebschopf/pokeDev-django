@@ -1,16 +1,23 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from . import views_language_experts
 
 app_name = 'utilisateurs'
 
 urlpatterns = [
+    # URLs de tableau de bord et gestion des rôles
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('manage-roles/', views.manage_roles, name='manage_roles'),
+    path('stats/', views.stats_view, name='stats'),
+    path('edit-user-role/<uuid:user_id>/', views.edit_user_role, name='edit_user_role'),
+    path('manage-language-experts/', views_language_experts.manage_language_experts, name='manage_language_experts'),
+
     # URLs de profil
     path('profile/', views.profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/<str:username>/', views.view_profile, name='view_profile'),
-    path('register/', views.register, name='register'),
-
+    
     # URLs d'authentification
     path('login/', auth_views.LoginView.as_view(template_name='utilisateurs/login.html'), name='login'),
     path('register/', views.register, name='register'),
