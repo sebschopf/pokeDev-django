@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'languages',
+    'tools',
     'utilisateurs.apps.UtilisateursConfig',
     'stats',
 
@@ -173,4 +174,15 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+
+# Configuration de Django Debug Toolbar
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda request: True,  # Toujours afficher la toolbar en développement
+    'SHOW_COLLAPSED': True,  # Afficher la toolbar repliée par défaut
+    'SHOW_TEMPLATE_CONTEXT': True,  # Afficher le contexte des templates
+    'ENABLE_STACKTRACES': True,  # Activer les stacktraces
+    'RESULTS_CACHE_SIZE': 3,  # Réduire la taille du cache
+    'RENDER_PANELS': False,  # Charger les panels à la demande
 }

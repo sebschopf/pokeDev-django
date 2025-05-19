@@ -1,0 +1,14 @@
+{
+  "name": "pokedev",
+  "version": "1.0.0",
+  "description": "PokeDev - Cartes de langages de programmation",
+  "scripts": {
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify",
+    "watch": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "build:prod": "NODE_ENV=production tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
