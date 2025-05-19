@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'system',
     'languages',
-    'tools',
+    'tools.apps.ToolsConfig',
     'utilisateurs.apps.UtilisateursConfig',
     'stats',
 
