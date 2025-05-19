@@ -1,0 +1,16 @@
+graph TD;
+    A["languages"] --> B["libraries"]
+    A --> C["language_usage"]
+    C --> D["usage_categories"]
+    E["users"] --> F["profiles"]
+    E --> G["user_roles"]
+    E --> H["corrections"]
+    E --> I["language_proposals"]
+    E --> J["user_language_likes"]
+    A --> J
+    K["stats_languages"] --> A
+    L["stats_users"] --> E
+    M["stats_searches"] --> E
+    N["stats_visits"] --> E
+    B --> O["library_languages"]
+    A --> O
