@@ -1,0 +1,199 @@
+/* Ajouts de styles néo-brutalistes complémentaires au theme.css existant */
+
+/* Rotation aléatoire pour les cartes - Nouvelles classes */
+.card-rotate-1 {
+  transform: rotate(1deg);
+}
+.card-rotate-neg-1 {
+  transform: rotate(-1deg);
+}
+.card-rotate-2 {
+  transform: rotate(2deg);
+}
+.card-rotate-neg-2 {
+  transform: rotate(-2deg);
+}
+
+/* Badges de catégorie avec style néo-brutaliste - Nouvelle classe */
+.neo-badge {
+  background-color: white;
+  color: black;
+  border: 3px solid black;
+  padding: 0.25rem 0.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+/* Icônes avec style néo-brutaliste - Nouvelle classe */
+.neo-icon {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+/* Grille avec espacement néo-brutaliste - Nouvelle classe */
+.neo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Animation de survol pour les cartes - Nouvelle fonctionnalité */
+@keyframes neo-hover-anim {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+}
+
+.neo-hover-anim:hover {
+  animation: neo-hover-anim 0.5s ease-in-out infinite alternate;
+}
+
+/* Titre avec ruban - Nouvelle classe */
+.neo-ribbon-title {
+  position: relative;
+  background-color: var(--primary-color);
+  color: black;
+  padding: 0.75rem 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Effet de papier déchiré - Nouvelle classe */
+.neo-torn-edge {
+  position: relative;
+}
+
+.neo-torn-edge::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L10,10 L20,0 L30,10 L40,0 L50,10 L60,0 L70,10 L80,0 L90,10 L100,0 L110,10 L120,0 L130,10 L140,0 L150,10 L160,0 L170,10 L180,0 L190,10 L200,0 L210,10 L220,0 L230,10 L240,0 L250,10 L260,0 L270,10 L280,0 L290,10 L300,0' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 300px 10px;
+  background-repeat: repeat-x;
+}
+
+/* Effet de surbrillance au survol - Nouvelle classe */
+.neo-highlight-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-highlight-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 0, 0.2);
+  transition: left 0.3s ease;
+  z-index: 1;
+}
+
+.neo-highlight-hover:hover::before {
+  left: 0;
+}
+
+/* Effet de marqueur - Nouvelle classe */
+.neo-marker {
+  background: linear-gradient(transparent 60%, var(--primary-color) 60%);
+  display: inline;
+  padding: 0 0.2em;
+}
+
+/* Effet de timbre - Nouvelle classe */
+.neo-stamp {
+  border: 3px solid black;
+  padding: 0.5rem 1rem;
+  transform: rotate(-2deg);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.neo-stamp::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 1px dashed white;
+  pointer-events: none;
+}
+
+/* Styles spécifiques pour la section outils associés */
+/* Ces styles sont plus spécifiques pour éviter les conflits */
+.neo-section.tools-container {
+  border: 4px solid #000000 !important;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 1);
+  background-color: #fefce8;
+}
+
+.neo-section.tools-container h3 {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  font-weight: 900;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.neo-section.tools-container .tool-card {
+  background-color: white;
+  border: 3px solid #000000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  min-height: 150px;
+}
+
+.neo-section.tools-container .tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 0 #000000;
+  background-color: #f9fafb;
+}
+
+.neo-section.tools-container > div {
+  margin-bottom: 2rem;
+}
+
+.neo-section.tools-container .grid {
+  margin-top: 1rem;
+}
+
+/* Assurer que toutes les bordures sont noires */
+.border-black {
+  border-color: #000000 !important;
+}
+
+/* Style pour le titre de section */
+h2.section-title {
+  border-bottom: 4px solid #000000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
