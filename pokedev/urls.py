@@ -5,16 +5,13 @@ from django.conf.urls.static import static
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-def healthcheck(request):
-    return HttpResponse("OK")
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('utilisateurs/', include('utilisateurs.urls')),
     path('stats/', include('stats.urls')),
     path('', include('languages.urls')),
     path('tools/', include('tools.urls')),
-    path('health/', healthcheck, name='healthcheck'),
+    path('', include('system.urls')),
 ]
 
 if settings.DEBUG:
