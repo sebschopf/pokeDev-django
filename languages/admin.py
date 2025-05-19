@@ -32,6 +32,7 @@ class LibrariesAdmin(admin.ModelAdmin):
     list_display = ('name', 'language', 'technology_type')
     list_filter = ('technology_type',)
     search_fields = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(TechnologyCategories)
 class TechnologyCategoriesAdmin(admin.ModelAdmin):
