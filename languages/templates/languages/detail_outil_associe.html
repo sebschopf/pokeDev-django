@@ -1,0 +1,49 @@
+<!-- languages/detail_outil_associe.html -->
+<!-- Template pour afficher les outils associés à un langage -->
+{% load library_tags %}
+
+{% if categories_data %}
+<div class="mb-8">
+  <h2 class="section-title text-3xl font-black mb-4 uppercase bg-yellow-400 py-2 border-t-4 border-b-4 border-black">OUTILS ASSOCIÉS</h2>
+  
+  <!-- Conteneur principal avec style néo-brutaliste renforcé -->
+  <div class="neo-section tools-container bg-yellow-50">
+    
+    <!-- Boucle dynamique sur les catégories -->
+    {% for category in categories_data %}
+    {% if category.libraries %}
+    <div class="mb-6">
+      <!-- Titre de catégorie avec style plus marqué -->
+      <h3 class="font-black text-xl mb-4">
+        {% if category.icon %}
+        <span class="icon icon-{{ category.icon }} mr-2"></span>
+        {% endif %}
+        {{ category.title }}
+      </h3>
+      
+      <!-- Grille responsive pour les outils -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for library in category.libraries %}
+        <a href="{% url 'tools:detail' library.slug %}" class="tool-card bg-white p-4 flex flex-col">
+          <!-- Nom de l'outil avec style plus marqué -->
+          <span class="font-black text-lg mb-2">{{ library.name }}</span>
+          
+          <!-- Description avec meilleure lisibilité -->
+          {% if category.key == 'uncategorized' %}
+            <span class="text-sm text-gray-700">{{ library.technology_type }}: {{ library.description|truncatechars:60|default:category.default_desc|add:" "|add:language.name }}</span>
+          {% else %}
+            <span class="text-sm text-gray-700">{{ library.description|truncatechars:60|default:category.default_desc|add:" "|add:language.name }}</span>
+          {% endif %}
+          
+          <!-- Tag du langage -->
+          <span class="text-sm font-bold mt-2">{{ language.name }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+  </div>
+</div>
+{% endif %}

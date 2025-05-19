@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .models import Languages, Libraries, TechnologyCategories, TechnologySubtypes, UsageCategories
+from .models.library import LibraryLanguages
 
 # Vue basée sur une fonction pour la liste des langages
 def list(request):
@@ -45,21 +47,15 @@ class LanguageDetailView(DetailView):
                 # Si split échoue, utilisez la valeur telle quelle
                 context['used_for_list'] = [language.used_for]
         
-        # Récupérer les bibliothèques associées
-        context['libraries'] = Libraries.objects.filter(language=language)
-        
-        # Récupérer les frameworks (si pas déjà dans popular_frameworks)
-        frameworks = Libraries.objects.filter(
-            language=language, 
-            technology_type='framework'
-        ).exclude(name__in=language.popular_frameworks or [])
-        context['additional_frameworks'] = frameworks
-        
         # Récupérer les catégories d'usage
         if hasattr(language, 'languageusage_set'):
             usage_categories = UsageCategories.objects.filter(
                 languageusage__language=language
             )
             context['usage_categories'] = usage_categories
+        
+        # Ajouter les frameworks populaires s'ils ne sont pas déjà dans la liste des frameworks
+        if language.popular_frameworks:
+            context['popular_frameworks'] = language.popular_frameworks
         
         return context

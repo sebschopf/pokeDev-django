@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load library_tags %}
 
 {% block title %}{{ language.name }}{% endblock %}
 
@@ -90,14 +91,12 @@
             </div>
             {% endif %}
 
-            {% if language.used_for %}
+            {% if used_for_list %}
             <div>
               <h2 class="section-title text-3xl font-black mb-4">UTILISÉ POUR</h2>
               <ul class="neo-list-big">
-                {% load used_for_filters %}
-
-                {% for use in language.used_for|split_by:"," %}
-                <li>{{ use|strip }}</li>
+                {% for use in used_for_list %}
+                <li>{{ use }}</li>
                 {% endfor %}
               </ul>
             </div>
@@ -105,73 +104,8 @@
           </div>
         </div>
         
-        <!-- Outils associés par catégorie -->
-        <div class="mb-8">
-          <h2 class="section-title text-3xl font-black mb-4">OUTILS ASSOCIÉS</h2>
-          
-          <!-- Utilisation de classes Tailwind pour le conteneur d'outils -->
-          <div class="neo-section tools-container">
-            <!-- Frameworks -->
-            {% if language.popular_frameworks %}
-            <div class="mb-4">
-              <h3 class="font-black text-xl mb-2">FRAMEWORKS</h3>
-              <div class="flex flex-wrap">
-                {% for framework in language.popular_frameworks %}
-                <a href="{% url 'tools:detail' framework|slugify %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
-                  <span class="font-black text-lg uppercase mb-2">{{ framework }}</span>
-                  <span class="text-sm text-gray-600">Framework pour {{ language.name }}</span>
-                </a>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
-            
-            <!-- Bibliothèques -->
-            {% if language.libraries.all %}
-            <div class="mb-4">
-              <h3 class="font-black text-xl mb-2">BIBLIOTHÈQUES</h3>
-              <div class="flex flex-wrap">
-                {% for library in language.libraries.all %}
-                <a href="{% url 'tools:detail' library.slug %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
-                  <span class="font-black text-lg uppercase mb-2">{{ library.name }}</span>
-                  <span class="text-sm text-gray-600">{{ library.description|truncatechars:60|default:"Bibliothèque pour "|add:language.name }}</span>
-                </a>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
-            
-            <!-- Moteurs -->
-            {% if language.engines.all %}
-            <div class="mb-4">
-              <h3 class="font-black text-xl mb-2">MOTEURS</h3>
-              <div class="flex flex-wrap">
-                {% for engine in language.engines.all %}
-                <a href="{% url 'tools:detail' engine.slug %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
-                  <span class="font-black text-lg uppercase mb-2">{{ engine.name }}</span>
-                  <span class="text-sm text-gray-600">{{ engine.description|truncatechars:60|default:"Moteur pour "|add:language.name }}</span>
-                </a>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
-            
-            <!-- Outils de développement -->
-            {% if language.dev_tools.all %}
-            <div class="mb-4">
-              <h3 class="font-black text-xl mb-2">OUTILS DE DÉVELOPPEMENT</h3>
-              <div class="flex flex-wrap">
-                {% for tool in language.dev_tools.all %}
-                <a href="{% url 'tools:detail' tool.slug %}" class="bg-white border-3 border-black m-2 p-3 w-[calc(50%-1rem)] max-w-[300px] flex flex-col transition-all duration-200 hover:translate-y-[-5px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.8)] hover:bg-gray-100">
-                  <span class="font-black text-lg uppercase mb-2">{{ tool.name }}</span>
-                  <span class="text-sm text-gray-600">{{ tool.description|truncatechars:60|default:"Outil pour "|add:language.name }}</span>
-                </a>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
-          </div>
-        </div>
+        <!-- Utilisation du tag de template pour afficher les outils associés -->
+        {% show_associated_tools language %}
         
         <div class="mt-6 flex space-x-4">
           <a href="{% url 'languages:list' %}" class="view-more-btn">
