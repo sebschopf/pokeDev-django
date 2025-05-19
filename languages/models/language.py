@@ -7,6 +7,7 @@ class Languages(models.Model):
     description = models.TextField(blank=True, null=True)
     short_description = models.TextField(blank=True, null=True)
     logo_path = models.CharField(max_length=255, blank=True, null=True)
+    logo_svg = models.TextField(blank=True, null=True) # SVG logo
     slug = models.CharField(max_length=255, unique=True)
     type = models.CharField(max_length=50, blank=True, null=True)
     used_for = models.TextField(blank=True, null=True)
