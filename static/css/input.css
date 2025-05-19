@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles pour les conteneurs SVG */
+@layer components {
+  .svg-container {
+    @apply w-full flex justify-center items-center mb-4 p-4 transition-transform;
+  }
+
+  .svg-container:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  .svg-container svg {
+    @apply w-full max-w-[120px] h-auto max-h-[120px] transition-transform;
+  }
+
+  .svg-container:hover svg {
+    @apply scale-110;
+  }
+
+  .card .svg-container {
+    @apply h-[150px] mb-0 border-b-4 border-l-0 border-r-0 border-t-0;
+  }
+
+  .language-detail .svg-container {
+    @apply h-[200px] my-8 mx-auto max-w-[300px];
+  }
+}
