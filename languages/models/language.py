@@ -27,6 +27,37 @@ class Languages(models.Model):
     def __str__(self):
         return self.name
 
+    def get_libraries_by_type(self, type_name):
+        """
+        Récupère les bibliothèques associées à ce langage, filtrées par type
+        """
+        from .library import Libraries, LibraryLanguages
+    
+        library_ids = LibraryLanguages.objects.filter(
+            language_id=self.id
+        ).values_list('library_id', flat=True)
+    
+        return Libraries.objects.filter(
+            id__in=library_ids,
+            technology_type=type_name
+        ).order_by('name')
+
+    @property
+    def frameworks(self):
+        return self.get_libraries_by_type('framework')
+    
+    @property
+    def libraries(self):
+        return self.get_libraries_by_type('library')
+    
+    @property
+    def engines(self):
+        return self.get_libraries_by_type('engine')
+    
+    @property
+    def dev_tools(self):
+        return self.get_libraries_by_type('tool')
+
 class LanguageProposals(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
