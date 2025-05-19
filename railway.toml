@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn pokedev.wsgi --log-file -"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "on_failure"
+
+[nixpacks]
+python-version = "3.12.0"
