@@ -3,8 +3,8 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn pokedev.wsgi --log-file -"
-healthcheckPath = "/"
-healthcheckTimeout = 100
+healthcheckPath = "/health/"
+healthcheckTimeout = 10
 restartPolicyType = "on_failure"
 
 [nixpacks]
