@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Q
 from .models import Languages, Libraries, TechnologyCategories, TechnologySubtypes, UsageCategories
 from .models.library import LibraryLanguages
+from .forms import SubmitCorrectionForm
 
 # Vue basée sur une fonction pour la liste des langages
 def list(request):
