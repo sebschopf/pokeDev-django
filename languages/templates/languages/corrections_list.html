@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Administration des corrections{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Administration des demandes de correction</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Filtrer par statut</h5>
+        </div>
+        <div class="card-body">
+            <div class="btn-group mb-3">
+                <a href="{% url 'languages:correction_list' %}" class="btn {% if not current_status %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                    Tous
+                </a>
+                {% for status_value, status_label in status_choices %}
+                <a href="{% url 'languages:correction_list' %}?status={{ status_value }}" 
+                   class="btn {% if current_status == status_value %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                    {{ status_label }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Liste des demandes ({{ corrections.count }})</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Langage</th>
+                            <th>Champ</th>
+                            <th>Utilisateur</th>
+                            <th>Date de soumission</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for correction in corrections %}
+                        <tr>
+                            <td>{{ correction.language.name }}</td>
+                            <td>{{ correction.field }}</td>
+                            <td>{{ correction.user_id.username|default:"Anonyme" }}</td>
+                            <td>{{ correction.created_at|date:"d/m/Y H:i" }}</td>
+                            <td>
+                                {% if correction.status == 'pending' %}
+                                <span class="badge bg-warning">En attente</span>
+                                {% elif correction.status == 'approved' %}
+                                <span class="badge bg-success">Approuvée</span>
+                                {% elif correction.status == 'rejected' %}
+                                <span class="badge bg-danger">Rejetée</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'languages:correction_detail' correction.id %}" class="btn btn-sm btn-primary">
+                                    Examiner
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                Aucune demande de correction trouvée.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

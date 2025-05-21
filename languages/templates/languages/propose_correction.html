@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Proposer une correction pour {{ language.name }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Bouton de retour -->
+    <div class="mb-6">
+        <a href="{% url 'languages:detail' language.slug %}" class="neo-button px-4 py-2 inline-flex items-center">
+            <span class="mr-2">&larr;</span> Retour à {{ language.name }}
+        </a>
+    </div>
+    
+    <!-- Conteneur principal du formulaire -->
+    <div class="neo-section bg-white mb-8">
+        <!-- En-tête du formulaire -->
+        <div class="bg-black text-white p-4 mb-6">
+            <h1 class="title-black-bg">Proposer une correction pour {{ language.name }}</h1>
+        </div>
+
+        <!-- Formulaire -->
+        <form method="post" class="p-4 space-y-6">
+            {% csrf_token %}
+            
+            <!-- Champ à corriger -->
+            <div class="mb-6">
+                <label for="{{ form.field.id_for_label }}" class="block text-lg font-black uppercase mb-2">
+                    {{ form.field.label }}
+                </label>
+               {{ form.field }}
+                {% if form.field.errors %}
+                <div class="text-red-600 font-bold mt-1">{{ form.field.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Nouvelle valeur -->
+            <div class="mb-6">
+                <label for="{{ form.correction_text.id_for_label }}" class="block text-lg font-black uppercase mb-2">
+                    {{ form.correction_text.label }}
+                </label>
+                <textarea name="{{ form.correction_text.name }}" id="{{ form.correction_text.id_for_label }}" 
+                         rows="4" class="w-full border-4 border-black p-3 font-bold" required>{{ form.correction_text.value|default:'' }}</textarea>
+                {% if form.correction_text.errors %}
+                <div class="text-red-600 font-bold mt-1">{{ form.correction_text.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Justification -->
+            <div class="mb-6">
+                <label for="{{ form.suggestion.id_for_label }}" class="block text-lg font-black uppercase mb-2">
+                    {{ form.suggestion.label }}
+                </label>
+                <textarea name="{{ form.suggestion.name }}" id="{{ form.suggestion.id_for_label }}" 
+                         rows="4" class="w-full border-4 border-black p-3 font-bold" required>{{ form.suggestion.value|default:'' }}</textarea>
+                <div class="text-sm font-bold mt-1">Expliquez pourquoi cette correction est nécessaire.</div>
+                {% if form.suggestion.errors %}
+                <div class="text-red-600 font-bold mt-2">{{ form.suggestion.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Boutons d'action -->
+            <div class="mt-6 flex space-x-4">
+                <button type="submit" class="correction-button">
+                    Soumettre la correction
+                </button>
+                <a href="{% url 'languages:detail' language.slug %}" class="neo-button">
+                    Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

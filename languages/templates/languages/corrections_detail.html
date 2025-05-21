@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Détail de la correction{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="mb-4">
+        <a href="{% url 'languages:correction_list' %}" class="btn btn-outline-secondary">
+            &larr; Retour à la liste
+        </a>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Demande de correction #{{ correction.id }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h6>Informations générales</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Langage:</th>
+                            <td>{{ correction.language.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Champ concerné:</th>
+                            <td>{{ correction.field }}</td>
+                        </tr>
+                        <tr>
+                            <th>Soumis par:</th>
+                            <td>{{ correction.user_id|default:"Anonyme" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de soumission:</th>
+                            <td>{{ correction.created_at|date:"d/m/Y H:i" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Statut:</th>
+                            <td>
+                                {% if correction.status == 'pending' %}
+                                <span class="badge bg-warning">En attente</span>
+                                {% elif correction.status == 'approved' %}
+                                <span class="badge bg-success">Approuvée</span>
+                                {% elif correction.status == 'rejected' %}
+                                <span class="badge bg-danger">Rejetée</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6>Contenu de la correction</h6>
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">Valeur actuelle</h6>
+                        </div>
+                        <div class="card-body">
+                            <pre class="mb-0">{{ correction.field }} actuel</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">Valeur proposée</h6>
+                        </div>
+                        <div class="card-body">
+                            <pre class="mb-0">{{ correction.correction_text }}</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">Justification</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-0">{{ correction.suggestion|default:"Aucune justification fournie" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% if correction.status == 'pending' %}
+            <div class="row">
+                <div class="col-12">
+                    <h6>Réviser cette demande</h6>
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.status.id_for_label }}" class="form-label">Décision</label>
+                            {{ form.status }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.suggestion.id_for_label }}" class="form-label">Commentaire (optionnel)</label>
+                            {{ form.suggestion }}
+                            <div class="form-text">Expliquez votre décision ou laissez des instructions supplémentaires.</div>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" name="approve" class="btn btn-success">Approuver</button>
+                            <button type="submit" name="reject" class="btn btn-danger">Rejeter</button>
+                            <a href="{% url 'languages:correction_list' %}" class="btn btn-outline-secondary ms-auto">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
