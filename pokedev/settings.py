@@ -27,10 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'system',
+    'db_docs.apps.DbDocsConfig',
     'languages',
     'tools.apps.ToolsConfig',
     'utilisateurs.apps.UtilisateursConfig',
     'stats',
+    'django_extensions',
 
 ]
 
@@ -145,7 +147,7 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
 
-    # configuration de logging
+# configuration de logging (corrigé l'indentation)
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

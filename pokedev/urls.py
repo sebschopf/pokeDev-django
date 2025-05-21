@@ -5,12 +5,30 @@ from django.conf.urls.static import static
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
+# Fonction de redirection vers la page de liste des langages
+def redirect_to_languages(request):
+    return redirect('languages:list')
+
+# Enregistrer les modèles avec le site d'administration personnalisé
+from languages.models import (
+    Languages, Corrections, LanguageProposals, LanguagesFramework,
+    Libraries, LibraryLanguages,
+    TechnologyCategories, TechnologySubtypes,
+    UsageCategories, LanguageUsage
+)
+from languages.admin import (
+    LanguagesAdmin, CorrectionsAdmin
+)
+
 urlpatterns = [
+
+    path('', redirect_to_languages, name='home'), # Redirection vers la page de liste des langages
     path('admin/', admin.site.urls),
+    path('db-docs/', include('db_docs.urls')),
     path('utilisateurs/', include('utilisateurs.urls')),
     path('stats/', include('stats.urls')),
     path('outils/', include('tools.urls')),
-    path('', include('languages.urls')),
+    path('languages/', include('languages.urls')),
     path('', include('system.urls')),
 ]
 
