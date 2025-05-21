@@ -225,7 +225,7 @@
       {
         "id": 1,
         "password": "pbkdf2_sha256$1000000$S22Wd77pSlBk0e7TDzEioO$0uvUeZ/C/B17oiERDPdDBkAV0MZHlWzlUJ9nCO8keE8=",
-        "last_login": "2025-05-15 11:09:16.574678+00:00",
+        "last_login": "2025-05-16 17:48:25.665985+00:00",
         "is_superuser": true,
         "username": "mous_tik",
         "first_name": "",
@@ -409,6 +409,184 @@
     ],
     "sample_data": []
   },
+  "db_docs_chapter": {
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "title",
+        "data_type": "character varying",
+        "character_maximum_length": 200,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "slug",
+        "data_type": "character varying",
+        "character_maximum_length": 50,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "order",
+        "data_type": "integer",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "description",
+        "data_type": "text",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      }
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [],
+    "sample_data": [
+      {
+        "id": 4,
+        "title": "Relations",
+        "slug": "relations",
+        "order": 400,
+        "description": "Documentation des relations entre les tables (cl\u00e9s \u00e9trang\u00e8res, contraintes)"
+      },
+      {
+        "id": 5,
+        "title": "Vues",
+        "slug": "vues",
+        "order": 500,
+        "description": "Description des vues d\u00e9finies dans la base de donn\u00e9es"
+      },
+      {
+        "id": 6,
+        "title": "Fonctions et proc\u00e9dures",
+        "slug": "fonctions-et-procedures",
+        "order": 600,
+        "description": "Documentation des fonctions et proc\u00e9dures stock\u00e9es"
+      },
+      {
+        "id": 7,
+        "title": "Triggers",
+        "slug": "triggers",
+        "order": 700,
+        "description": "Explication des triggers et de leur fonctionnement"
+      },
+      {
+        "id": 8,
+        "title": "Types personnalis\u00e9s",
+        "slug": "types-personnalises",
+        "order": 800,
+        "description": "Documentation des types de donn\u00e9es personnalis\u00e9s"
+      }
+    ]
+  },
+  "db_docs_section": {
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "title",
+        "data_type": "character varying",
+        "character_maximum_length": 200,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "content",
+        "data_type": "text",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "sql_example",
+        "data_type": "text",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "order",
+        "data_type": "integer",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "chapter_id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      }
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "chapter_id",
+        "foreign_table_name": "db_docs_chapter",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": [
+      {
+        "id": 2,
+        "title": "Architecture",
+        "content": "<p>La base de donn\u00e9es est organis\u00e9e en plusieurs sch\u00e9mas qui s\u00e9parent les diff\u00e9rentes fonctionnalit\u00e9s de l'application.</p>",
+        "sql_example": "",
+        "order": 2,
+        "chapter_id": 1
+      },
+      {
+        "id": 4,
+        "title": "Structure des tables",
+        "content": "<p>Les tables sont les objets principaux de la base de donn\u00e9es qui stockent les donn\u00e9es.</p>",
+        "sql_example": "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';",
+        "order": 1,
+        "chapter_id": 3
+      },
+      {
+        "id": 14,
+        "title": "Bonnes pratiques d'utilisation",
+        "content": "<ol>\r\n    <li><strong>Utiliser les sch\u00e9mas</strong> : Respecter l'organisation en sch\u00e9mas pour les requ\u00eates</li>\r\n    <li><strong>Privil\u00e9gier les contraintes</strong> : Utiliser les contraintes existantes pour garantir l'int\u00e9grit\u00e9 des donn\u00e9es</li>\r\n    <li><strong>Respecter les politiques RLS</strong> : Ne pas contourner les politiques de s\u00e9curit\u00e9</li>\r\n    <li><strong>Indexation</strong> : Utiliser les index existants pour optimiser les performances</li>\r\n    <li><strong>Transactions</strong> : Utiliser des transactions pour les op\u00e9rations complexes</li>\r\n</ol>",
+        "sql_example": "",
+        "order": 107,
+        "chapter_id": 1
+      },
+      {
+        "id": 5,
+        "title": "Mod\u00e8le de donn\u00e9es principal",
+        "content": "<p>Le c\u0153ur de la base de donn\u00e9es repose sur les entit\u00e9s suivantes :</p>\r\n\r\n<h3>Langages de programmation</h3>\r\n<p>La table <code>languages</code> stocke les informations sur les diff\u00e9rents langages de programmation, incluant :</p>\r\n<ul>\r\n    <li>Informations de base (nom, ann\u00e9e de cr\u00e9ation, cr\u00e9ateur)</li>\r\n    <li>Descriptions d\u00e9taill\u00e9es et r\u00e9sum\u00e9es</li>\r\n    <li>Caract\u00e9ristiques techniques (type, taux d'utilisation, open source)</li>\r\n    <li>Points forts et cas d'utilisation</li>\r\n    <li>Frameworks populaires associ\u00e9s</li>\r\n    <li>Ressources visuelles (logos)</li>\r\n</ul>\r\n\r\n<h3>Biblioth\u00e8ques et frameworks</h3>\r\n<p>Les tables <code>libraries</code> et leurs associations stockent les biblioth\u00e8ques et frameworks li\u00e9s aux langages, avec :</p>\r\n<ul>\r\n    <li>Informations descriptives</li>\r\n    <li>Relations avec les langages</li>\r\n    <li>Cat\u00e9gorisation et typage</li>\r\n    <li>Statut officiel ou communautaire</li>\r\n</ul>\r\n\r\n<h3>Cat\u00e9gorisation</h3>\r\n<p>Plusieurs tables de cat\u00e9gorisation permettent d'organiser les langages et biblioth\u00e8ques :</p>\r\n<ul>\r\n    <li><code>usage_categories</code> : Cat\u00e9gories d'utilisation (web, mobile, data science, etc.)</li>\r\n    <li><code>technology_categories</code> : Types de technologies</li>\r\n    <li><code>technology_subtypes</code> : Sous-types plus sp\u00e9cifiques</li>\r\n</ul>\r\n\r\n<h3>Gestion des utilisateurs</h3>\r\n<p>Le syst\u00e8me comprend une gestion des utilisateurs avec diff\u00e9rents r\u00f4les :</p>\r\n<ul>\r\n    <li>Utilisateurs non enregistr\u00e9s (visiteurs)</li>\r\n    <li>Utilisateurs enregistr\u00e9s</li>\r\n    <li>Utilisateurs v\u00e9rifi\u00e9s</li>\r\n    <li>Validateurs</li>\r\n    <li>R\u00e9f\u00e9rents de langage</li>\r\n    <li>Administrateurs</li>\r\n</ul>",
+        "sql_example": "",
+        "order": 102,
+        "chapter_id": 1
+      },
+      {
+        "id": 13,
+        "title": "Diagramme conceptuel simplifi\u00e9",
+        "content": "<pre>\r\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\r\n\u2502  languages  \u2502\u25c4\u2500\u2500\u2500\u2500\u2524 language_usage    \u2502\u2500\u2500\u2500\u2500\u25ba\u2502 usage_categories\u2502\r\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n       \u25b2                                              \u25b2\r\n       \u2502                                              \u2502\r\n       \u2502            \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510             \u2502\r\n       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524 libraries          \u2502\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n                            \u25b2\r\n                            \u2502\r\n                    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\r\n                    \u2502 library_languages \u2502\r\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n</pre>",
+        "sql_example": "",
+        "order": 106,
+        "chapter_id": 1
+      }
+    ]
+  },
   "django_admin_log": {
     "columns": [
       {
@@ -483,7 +661,58 @@
         "foreign_column_name": "id"
       }
     ],
-    "sample_data": []
+    "sample_data": [
+      {
+        "id": 1,
+        "action_time": "2025-05-20 14:44:42.578384+00:00",
+        "object_id": "1",
+        "object_repr": "Vue d'ensemble",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]",
+        "content_type_id": 28,
+        "user_id": 1
+      },
+      {
+        "id": 2,
+        "action_time": "2025-05-20 14:51:32.469453+00:00",
+        "object_id": "1",
+        "object_repr": "Vue d'ensemble - Introduction",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]",
+        "content_type_id": 27,
+        "user_id": 1
+      },
+      {
+        "id": 3,
+        "action_time": "2025-05-20 14:51:47.938331+00:00",
+        "object_id": "1",
+        "object_repr": "Vue d'ensemble",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]",
+        "content_type_id": 28,
+        "user_id": 1
+      },
+      {
+        "id": 4,
+        "action_time": "2025-05-20 14:52:30.240171+00:00",
+        "object_id": "1",
+        "object_repr": "Vue d'ensemble - Introduction",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]",
+        "content_type_id": 27,
+        "user_id": 1
+      },
+      {
+        "id": 5,
+        "action_time": "2025-05-20 14:54:49.534558+00:00",
+        "object_id": "1",
+        "object_repr": "Vue d'ensemble - Introduction \u00e0 la base de donn\u00e9es",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\", \"Content\"]}}]",
+        "content_type_id": 27,
+        "user_id": 1
+      }
+    ]
   },
   "django_content_type": {
     "columns": [
@@ -642,6 +871,11 @@
         "session_key": "1pb524zvq0i9olci7lgs621j16q5ov7i",
         "session_data": ".eJxVjDkOwjAUBe_iGlnxLlPScwbrLzYOIFuKkwpxd4iUAto3M-8lEmxrTdvIS5pZnIUSp98NgR657YDv0G5dUm_rMqPcFXnQIa-d8_NyuH8HFUb91kDWBRcweJ7YFIUKfXQRTMnEVlsKoOOESmc2PpM2HJx2xSIzQvBRvD_u0Dhe:1uFWSi:Zcs1KM5Wwq4I_fCJlGmjpgg-FPNCsSa35-oXfo7CgnU",
         "expire_date": "2025-05-29 11:09:16.601388+00:00"
+      },
+      {
+        "session_key": "mh564r88sxu0v5ug2kixftq8qe19n8f1",
+        "session_data": ".eJxVjDkOwjAUBe_iGlnxLlPScwbrLzYOIFuKkwpxd4iUAto3M-8lEmxrTdvIS5pZnIUSp98NgR657YDv0G5dUm_rMqPcFXnQIa-d8_NyuH8HFUb91kDWBRcweJ7YFIUKfXQRTMnEVlsKoOOESmc2PpM2HJx2xSIzQvBRvD_u0Dhe:1uFzAX:htnjBa7Mb_-1g4O8c7VOaz4Y-7lioIQL_VDtIKbkJ3M",
+        "expire_date": "2025-05-30 17:48:25.678263+00:00"
       }
     ]
   },
@@ -971,6 +1205,13 @@
         "character_maximum_length": null,
         "is_nullable": "YES",
         "column_default": null
+      },
+      {
+        "column_name": "logo_svg",
+        "data_type": "text",
+        "character_maximum_length": null,
+        "is_nullable": "YES",
+        "column_default": null
       }
     ],
     "primary_keys": [
@@ -979,134 +1220,46 @@
     "foreign_keys": [],
     "sample_data": [
       {
-        "id": 1,
-        "name": "HTML",
-        "slug": "html",
-        "year_created": 1993,
-        "creator": "Tim Berners-Lee",
-        "description": "HTML est le langage de balisage standard pour les documents con\u00e7us pour \u00eatre affich\u00e9s dans un navigateur web.",
-        "logo_path": "/images/html.svg",
+        "id": 17,
+        "name": "LESS",
+        "slug": "less",
+        "year_created": 2009,
+        "creator": "Alexis Sellier",
+        "description": "LESS est un langage de feuille de style dynamique qui peut \u00eatre compil\u00e9 en CSS.",
+        "logo_path": "/images/less.svg",
         "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-03-28 16:59:15.614959+00:00",
+        "updated_at": "2025-05-18 12:27:37.940511+00:00",
         "type": "Frontend",
-        "usage_rate": 85,
+        "usage_rate": 45,
         "is_open_source": true,
-        "short_description": "Langage de balisage pour cr\u00e9er des pages web",
-        "used_for": "Cr\u00e9ation de pages web, Structure de contenu, Accessibilit\u00e9",
+        "short_description": "Pr\u00e9processeur CSS avec variables et fonctions",
+        "used_for": "Stylisation web, Th\u00e8mes, Frameworks CSS",
         "strengths": [
-          "Facile \u00e0 apprendre",
-          "Universel",
-          "Compatible avec tous les navigateurs"
-        ],
-        "popular_frameworks": [
-          "HTML5 Boilerplate",
-          "Bootstrap",
-          "Foundation"
-        ],
-        "tools": {
-          "parsers": [
-            "DOMParser",
-            "HTML5Parser"
-          ],
-          "validators": [
-            "W3C Validator",
-            "Nu Html Checker"
-          ],
-          "templateEngines": [
-            "Handlebars",
-            "Mustache",
-            "EJS"
-          ]
-        }
-      },
-      {
-        "id": 2,
-        "name": "CSS",
-        "slug": "css",
-        "year_created": 1996,
-        "creator": "W3C",
-        "description": "CSS est un langage de feuille de style utilis\u00e9 pour d\u00e9crire la pr\u00e9sentation d'un document \u00e9crit en HTML.",
-        "logo_path": "/images/css.svg",
-        "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-03-28 16:59:15.614959+00:00",
-        "type": "Frontend",
-        "usage_rate": 83,
-        "is_open_source": true,
-        "short_description": "Langage de style pour mettre en forme les pages web",
-        "used_for": "Mise en forme de pages web, Animations, Responsive design",
-        "strengths": [
-          "Puissant",
-          "Flexible",
-          "Standardis\u00e9"
+          "Variables",
+          "Mixins",
+          "Imbrication",
+          "Op\u00e9rations math\u00e9matiques"
         ],
         "popular_frameworks": [
           "Bootstrap",
-          "Tailwind CSS",
-          "Bulma",
-          "Foundation"
+          "Ant Design",
+          "AdminLTE"
         ],
         "tools": {
-          "frameworks": [
-            "Bootstrap",
-            "Tailwind CSS"
+          "plugins": [
+            "PostCSS",
+            "Autoprefixer"
           ],
-          "methodologies": [
-            "BEM",
-            "SMACSS",
-            "OOCSS"
+          "compilers": [
+            "less.js",
+            "lessc"
           ],
-          "preprocessors": [
-            "Sass",
-            "Less",
-            "Stylus"
-          ]
-        }
-      },
-      {
-        "id": 3,
-        "name": "JavaScript",
-        "slug": "javascript",
-        "year_created": 1995,
-        "creator": "Brendan Eich",
-        "description": "JavaScript est un langage de programmation qui permet d'impl\u00e9menter des fonctionnalit\u00e9s complexes sur les pages web.",
-        "logo_path": "/images/javascript.svg",
-        "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-03-28 16:59:15.614959+00:00",
-        "type": "Fullstack",
-        "usage_rate": 95,
-        "is_open_source": true,
-        "short_description": "Langage de programmation pour le web et au-del\u00e0",
-        "used_for": "D\u00e9veloppement web, Applications mobiles, Serveurs, IoT",
-        "strengths": [
-          "Polyvalent",
-          "Omnipr\u00e9sent",
-          "\u00c9cosyst\u00e8me riche",
-          "Performances am\u00e9lior\u00e9es"
-        ],
-        "popular_frameworks": [
-          "React",
-          "Vue.js",
-          "Angular",
-          "Node.js",
-          "Express"
-        ],
-        "tools": {
-          "bundlers": [
+          "integrations": [
             "Webpack",
-            "Rollup",
-            "Parcel"
-          ],
-          "testFrameworks": [
-            "Jest",
-            "Mocha",
-            "Cypress"
-          ],
-          "packageManagers": [
-            "npm",
-            "Yarn",
-            "pnpm"
+            "Gulp"
           ]
-        }
+        },
+        "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 128 128\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#2A4D80\" d=\"M122.301 58.635c-.6-1.299-.89-2.836-.952-4.283-.154-3.561-.023-7.135-.184-10.696-.144-3.189-1.282-6.063-4.344-7.707-2.696-1.447-5.821-1.591-8.821-1.625v5.691c1 .034.754.065.998.078 4.029.198 5.379 1.476 5.43 5.473.038 2.972.012 5.946.06 8.917.059 3.605.597 7.046 3.894 9.322.056.039.051.182.083.348-1.678 1.192-3.006 2.727-3.392 4.822a34.53 34.53 0 00-.54 5.153c-.096 3.118.003 6.243-.086 9.361-.07 2.442-1.227 3.588-3.604 4.132-.895.206-1.843.279-2.843.406v5.677c2-.12 3.017-.199 4.387-.347 5.156-.558 8.059-3.241 8.654-8.243.186-1.568.165-3.166.2-4.75.066-2.969.032-5.952.298-8.903.271-3.011 2.461-4.675 5.461-4.509v-5.951c-2 .358-3.843-.507-4.699-2.366zM28.314 70.768C28.313 59.219 28 47.67 28 36.122v-1.817c-3 0-6.226-.029-9.391.014-1.285.017-2.418.127-3.692.301-4.877.664-7.228 2.953-8.092 7.812-.25 1.402-.2 2.859-.221 4.293-.039 2.726.039 5.453-.005 8.178-.055 3.432-1.672 6.092-5.172 6.294-.124.007.573.15-.427.236v5.305c4 .628 5.273 2.243 5.539 5.959.042.592.053 1.189.059 1.784.034 3.32-.004 6.645.146 9.959.141 3.093.828 5.857 3.751 7.48C13.225 93.436 17 93.559 19 93.638v-5.664c0-.048-.21-.092-.405-.104-4.339-.265-5.317-1.443-5.343-5.785-.017-2.875.106-5.75.06-8.625-.058-3.612-.586-7.038-3.856-9.324-.05-.035-.001-.183-.017-.383 2.199-1.39 3.368-3.516 3.686-6.094.176-1.422.235-2.864.26-4.299.05-2.973-.003-5.949.078-8.92.057-2.088 1.39-3.61 3.091-3.952 1.612-.325 2.446-.315 5.446-.466v2.056c0 10.31-.367 20.619-.313 30.929.019 3.531.41 7.012 4.195 8.537 2.058.829 4.263 1.084 6.627 1.642.395-2.312.524-4.23.847-6.128-4.357-1.25-5.042-1.898-5.042-6.29zm26.674-19.893c-7.34-3.51-16.248-.441-19.666 6.921-2.574 5.544-2.482 11.25-.216 16.872 1.229 3.048 3.45 5.33 6.473 6.672 5.904 2.621 11.879 1.984 17.832.144.321-.1.731-.718.692-1.046-.203-1.661-.54-3.306-.841-5.021-1.417.357-2.601.722-3.811.949-3.197.601-6.401.6-9.512-.637-3.072-1.22-5.135-4.73-4.622-7.73h20.872c.255-3 .154-7.125-1.123-10.536-1.14-3.049-3.108-5.167-6.078-6.588zM54.944 63H41.228c.007-4 3.264-7.59 7.537-7.508 3.753.072 6.349 3.508 6.179 7.508zm56.108 12.279c.492-5.054-1.034-7.898-5.534-10.094-1.596-.779-3.29-1.356-4.916-2.078-1.217-.54-2.442-1.087-3.58-1.771-1.108-.665-1.572-1.769-1.408-3.062.161-1.277.982-2.119 2.168-2.359 1.437-.292 2.943-.542 4.388-.424 2.042.167 4.056.69 6.163 1.075l1.332-5.818c-2.851-.434-5.509-.995-8.195-1.207-2.987-.235-5.896.261-8.63 1.67-5.777 2.977-5.883 12.116-.574 15.116 1.586.896 3.283 1.596 4.933 2.38 1.737.827 3.537 1.546 5.199 2.504 1.262.727 1.713 1.996 1.375 3.475-.313 1.375-1.354 1.988-2.577 2.105-1.86.177-3.768.347-5.609.128-2.217-.264-4.387-.937-6.658-1.451l-1.158 5.79c5.333 2.002 10.61 2.33 15.938 1.149 4.459-.988 6.999-3.596 7.343-7.128zm-28.415-9.452c-1.959-1.039-4.066-1.797-6.088-2.723-1.255-.575-2.584-1.074-3.69-1.871-2.127-1.533-1.731-4.472.746-5.258 1.421-.452 3.028-.592 4.521-.48 2.034.153 4.041.679 6.162 1.063l1.258-5.546c-1.077-.293-2.052-.612-3.051-.822-3.971-.836-7.963-1.16-11.874.215-3.36 1.182-5.691 3.392-6.152 7.11-.516 4.152.861 7.43 4.696 9.402 1.535.79 3.18 1.363 4.747 2.095 1.564.73 3.161 1.427 4.614 2.343 1.111.7 1.549 1.885 1.236 3.255-.311 1.358-1.301 2.042-2.533 2.169-1.86.191-3.769.368-5.611.153-2.226-.26-4.403-.935-6.714-1.455-.341 1.613-.741 3.238-.99 4.885-.054.358.345 1.046.681 1.163 5.384 1.866 10.864 2.134 16.34.521 3.27-.962 5.557-3.051 6.018-6.623.523-4.055-.444-7.544-4.316-9.596z\"/>\n</svg>\n\n"
       },
       {
         "id": 5,
@@ -1117,7 +1270,7 @@
         "description": "Python est un langage de programmation interpr\u00e9t\u00e9, multi-paradigme et multiplateformes.",
         "logo_path": "/images/python.svg",
         "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-03-28 16:59:15.614959+00:00",
+        "updated_at": "2025-05-18 12:27:38.101555+00:00",
         "type": "Backend",
         "usage_rate": 80,
         "is_open_source": true,
@@ -1150,7 +1303,92 @@
             "pip",
             "conda"
           ]
-        }
+        },
+        "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 128 128\"><linearGradient id=\"python-original-a\" gradientUnits=\"userSpaceOnUse\" x1=\"70.252\" y1=\"1237.476\" x2=\"170.659\" y2=\"1151.089\" gradientTransform=\"matrix(.563 0 0 -.568 -29.215 707.817)\"><stop offset=\"0\" stop-color=\"#5A9FD4\"/><stop offset=\"1\" stop-color=\"#306998\"/></linearGradient><linearGradient id=\"python-original-b\" gradientUnits=\"userSpaceOnUse\" x1=\"209.474\" y1=\"1098.811\" x2=\"173.62\" y2=\"1149.537\" gradientTransform=\"matrix(.563 0 0 -.568 -29.215 707.817)\"><stop offset=\"0\" stop-color=\"#FFD43B\"/><stop offset=\"1\" stop-color=\"#FFE873\"/></linearGradient><path fill=\"url(#python-original-a)\" d=\"M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z\" transform=\"translate(0 10.26)\"/><path fill=\"url(#python-original-b)\" d=\"M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z\" transform=\"translate(0 10.26)\"/><radialGradient id=\"python-original-c\" cx=\"1825.678\" cy=\"444.45\" r=\"26.743\" gradientTransform=\"matrix(0 -.24 -1.055 0 532.979 557.576)\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#B8B8B8\" stop-opacity=\".498\"/><stop offset=\"1\" stop-color=\"#7F7F7F\" stop-opacity=\"0\"/></radialGradient><path opacity=\".444\" fill=\"url(#python-original-c)\" d=\"M97.309 119.597c0 3.543-14.816 6.416-33.091 6.416-18.276 0-33.092-2.873-33.092-6.416 0-3.544 14.815-6.417 33.092-6.417 18.275 0 33.091 2.872 33.091 6.417z\"/></svg>\n\n"
+      },
+      {
+        "id": 1,
+        "name": "HTML",
+        "slug": "html",
+        "year_created": 1993,
+        "creator": "Tim Berners-Lee",
+        "description": "HTML est le langage de balisage standard pour les documents con\u00e7us pour \u00eatre affich\u00e9s dans un navigateur web.",
+        "logo_path": "/images/html.svg",
+        "created_at": "2025-03-28 16:59:15.614959+00:00",
+        "updated_at": "2025-05-18 12:27:37.800937+00:00",
+        "type": "Frontend",
+        "usage_rate": 85,
+        "is_open_source": true,
+        "short_description": "Langage de balisage pour cr\u00e9er des pages web",
+        "used_for": "Cr\u00e9ation de pages web, Structure de contenu, Accessibilit\u00e9",
+        "strengths": [
+          "Facile \u00e0 apprendre",
+          "Universel",
+          "Compatible avec tous les navigateurs"
+        ],
+        "popular_frameworks": [
+          "HTML5 Boilerplate",
+          "Bootstrap",
+          "Foundation"
+        ],
+        "tools": {
+          "parsers": [
+            "DOMParser",
+            "HTML5Parser"
+          ],
+          "validators": [
+            "W3C Validator",
+            "Nu Html Checker"
+          ],
+          "templateEngines": [
+            "Handlebars",
+            "Mustache",
+            "EJS"
+          ]
+        },
+        "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 128\">\n  <!-- Logo HTML \u00e0 gauche -->\n  <g transform=\"translate(0,0) scale(0.25)\">\n    <path d=\"M108.4 0h23v22.8h21.2V0h23v69h-23V46h-21v23h-23.2M206 23h-20.3V0h63.7v23H229v46h-23M259.5 0h24.1l14.8 24.3L313.2 0h24.1v69h-23V34.8l-16.1 24.8l-16.1-24.8v34.2h-22.6M348.7 0h23v46.2h32.6V69h-55.6\"/>\n    <path fill=\"#e44d26\" d=\"M107.6 471l-33-370.4h362.8l-33 370.2L255.7 512\"/>\n    <path fill=\"#f16529\" d=\"M256 480.5V131H404.3L376 447\"/>\n    <path fill=\"#ebebeb\" d=\"M142 176.3h114v45.4h-64.2l4.2 46.5h60v45.3H154.4M156.4 336.3H202l3.2 36.3 50.8 13.6v47.4l-93.2-26\"/>\n    <path fill=\"#fff\" d=\"M369.6 176.3H255.8v45.4h109.6M361.3 268.2H255.8v45.4h56l-5.3 59-50.7 13.6v47.2l93-25.8\"/>\n  </g>\n  \n  <!-- Logo CSS \u00e0 droite -->\n  <g transform=\"translate(128,0) scale(0.128)\">\n    <path id=\"bg\" fill=\"#639\" d=\"M0 0H840A160 160 0 0 1 1000 160V840A160 160 0 0 1 840 1000H160A160 160 0 0 1 0 840V0Z\" />\n    <path id=\"fg\" fill=\"#fff\" d=\"m358.1,920c-64.23-.06-103.86-36.23-103.1-102.79,0,0,0-168.39,0-168.39,0-33.74,9.88-59.4,29.64-76.96,35.49-34.19,117.83-36.27,152.59.52,21.42,18.89,29.5,57.48,27.58,93.49h-73.72c.56-14.15-.19-35.58-8.51-43.65-10.81-14.63-39.36-12.91-46.91,2.32-4.64,8.26-6.96,20.49-6.96,36.67v146.18c0,30.65,10.65,46.15,31.96,46.49,9.96,0,17.53-3.62,22.68-10.85,7.19-8.58,8.31-27.58,7.73-41.32h73.72c5.04,70.07-36.32,119.16-106.71,118.29Zm234.04,0c-71.17.98-103.01-49.66-101.04-118.29h69.59c-1.93,29.92,8.35,57.17,32.99,55.27,10.99,0,18.73-3.44,23.2-10.33,8.5-12.59,10.09-48.95-2.06-63.02-8.49-13.55-39.03-25.51-55.16-33.57-23.03-11.02-39.61-24.1-49.75-39.26-22.87-33.64-20.75-107.48,11.34-137.4,31.18-36.92,112.61-38.62,143.82-.77,19.25,19.51,27.66,57.9,26.03,93.23h-67.02c.57-14.52-.8-37.95-6.44-46.49-3.95-7.23-11.43-10.85-22.42-10.85-19.59,0-29.38,11.71-29.38,35.12.21,24.86,9.9,35.06,32.48,45.45,29.24,11.36,66.42,30.76,79.9,54.24,40.2,71.54,12.62,180.82-86.09,176.65Zm224.76,0c-71.17.98-103.01-49.66-101.04-118.29h69.59c-1.93,29.92,8.35,57.17,32.99,55.27,10.99,0,18.73-3.44,23.2-10.33,8.5-12.59,10.09-48.95-2.06-63.02-8.49-13.55-39.03-25.51-55.16-33.57-23.03-11.02-39.61-24.1-49.75-39.26-22.87-33.64-20.75-107.48,11.34-137.4,31.18-36.92,112.61-38.62,143.82-.77,19.25,19.51,27.66,57.9,26.03,93.23h-67.02c.57-14.52-.8-37.95-6.44-46.49-3.95-7.23-11.43-10.85-22.42-10.85-19.59,0-29.38,11.71-29.38,35.12.21,24.86,9.9,35.06,32.48,45.45,29.24,11.36,66.42,30.76,79.9,54.24,40.2,71.54,12.62,180.82-86.09,176.65Z\" />\n  </g>\n</svg>\n\n"
+      },
+      {
+        "id": 18,
+        "name": "VBA",
+        "slug": "vba",
+        "year_created": 1993,
+        "creator": "Microsoft",
+        "description": "Visual Basic for Applications est une impl\u00e9mentation de Microsoft Visual Basic qui est int\u00e9gr\u00e9e dans toutes les applications de Microsoft Office.",
+        "logo_path": "/images/vba.svg",
+        "created_at": "2025-03-28 16:59:15.614959+00:00",
+        "updated_at": "2025-05-20 22:09:30.493373+00:00",
+        "type": "Bureau",
+        "usage_rate": 40,
+        "is_open_source": false,
+        "short_description": "Langage de programmation pour les applications Microsoft Office",
+        "used_for": "Automatisation Office, Macros, Applications d'entreprise",
+        "strengths": [
+          "Int\u00e9gration Office",
+          "Facile pour les non-programmeurs",
+          "Rapide \u00e0 d\u00e9velopper",
+          "Large adoption en entreprise"
+        ],
+        "popular_frameworks": [
+          "Excel VBA",
+          "Access VBA",
+          "Word VBA",
+          "Outlook VBA"
+        ],
+        "tools": {
+          "ides": [
+            "VBA Editor",
+            "Visual Studio Tools for Office"
+          ],
+          "addins": [
+            "MZ-Tools",
+            "Rubberduck"
+          ],
+          "debuggers": [
+            "VBA Debugger"
+          ]
+        },
+        "logo_svg": "<svg width=\"800px\" height=\"800px\" viewBox=\"0 0 30 30\" xmlns=\"http://www.w3.org/2000/svg\"><title>vba</title><polygon points=\"10.457 11.092 16.014 13.839 16.014 18.307 10.457 15.382 10.457 11.092\" style=\"fill:#6483c0\"/><path d=\"M16.2,18.613l-5.926-3.12V10.8L16.2,13.724ZM10.642,15.27,15.83,18V13.953l-5.188-2.564Z\"/><polygon points=\"16.371 13.839 16.371 18.307 21.315 15.814 21.315 11.354 16.371 13.839\" style=\"fill:#6483c0\"/><path d=\"M16.186,18.607V13.725l5.313-2.67v4.873Zm.369-4.655v4.055L21.13,15.7V11.653Z\"/><polygon points=\"10.703 10.797 16.186 13.58 21.082 11.064 15.777 8.389 10.703 10.797\" style=\"fill:#6483c0\"/><path d=\"M16.187,13.788l-5.9-3,5.5-2.608,5.709,2.879ZM11.122,10.8l5.064,2.57,4.49-2.308-4.9-2.471Z\"/><polygon points=\"18.957 15.829 24.515 18.575 24.515 23.043 18.957 20.118 18.957 15.829\" style=\"fill:#952781\"/><path d=\"M24.7,23.349l-5.926-3.12v-4.7L24.7,18.46Zm-5.557-3.343,5.188,2.731V18.689l-5.188-2.564Z\"/><polygon points=\"24.871 18.575 24.871 23.043 29.815 20.55 29.815 16.09 24.871 18.575\" style=\"fill:#952781\"/><path d=\"M24.687,23.343V18.461L30,15.791v4.873Zm.369-4.655v4.055l4.575-2.308V16.389Z\"/><polygon points=\"19.203 15.546 24.687 18.329 29.583 15.812 24.364 13.346 19.203 15.546\" style=\"fill:#952781\"/><path d=\"M24.687,18.536l-5.92-3.005,5.6-2.387L30,15.805ZM19.64,15.56l5.046,2.561,4.479-2.3-4.806-2.27Z\"/><polygon points=\"2.19 15.496 7.748 18.243 7.748 22.711 2.19 19.786 2.19 15.496\" style=\"fill:#d87b30\"/><path d=\"M7.932,23.017,2.006,19.9V15.2l5.926,2.929ZM2.375,19.674l5.188,2.731V18.357L2.375,15.793Z\"/><polygon points=\"8.104 18.243 8.104 22.711 13.048 20.218 13.048 15.758 8.104 18.243\" style=\"fill:#d87b30\"/><path d=\"M7.92,23.011V18.129l5.313-2.67v4.873Zm.369-4.655v4.055L12.864,20.1V16.057Z\"/><polygon points=\"2.436 15.213 7.92 17.997 12.816 15.48 7.597 13.014 2.436 15.213\" style=\"fill:#d87b30\"/><path d=\"M7.92,18.2,2,15.2l5.6-2.387,5.632,2.661ZM2.873,15.228l5.046,2.561,4.479-2.3-4.806-2.27Z\"/><polygon points=\"10.875 16.296 16.432 19.042 16.432 23.511 10.875 20.585 10.875 16.296\" style=\"fill:#e0d400\"/><path d=\"M16.617,23.816,10.691,20.7V16l5.926,2.929ZM11.06,20.474l5.188,2.731V19.157L11.06,16.593Z\"/><polygon points=\"16.789 19.042 16.789 23.511 21.733 21.017 21.733 16.557 16.789 19.042\" style=\"fill:#e0d400\"/><path d=\"M16.6,23.811V18.929l5.313-2.67v4.873Zm.369-4.655v4.055L21.549,20.9V16.857Z\"/><polygon points=\"11.121 16.001 16.605 18.784 21.501 16.267 16.196 13.593 11.121 16.001\" style=\"fill:#e0d400\"/><path d=\"M16.605,18.991l-5.9-3,5.5-2.608,5.709,2.879ZM11.54,16.006l5.064,2.57,4.49-2.308-4.9-2.471Z\"/></svg>"
       },
       {
         "id": 6,
@@ -1161,7 +1399,7 @@
         "description": "Java est un langage de programmation orient\u00e9 objet con\u00e7u pour avoir le moins de d\u00e9pendances d'impl\u00e9mentation possibles.",
         "logo_path": "/images/java.svg",
         "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-03-28 16:59:15.614959+00:00",
+        "updated_at": "2025-05-20 21:01:49.613895+00:00",
         "type": "Backend",
         "usage_rate": 75,
         "is_open_source": true,
@@ -1193,7 +1431,8 @@
             "Maven",
             "Gradle"
           ]
-        }
+        },
+        "logo_svg": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!-- Generator: Adobe Illustrator 12.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->\r\n<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\" [\r\n\t<!ENTITY ns_svg \"http://www.w3.org/2000/svg\">\r\n\t<!ENTITY ns_xlink \"http://www.w3.org/1999/xlink\">\r\n<svg  version=\"1.1\" id=\"Layer_1\" xmlns=\"&ns_svg;\" xmlns:xlink=\"&ns_xlink;\" width=\"354.346\" height=\"659.055\"\r\n\t viewBox=\"0 0 354.346 659.055\" overflow=\"visible\" enable-background=\"new 0 0 354.346 659.055\" xml:space=\"preserve\">\r\n<g>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#0074BD\" d=\"M117.151,349.592c0,0-17.265,10.049,12.301,13.44\r\n\t\tc35.824,4.09,54.13,3.501,93.596-3.959c0,0,10.397,6.504,24.892,12.137C159.439,409.127,47.644,369.013,117.151,349.592\r\n\t\tL117.151,349.592z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#0074BD\" d=\"M106.331,300.104c0,0-19.367,14.339,10.221,17.397\r\n\t\tc38.271,3.951,68.483,4.275,120.792-5.792c0,0,7.218,7.332,18.585,11.339C148.943,354.342,29.782,325.51,106.331,300.104\r\n\t\tL106.331,300.104z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M197.494,216.145c21.818,25.115-5.721,47.697-5.721,47.697\r\n\t\ts55.367-28.577,29.945-64.38c-23.752-33.373-41.962-49.951,56.623-107.124C278.342,92.338,123.587,130.979,197.494,216.145\r\n\t\tL197.494,216.145z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#0074BD\" d=\"M314.542,386.202c0,0,12.781,10.536-14.077,18.684\r\n\t\tc-51.071,15.469-212.604,20.135-257.47,0.619c-16.117-7.02,14.121-16.75,23.635-18.805c9.92-2.146,15.584-1.754,15.584-1.754\r\n\t\tc-17.937-12.631-115.935,24.807-49.772,35.544C212.871,449.736,361.337,407.317,314.542,386.202L314.542,386.202z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#0074BD\" d=\"M125.46,248.822c0,0-82.155,19.519-29.092,26.613\r\n\t\tc22.412,2.999,67.063,2.309,108.685-1.183c34.006-2.854,68.133-8.958,68.133-8.958s-11.982,5.14-20.657,11.06\r\n\t\tC169.085,298.301,7.917,288.08,54.322,265.642C93.549,246.665,125.46,248.822,125.46,248.822L125.46,248.822z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#0074BD\" d=\"M272.846,331.198c84.818-44.063,45.597-86.412,18.223-80.708\r\n\t\tc-6.694,1.397-9.697,2.607-9.697,2.607s2.494-3.907,7.243-5.588c54.155-19.03,95.794,56.146-17.464,85.919\r\n\t\tC271.15,333.428,272.453,332.248,272.846,331.198L272.846,331.198z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M221.719,0c0,0,46.963,46.99-44.557,119.227\r\n\t\tc-73.393,57.969-16.734,91.009-0.026,128.778c-42.845-38.653-74.271-72.684-53.192-104.352\r\n\t\tC154.898,97.174,240.663,74.632,221.719,0L221.719,0z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#0074BD\" d=\"M133.799,450.637c81.397,5.204,206.426-2.896,209.385-41.415\r\n\t\tc0,0-5.688,14.602-67.276,26.188c-69.481,13.081-155.197,11.558-206.016,3.167C69.892,438.577,80.303,447.194,133.799,450.637\r\n\t\tL133.799,450.637z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M339.426,519.716h-2.479v-1.385h6.676v1.385h-2.469v6.928h-1.729\r\n\t\tV519.716L339.426,519.716L339.426,519.716z M352.756,520.067h-0.032l-2.461,6.576h-1.132l-2.446-6.576h-0.025v6.576h-1.638v-8.313\r\n\t\th2.402l2.264,5.885l2.271-5.885h2.388v8.313h-1.59V520.067L352.756,520.067z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M120.461,597.813c-7.676,6.654-15.793,10.396-23.079,10.396\r\n\t\tc-10.378,0-16.007-6.236-16.007-16.216c0-10.803,6.027-18.71,30.163-18.71h8.923V597.813L120.461,597.813L120.461,597.813z\r\n\t\t M141.65,621.716V547.72c0-18.915-10.787-31.396-36.782-31.396c-15.168,0-28.467,3.75-39.278,8.525l3.111,13.106\r\n\t\tc8.515-3.127,19.526-6.031,30.337-6.031c14.978,0,21.423,6.031,21.423,18.505v9.356h-7.485c-36.383,0-52.798,14.11-52.798,35.336\r\n\t\tc0,18.285,10.819,28.682,31.185,28.682c13.088,0,22.87-5.405,32.001-13.315l1.663,11.228H141.65L141.65,621.716z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M212.362,621.716h-26.423l-31.807-103.502h23.077l19.743,63.6\r\n\t\tl4.391,19.109c9.965-27.639,17.032-55.701,20.566-82.709h22.445C238.352,552.294,227.523,589.706,212.362,621.716L212.362,621.716z\r\n\t\t\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M313.755,597.813c-7.701,6.654-15.82,10.396-23.086,10.396\r\n\t\tc-10.382,0-16.011-6.236-16.011-16.216c0-10.803,6.039-18.71,30.154-18.71h8.942V597.813L313.755,597.813L313.755,597.813z\r\n\t\t M334.951,621.716V547.72c0-18.915-10.818-31.396-36.789-31.396c-15.188,0-28.484,3.75-39.295,8.525l3.116,13.106\r\n\t\tc8.519-3.127,19.545-6.031,30.355-6.031c14.96,0,21.416,6.031,21.416,18.505v9.356h-7.485c-36.391,0-52.801,14.11-52.801,35.336\r\n\t\tc0,18.285,10.804,28.682,31.169,28.682c13.099,0,22.862-5.405,32.018-13.315l1.674,11.228H334.951L334.951,621.716z\"/>\r\n\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" fill=\"#EA2D2E\" d=\"M36.941,639.306c-6.037,8.821-15.8,15.809-26.479,19.749\r\n\t\tL0,646.731c8.135-4.178,15.103-10.912,18.345-17.182c2.796-5.589,3.96-12.773,3.96-29.971V481.398h22.519v116.551\r\n\t\tC44.824,620.95,42.988,630.249,36.941,639.306L36.941,639.306z\"/>\r\n</g>\r\n</svg>"
       }
     ]
   },
@@ -1251,105 +1490,6 @@
       {
         "column_name": "language_id",
         "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
-    ],
-    "primary_keys": [
-      "id"
-    ],
-    "foreign_keys": [
-      {
-        "column_name": "language_id",
-        "foreign_table_name": "languages_programminglanguage",
-        "foreign_column_name": "id"
-      }
-    ],
-    "sample_data": []
-  },
-  "languages_programminglanguage": {
-    "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "slug",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "creator",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "year_created",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "logo",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "website",
-        "data_type": "character varying",
-        "character_maximum_length": 200,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "github_repo",
-        "data_type": "character varying",
-        "character_maximum_length": 200,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "is_popular",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
         "character_maximum_length": null,
         "is_nullable": "NO",
         "column_default": null
@@ -1888,6 +2028,20 @@
         "character_maximum_length": null,
         "is_nullable": "YES",
         "column_default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "integer",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "role",
+        "data_type": "character varying",
+        "character_maximum_length": 20,
+        "is_nullable": "NO",
+        "column_default": null
       }
     ],
     "primary_keys": [
@@ -1898,6 +2052,11 @@
         "column_name": "id",
         "foreign_table_name": "users",
         "foreign_column_name": "id"
+      },
+      {
+        "column_name": "user_id",
+        "foreign_table_name": "auth_user",
+        "foreign_column_name": "id"
       }
     ],
     "sample_data": [
@@ -1905,11 +2064,13 @@
         "id": "d34510fc-dab1-4942-bb39-f093aa3defb2",
         "username": "mous_tik",
         "created_at": "2025-04-01 18:21:19.333871+00:00",
-        "updated_at": "2025-04-09 10:50:45.839194+00:00",
-        "avatar_url": "vtewfqpgjxg_1744193936919.png",
+        "updated_at": "2025-05-16 17:48:25.673811+00:00",
+        "avatar_url": "https://fastly.picsum.photos/id/828/536/354.jpg?hmac=XGZoH61TLSRykok6D4lLM6jItpyRGDjeTjeopmjT814",
         "full_name": null,
         "bio": "ma vie",
-        "website": ""
+        "website": null,
+        "user_id": 1,
+        "role": "registered"
       }
     ]
   },
@@ -2819,6 +2980,130 @@
       {
         "column_name": "id",
         "foreign_table_name": "users",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": []
+  },
+  "utilisateurs_correctioncomment": {
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "content",
+        "data_type": "text",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "correction_id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "integer",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      }
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "correction_id",
+        "foreign_table_name": "corrections",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "user_id",
+        "foreign_table_name": "auth_user",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": []
+  },
+  "utilisateurs_languageexpertise": {
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "expertise_level",
+        "data_type": "character varying",
+        "character_maximum_length": 20,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "notes",
+        "data_type": "text",
+        "character_maximum_length": null,
+        "is_nullable": "YES",
+        "column_default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "language_id",
+        "data_type": "bigint",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "character_maximum_length": null,
+        "is_nullable": "NO",
+        "column_default": null
+      }
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "language_id",
+        "foreign_table_name": "languages",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "user_id",
+        "foreign_table_name": "profiles",
         "foreign_column_name": "id"
       }
     ],

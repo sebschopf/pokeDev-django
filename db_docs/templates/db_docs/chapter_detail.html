@@ -1,0 +1,91 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}{{ chapter.title }} - Documentation BDD{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'db_docs:index' %}">Documentation BDD</a>
+    &rsaquo; {{ chapter.title }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>{{ chapter.title }}</h1>
+    
+    {% if chapter.description %}
+    <div class="module">
+        <p>{{ chapter.description|safe }}</p>
+    </div>
+    {% endif %}
+    
+    <div class="module">
+        <h2>Sections</h2>
+        {% for section in sections %}
+        <div class="section">
+            <h3>{{ section.title }}</h3>
+            <div class="content">
+                {{ section.content|safe }}
+            </div>
+            
+            {% if section.sql_example %}
+            <div class="sql-example">
+                <h4>Exemple SQL</h4>
+                <pre>{{ section.sql_example }}</pre>
+            </div>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p>Aucune section disponible. <a href="{% url 'admin:db_docs_section_add' %}">Ajouter une section</a></p>
+        {% endfor %}
+    </div>
+    
+    {% if schemas_info %}
+    <div class="module">
+        <h2>Schémas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Propriétaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for schema in schemas_info %}
+                <tr>
+                    <td>{{ schema.name }}</td>
+                    <td>{{ schema.owner }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    
+    {% if tables_info %}
+    <div class="module">
+        <h2>Tables</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Schéma</th>
+                    <th>Nom</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for table in tables_info %}
+                <tr>
+                    <td>{{ table.schema }}</td>
+                    <td>{{ table.name }}</td>
+                    <td>{{ table.type }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
