@@ -113,9 +113,9 @@
           </a>
           
           {% if user.is_authenticated and user.profile.can_submit_corrections %}
-          <button class="correction-button" onclick="alert('Fonctionnalité en cours de développement')">
+          <a href="{% url 'languages:propose_correction' language.slug %}" class="correction-button" role="button">
             PROPOSER UNE CORRECTION
-          </button>
+          </a>
           {% endif %}
         </div>
       </div>

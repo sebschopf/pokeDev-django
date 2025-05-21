@@ -114,14 +114,14 @@
   left: 0;
 }
 
-/* Effet de marqueur - Nouvelle classe */
+/* Effet de marqueur  */
 .neo-marker {
   background: linear-gradient(transparent 60%, var(--primary-color) 60%);
   display: inline;
   padding: 0 0.2em;
 }
 
-/* Effet de timbre - Nouvelle classe */
+/* Effet de timbre */
 .neo-stamp {
   border: 3px solid black;
   padding: 0.5rem 1rem;

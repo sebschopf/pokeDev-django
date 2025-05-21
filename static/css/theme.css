@@ -69,14 +69,15 @@ section h2 {
 
 /* Style néo-brutaliste pour tous les boutons */
 .neo-button {
-  background-color: white;
-  color: black;
+  display: inline-block;
+  background-color: black;
+  color: white;
   border: 3px solid black;
+  padding: .5rem 1.5rem;
   font-weight: 900;
   text-transform: uppercase;
   transition: all 0.2s;
   text-decoration: none;
-  display: inline-block;
 }
 
 .neo-button:hover {
@@ -108,9 +109,10 @@ nav ul li a:hover {
 .button,
 button,
 input[type="submit"] {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: black;
+  color: white;
   border: var(--border-width) solid var(--border-color);
+  padding: 0.5rem 1rem;
   font-weight: 900;
   text-transform: uppercase;
   transition: background-color 0.3s, color 0.3s, transform 0.2s;
