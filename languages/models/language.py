@@ -1,6 +1,7 @@
 # languages/models/language.py
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.urls import reverse
 
 class Languages(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -26,6 +27,12 @@ class Languages(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        """
+        Retourne l'URL de la page de détail de ce langage
+        """
+        return reverse('languages:detail', kwargs={'slug': self.slug})
 
     def get_libraries_by_type(self, type_name):
         """
@@ -57,42 +64,6 @@ class Languages(models.Model):
     @property
     def dev_tools(self):
         return self.get_libraries_by_type('tool')
-
-class LanguageProposals(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    submitted_by = models.UUIDField(blank=True, null=True)
-    status = models.CharField(max_length=50, default='pending')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    reviewer_id = models.UUIDField(blank=True, null=True)
-    review_notes = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'language_proposals'
-
-    def __str__(self):
-        return f"{self.name} ({self.status})"
-
-class Corrections(models.Model):
-    language_id = models.IntegerField(blank=True, null=True)
-    field_name = models.CharField(max_length=50)
-    current_value = models.TextField(blank=True, null=True)
-    proposed_value = models.TextField()
-    submitted_by = models.UUIDField(blank=True, null=True)
-    status = models.CharField(max_length=50, default='pending')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    reviewer_id = models.UUIDField(blank=True, null=True)
-    review_notes = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'corrections'
-
-    def __str__(self):
-        return f"Correction for {self.field_name} ({self.status})"
     
 class LanguagesFramework(models.Model):
     name = models.CharField(max_length=100)
