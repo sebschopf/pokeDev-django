@@ -110,3 +110,31 @@ class Languages(models.Model):
             )
         except LanguageAccessibilityLevels.DoesNotExist:
             return None
+        
+    @property
+    def features(self):
+        """
+        Récupère toutes les caractéristiques de ce langage
+        Optimisé avec select_related pour réduire les requêtes
+        """
+        from .features import LanguageFeatureValues
+        return LanguageFeatureValues.objects.filter(
+            language=self
+        ).select_related('feature').order_by('feature__display_order')
+
+    def get_feature_value(self, feature_slug):
+        """
+        Récupère la valeur d'une caractéristique spécifique pour ce langage
+        """
+        from .features import LanguageFeatureValues, LanguageFeatures
+        try:
+            feature = LanguageFeatures.objects.get(slug=feature_slug)
+            feature_value = LanguageFeatureValues.objects.get(
+                language=self,
+                feature=feature
+            )
+            return feature_value.value
+        except (LanguageFeatures.DoesNotExist, LanguageFeatureValues.DoesNotExist):
+            return None
+
+    
