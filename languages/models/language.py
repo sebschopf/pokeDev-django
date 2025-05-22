@@ -9,21 +9,31 @@ class Languages(models.Model):
     short_description = models.TextField(blank=True, null=True)
     logo_path = models.CharField(max_length=255, blank=True, null=True)
     logo_svg = models.TextField(blank=True, null=True) # SVG logo
-    slug = models.CharField(max_length=255, unique=True)
-    type = models.CharField(max_length=50, blank=True, null=True)
+    slug = models.CharField(max_length=255, unique=True, db_index=True)  # Expliciter l'index
+    type = models.CharField(max_length=50, blank=True, null=True, db_index=True)  # Ajout d'index
     used_for = models.TextField(blank=True, null=True)
-    usage_rate = models.FloatField(blank=True, null=True)
-    year_created = models.IntegerField(blank=True, null=True)
+    usage_rate = models.FloatField(blank=True, null=True, db_index=True)  # Ajout d'index
+    year_created = models.IntegerField(blank=True, null=True, db_index=True)  # Ajout d'index
     creator = models.CharField(max_length=255, blank=True, null=True)
     popular_frameworks = ArrayField(models.CharField(max_length=255), blank=True, null=True)
     strengths = ArrayField(models.CharField(max_length=255), blank=True, null=True)
-    is_open_source = models.BooleanField(default=True)
+    is_open_source = models.BooleanField(default=True, db_index=True)  # Ajout d'index
+    default_accessibility_level = models.ForeignKey('AccessibilityLevels', models.DO_NOTHING, blank=True, null=True, related_name='default_for_languages', db_index=True)  # Expliciter l'index
+    accessibility_score = models.FloatField(blank=True, null=True, db_index=True)  # Ajout d'index
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
         db_table = 'languages'
+        indexes = [
+            models.Index(fields=['slug']),
+            models.Index(fields=['type']),
+            models.Index(fields=['year_created']),
+            models.Index(fields=['usage_rate']),
+            models.Index(fields=['is_open_source']),
+            models.Index(fields=['accessibility_score']),
+        ]
 
     def __str__(self):
         return self.name
@@ -37,6 +47,7 @@ class Languages(models.Model):
     def get_libraries_by_type(self, type_name):
         """
         Récupère les bibliothèques associées à ce langage, filtrées par type
+        Optimisé avec select_related pour réduire les requêtes
         """
         from .library import Libraries, LibraryLanguages
     
@@ -65,18 +76,37 @@ class Languages(models.Model):
     def dev_tools(self):
         return self.get_libraries_by_type('tool')
     
-class LanguagesFramework(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.CharField(unique=True, max_length=50)
-    description = models.TextField()
-    website = models.CharField(max_length=200)
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
-    language_id = models.ForeignKey('Languages', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'languages_framework'
-
-    def __str__(self):
-        return self.name
+    @property
+    def accessibility_levels(self):
+        """
+        Récupère tous les niveaux d'accessibilité associés à ce langage
+        Optimisé avec select_related pour réduire les requêtes
+        """
+        from .accessibility import LanguageAccessibilityLevels, AccessibilityLevels
+        return LanguageAccessibilityLevels.objects.filter(
+            language=self
+        ).select_related('accessibility_level')
+    
+    @property
+    def accessibility_evaluations(self):
+        """
+        Récupère toutes les évaluations d'accessibilité pour ce langage
+        Optimisé avec select_related pour réduire les requêtes
+        """
+        from .accessibility import LanguageAccessibilityEvaluations, AccessibilityCriteria
+        return LanguageAccessibilityEvaluations.objects.filter(
+            language=self
+        ).select_related('criteria')
+    
+    def get_accessibility_level(self, level_number):
+        """
+        Récupère un niveau d'accessibilité spécifique pour ce langage
+        """
+        from .accessibility import LanguageAccessibilityLevels, AccessibilityLevels
+        try:
+            return LanguageAccessibilityLevels.objects.get(
+                language=self,
+                accessibility_level__level_number=level_number
+            )
+        except LanguageAccessibilityLevels.DoesNotExist:
+            return None
