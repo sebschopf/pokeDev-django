@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 from django.http import HttpResponse, HttpResponseRedirect
 import json
 from ..models import Languages, Corrections, LanguagesFramework, LibraryLanguages
+from ..models.accessibility import AccessibilityLevels, LanguageAccessibilityLevels
 from .utils import action_button
 from .mixins.language_admin_mixins import (
     LanguageDisplayMixin,
@@ -20,8 +21,8 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
     - LanguageActionsMixin: Actions personnalisées (export, mise en avant, etc.)
     - LanguageFormMixin: Personnalisation des formulaires
     """
-    list_display = ('name', 'creator', 'year_created', 'type', 'is_open_source', 'usage_indicator', 'view_corrections', 'view_on_site_link')
-    list_filter = ('type', 'year_created', 'is_open_source')
+    list_display = ('name', 'creator', 'year_created', 'type', 'is_open_source', 'usage_indicator', 'accessibility_indicator', 'view_corrections', 'view_on_site_link')
+    list_filter = ('type', 'year_created', 'is_open_source', 'default_accessibility_level')
     search_fields = ('name', 'creator', 'description', 'short_description')
     prepopulated_fields = {'slug': ('name',)}
     list_per_page = 20
@@ -44,10 +45,15 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
             'fields': ('used_for', 'usage_rate', 'strengths', 'popular_frameworks'),
             'classes': ('collapse',),
         }),
+        ('Accessibilité', {
+            'fields': ('default_accessibility_level', 'accessibility_score'),
+            'classes': ('collapse',),
+            'description': 'Paramètres d\'accessibilité du langage'
+        }),
     )
     
     # Champs en lecture seule pour les statistiques
-    readonly_fields = ('last_updated', 'corrections_count', 'frameworks_count', 'libraries_count')
+    readonly_fields = ('last_updated', 'corrections_count', 'frameworks_count', 'libraries_count', 'accessibility_levels_summary')
     
     # Définir les ressources Media pour inclure JS et CSS personnalisés
     class Media:
@@ -74,6 +80,25 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
             color, min(rate * 10, 100), rate
         )
     usage_indicator.short_description = "Popularité"
+    
+    def accessibility_indicator(self, obj):
+        """Affiche un indicateur visuel du score d'accessibilité"""
+        if not hasattr(obj, 'accessibility_score') or obj.accessibility_score is None:
+            return '-'
+        
+        score = float(obj.accessibility_score)
+        if score >= 75:
+            color = '#4CAF50'  # Vert
+        elif score >= 50:
+            color = '#FF9800'  # Orange
+        else:
+            color = '#F44336'  # Rouge
+            
+        return format_html(
+            '<div style="background-color: {}; width: {}px; height: 10px; border-radius: 5px;" title="{}%"></div>',
+            color, min(score, 100), score
+        )
+    accessibility_indicator.short_description = "Accessibilité"
     
     def view_corrections(self, obj):
         """Affiche un lien vers les corrections avec compteur"""
@@ -154,13 +179,63 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
         return "Aucune bibliothèque"
     libraries_count.short_description = "Bibliothèques"
     
+    def accessibility_levels_summary(self, obj):
+        """Résumé des niveaux d'accessibilité pour ce langage"""
+        levels = LanguageAccessibilityLevels.objects.filter(language=obj).select_related('accessibility_level')
+        
+        if not levels:
+            return "Aucun niveau d'accessibilité défini"
+        
+        level_colors = {
+            1: '#4CAF50',  # Vert
+            2: '#8BC34A',  # Vert clair
+            3: '#FFEB3B',  # Jaune
+            4: '#FF9800',  # Orange
+            5: '#F44336',  # Rouge
+        }
+        
+        html = '<div style="display: flex; flex-direction: column; gap: 10px;">'
+        
+        for level in levels:
+            level_number = level.accessibility_level.level_number
+            color = level_colors.get(level_number, '#9E9E9E')
+            
+            html += f'''
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="background-color: {color}; color: white; padding: 3px 7px; border-radius: 3px; min-width: 120px; text-align: center;">
+                    {level.accessibility_level.name}
+                </div>
+                <div style="flex-grow: 1; background-color: #f0f0f0; height: 10px; border-radius: 5px; overflow: hidden;">
+                    <div style="background-color: {color}; width: {level.accessibility_score}%; height: 100%;"></div>
+                </div>
+                <div style="min-width: 50px; text-align: right;">
+                    {level.accessibility_score}%
+                </div>
+            </div>
+            '''
+        
+        html += '</div>'
+        
+        # Ajouter un lien pour gérer les niveaux d'accessibilité
+        html += f'''
+        <div style="margin-top: 10px;">
+            <a href="{reverse('admin:languages_languageaccessibilitylevels_changelist')}?language__id__exact={obj.id}" 
+               style="color: #2196F3;">
+               Gérer les niveaux d'accessibilité
+            </a>
+        </div>
+        '''
+        
+        return mark_safe(html)
+    accessibility_levels_summary.short_description = "Niveaux d'accessibilité"
+    
     def last_updated(self, obj):
         """Date de dernière mise à jour"""
         return obj.updated_at if hasattr(obj, 'updated_at') else "Non disponible"
     last_updated.short_description = "Dernière mise à jour"
     
     # Actions personnalisées
-    actions = ['export_as_json', 'mark_as_featured', 'update_svg_logo']
+    actions = ['export_as_json', 'mark_as_featured', 'update_svg_logo', 'recalculate_accessibility_score']
     
     def export_as_json(self, request, queryset):
         """Exporte les langages sélectionnés au format JSON"""
@@ -178,6 +253,8 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
                 'logo_svg': language.logo_svg,
                 'strengths': language.strengths,
                 'popular_frameworks': language.popular_frameworks,
+                'accessibility_score': language.accessibility_score,
+                'default_accessibility_level_id': language.default_accessibility_level_id,
             }
             languages_data.append(language_dict)
         
@@ -210,6 +287,33 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
                 level='warning')
     update_svg_logo.short_description = "Mettre à jour le logo SVG"
     
+    def recalculate_accessibility_score(self, request, queryset):
+        """Recalcule le score d'accessibilité global basé sur les niveaux d'accessibilité"""
+        updated = 0
+        for language in queryset:
+            try:
+                # Récupérer le niveau d'accessibilité par défaut
+                if language.default_accessibility_level_id:
+                    # Trouver le score correspondant dans LanguageAccessibilityLevels
+                    level = LanguageAccessibilityLevels.objects.get(
+                        language=language,
+                        accessibility_level_id=language.default_accessibility_level_id
+                    )
+                    
+                    # Mettre à jour le score global
+                    language.accessibility_score = level.accessibility_score
+                    language.save()
+                    updated += 1
+            except LanguageAccessibilityLevels.DoesNotExist:
+                self.message_user(
+                    request, 
+                    f"Erreur pour {language.name}: Niveau d'accessibilité par défaut non trouvé dans les évaluations.", 
+                    level='warning'
+                )
+        
+        self.message_user(request, f"Score d'accessibilité recalculé pour {updated} langages.")
+    recalculate_accessibility_score.short_description = "Recalculer les scores d'accessibilité"
+    
     # Personnalisation de l'interface de changement
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -232,6 +336,11 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
                     'title': 'Voir les bibliothèques',
                     'url': f"{reverse('admin:languages_librarylanguages_changelist')}?language__id__exact={language.id}",
                     'icon': 'fas fa-book'
+                },
+                {
+                    'title': 'Gérer les niveaux d\'accessibilité',
+                    'url': f"{reverse('admin:languages_languageaccessibilitylevels_changelist')}?language__id__exact={language.id}",
+                    'icon': 'fas fa-universal-access'
                 },
                 {
                     'title': 'Voir sur le site',
@@ -262,5 +371,11 @@ class LanguagesAdmin(LanguageDisplayMixin, LanguageActionsMixin, LanguageFormMix
             form.base_fields['logo_svg'].help_text = mark_safe(
                 "Code SVG du logo. <button type='button' onclick='previewSVG()' class='button'>Prévisualiser</button>"
             )
+        
+        if 'default_accessibility_level' in form.base_fields:
+            form.base_fields['default_accessibility_level'].help_text = "Niveau d'accessibilité recommandé pour ce langage."
+        
+        if 'accessibility_score' in form.base_fields:
+            form.base_fields['accessibility_score'].help_text = "Score global d'accessibilité (0-100). Peut être calculé automatiquement."
         
         return form
