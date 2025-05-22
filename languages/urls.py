@@ -2,6 +2,7 @@
 from django.urls import path, include
 from . import views
 from . import views_corrections
+from . import views_api  # Importer le nouveau module views_api
 
 app_name = 'languages'
 
@@ -19,6 +20,11 @@ correction_patterns = [
     path('<int:correction_id>/', views_corrections.correction_detail, name='correction_detail'),
 ]
 
+# URLs pour l'API
+api_patterns = [
+    path('field-value/<slug:slug>/<str:field_name>/', views_api.get_field_value, name='get_field_value'),
+]
+
 # URLs principales
 urlpatterns = [
     # URLs pour les langages
@@ -26,4 +32,7 @@ urlpatterns = [
     
     # URLs pour les corrections (déplacées de admin/corrections/ à manage/corrections/)
     path('manage/corrections/', include(correction_patterns)),
+    
+    # URLs pour l'API
+    path('api/', include(api_patterns)),
 ]
