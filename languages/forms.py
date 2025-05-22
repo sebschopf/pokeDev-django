@@ -2,7 +2,6 @@
 from django import forms
 from .models.corrections import Corrections
 from .models.language import Languages
-from django.db.models import fields
 
 class DynamicCorrectionForm(forms.ModelForm):
     """Formulaire de correction qui génère dynamiquement les choix de champs à partir du modèle Languages"""
