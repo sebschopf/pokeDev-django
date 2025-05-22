@@ -1,40 +1,39 @@
 {% load static %}
 
-<section class="neo-section mb-8" id="accessibility">
-    <div class="bg-black text-white p-4">
-        <h2 class="title-black-bg">Accessibilité et difficulté d'apprentissage</h2>
-    </div>
+<section class="neo-section mb-8 tab-section" style="background-color: #fefce8; border: 4px solid black; box-shadow: 8px 8px 0 rgba(0,0,0,0.8);">
+        <h2 class="section-title text-3xl font-black mb-4">ACCESSIBILITÉ ET DIFFICULTÉ D'APPRENTISSAGE</h2>
     
-    <div class="p-6">
+    
+    <div class="p-4">
         {% if language.default_accessibility_level %}
-            <div class="mb-6">
-                <h3 class="text-xl font-black mb-3">Niveau d'accessibilité recommandé</h3>
+            <div class="neo-section">
+                <h3 class="text-xl font-black mb-3 section-title text-black-important">NIVEAU D'ACCESSIBILITÉ RECOMMANDÉ</h3>
                 
-                <div class="flex items-center mb-4">
-                    <div class="w-1/4 font-bold">Niveau :</div>
-                    <div class="w-3/4">
-                        <span class="neo-badge" 
+                <div class="flex flex-wrap items-center mb-3">
+                    <div class="w-full md:w-1/4 font-black mb-1 md:mb-0 text-black-important">Niveau :</div>
+                    <div class="w-full md:w-3/4">
+                        <span class="neo-badge border-3 border-black font-black py-1 px-3" 
                               data-level-number="{{ language.default_accessibility_level.level_number }}">
                             {{ language.default_accessibility_level.name }}
                         </span>
                     </div>
                 </div>
                 
-                <div class="flex items-center mb-4">
-                    <div class="w-1/4 font-bold">Temps d'apprentissage estimé :</div>
-                    <div class="w-3/4">{{ language.default_accessibility_level.estimated_learning_time }}</div>
+                <div class="flex flex-wrap items-center mb-3">
+                    <div class="w-full md:w-1/4 font-black mb-1 md:mb-0 text-black-important">Temps d'apprentissage :</div>
+                    <div class="w-full md:w-3/4 font-bold text-black-important">{{ language.default_accessibility_level.estimated_learning_time }}</div>
                 </div>
                 
-                <div class="flex items-center mb-4">
-                    <div class="w-1/4 font-bold">Score d'accessibilité :</div>
-                    <div class="w-3/4">
+                <div class="flex flex-wrap items-center">
+                    <div class="w-full md:w-1/4 font-black mb-1 md:mb-0 text-black-important">Score :</div>
+                    <div class="w-full md:w-3/4">
                         <div class="flex items-center">
-                            <div class="w-full bg-gray-200 rounded-full h-4 mr-2 overflow-hidden">
-                                <div class="h-full rounded-full progress-bar"
+                            <div class="w-full bg-white h-6 mr-2 overflow-hidden border-3 border-black progress-container">
+                                <div class="h-full progress-bar progress-width-{{ language.accessibility_score }}"
                                      data-score="{{ language.accessibility_score }}">
                                 </div>
                             </div>
-                            <span class="font-bold">{{ language.accessibility_score }}%</span>
+                            <span class="font-black text-xl text-black-important">{{ language.accessibility_score }}%</span>
                         </div>
                     </div>
                 </div>
@@ -42,96 +41,77 @@
             
             {% if accessibility_levels %}
                 <div>
-                    <h3 class="text-xl font-black mb-3">Évaluation par niveau d'expérience</h3>
+                    <h3 class="text-xl font-black mb-3 section-title text-black-important">ÉVALUATION PAR NIVEAU</h3>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {% for level in accessibility_levels %}
-                            <div class="neo-card">
-                                <div class="bg-gray-200 p-3 border-b-2 border-black">
-                                    <h4 class="font-black">{{ level.accessibility_level.name }}</h4>
-                                </div>
-                                <div class="p-4">
-                                    <div class="mb-3">
-                                        <div class="flex items-center mb-2">
-                                            <div class="w-1/4 font-bold">Score :</div>
-                                            <div class="w-3/4">
-                                                <div class="flex items-center">
-                                                    <div class="w-full bg-gray-200 rounded-full h-4 mr-2 overflow-hidden">
-                                                        <div class="h-full rounded-full progress-bar"
-                                                             data-score="{{ level.accessibility_score }}">
-                                                        </div>
-                                                    </div>
-                                                    <span class="font-bold">{{ level.accessibility_score }}%</span>
-                                                </div>
+                    <!-- Onglets des niveaux -->
+                    <div class="mb-4 tabs-container">
+                        <div class="flex flex-wrap">
+                            {% for level in accessibility_levels %}
+                            <button class="tab-btn level-tab-btn {% if forloop.first %}active{% endif %}" 
+                                    data-target="level-tab-{{ forloop.counter }}">
+                                {{ level.accessibility_level.name }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Contenu des onglets de niveau -->
+                    {% for level in accessibility_levels %}
+                    <div id="level-tab-{{ forloop.counter }}" class="tab-content level-tab-content {% if forloop.first %}active{% endif %}">
+                        <div class="mb-3">
+                            <div class="flex items-center mb-2">
+                                <div class="w-1/4 font-black text-black-important">Score :</div>
+                                <div class="w-3/4">
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-white h-6 mr-2 overflow-hidden border-3 border-black progress-container">
+                                            <div class="h-full progress-bar progress-width-{{ level.accessibility_score }}"
+                                                 data-score="{{ level.accessibility_score }}">
                                             </div>
                                         </div>
+                                        <span class="font-black text-xl text-black-important">{{ level.accessibility_score }}%</span>
                                     </div>
-                                    
-                                    {% if level.notes %}
-                                        <div class="mt-3">
-                                            <p>{{ level.notes|linebreaks }}</p>
-                                        </div>
-                                    {% endif %}
-                                    
-                                    {% if level.evaluations %}
-                                        <div class="mt-4">
-                                            <h5 class="font-bold mb-2">Évaluations par critère</h5>
-                                            <ul class="space-y-2">
-                                                {% for eval in level.evaluations %}
-                                                    <li>
-                                                        <div class="flex justify-between items-center">
-                                                            <span>{{ eval.criteria.name }}</span>
-                                                            <span class="font-bold">{{ eval.score }}%</span>
-                                                        </div>
-                                                        {% if eval.justification %}
-                                                            <p class="text-sm text-gray-600 mt-1">{{ eval.justification }}</p>
-                                                        {% endif %}
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                    {% endif %}
                                 </div>
                             </div>
-                        {% endfor %}
+                        </div>
+                        
+                        {% if level.notes %}
+                            <div class="mt-3 p-3 bg-yellow-100 border-l-4 border-black">
+                                <p class="font-bold text-black-important">{{ level.notes|linebreaks }}</p>
+                            </div>
+                        {% endif %}
+                        
+                        {% if level.evaluations %}
+                            <div class="mt-4">
+                                <h4 class="font-black mb-3 text-black-important">ÉVALUATIONS PAR CRITÈRE</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {% for eval in level.evaluations %}
+                                        <div class="p-3 border-3 border-black bg-white neo-card">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-black-important">{{ eval.criteria.name }}</span>
+                                                <span class="font-black py-1 px-2 {% if eval.score >= 75 %}bg-green-500{% elif eval.score >= 50 %}bg-yellow-400{% else %}bg-red-500{% endif %} text-white border-2 border-black neo-badge">
+                                                    {{ eval.score }}%
+                                                </span>
+                                            </div>
+                                            {% if eval.justification %}
+                                                <p class="mt-2 text-sm border-t border-gray-200 pt-2 text-black-important">{{ eval.justification }}</p>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
+                    {% endfor %}
                 </div>
             {% endif %}
             
         {% else %}
-            <div class="p-4 bg-gray-100 rounded">
-                <p>Les informations d'accessibilité pour ce langage sont en cours de développement.</p>
+            <div class="p-4 bg-white border-4 border-black neo-card" style="box-shadow: 5px 5px 0 rgba(0,0,0,0.8);">
+                <p class="font-bold text-black-important">Les informations d'accessibilité pour ce langage sont en cours de développement.</p>
             </div>
         {% endif %}
     </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Appliquer les couleurs aux badges de niveau
-    document.querySelectorAll('[data-level-number]').forEach(function(element) {
-        var levelNumber = parseInt(element.getAttribute('data-level-number'));
-        if (levelNumber <= 2) {
-            element.classList.add('bg-green-400');
-        } else if (levelNumber <= 4) {
-            element.classList.add('bg-yellow-400');
-        } else {
-            element.classList.add('bg-red-400');
-        }
-    });
-    
-    // Appliquer les couleurs et largeurs aux barres de progression
-    document.querySelectorAll('.progress-bar').forEach(function(element) {
-        var score = parseFloat(element.getAttribute('data-score'));
-        element.style.width = score + '%';
-        
-        if (score >= 75) {
-            element.classList.add('bg-green-500');
-        } else if (score >= 50) {
-            element.classList.add('bg-yellow-500');
-        } else {
-            element.classList.add('bg-red-500');
-        }
-    });
-});
-</script>
+<!-- Chargement du fichier JavaScript externe -->
+<script src="{% static 'js/tabs.js' %}"></script>
