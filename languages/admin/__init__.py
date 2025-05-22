@@ -6,7 +6,6 @@ from .library_admin import LibrariesAdmin, LibraryLanguagesAdmin
 from .proposal_admin import LanguageProposalsAdmin
 from .technology_admin import TechnologyCategoriesAdmin, TechnologySubtypesAdmin
 from .accessibility_admin import AccessibilityLevelsAdmin, AccessibilityCriteriaAdmin, LanguageAccessibilityLevelsAdmin, LanguageAccessibilityEvaluationsAdmin
-from .features_admin import LanguageFeaturesAdmin, LanguageFeatureValuesAdmin
 from ..models import (
     Languages, Corrections, LanguageProposals, LanguagesFramework,
     Libraries, LibraryLanguages,
@@ -14,7 +13,6 @@ from ..models import (
     UsageCategories, LanguageUsage,
     AccessibilityLevels, AccessibilityCriteria, 
     LanguageAccessibilityLevels, LanguageAccessibilityEvaluations,
-    LanguageFeatures, LanguageFeatureValues
 )
 
 # Enregistrer les modèles avec leurs classes d'administration
