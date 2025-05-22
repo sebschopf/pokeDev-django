@@ -4,6 +4,10 @@
 
 {% block title %}{{ language.name }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/accessibility.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="page-background">
   <div class="container mx-auto px-4 py-8">
@@ -103,6 +107,9 @@
             {% endif %}
           </div>
         </div>
+        
+        <!-- Section d'accessibilité -->
+        {% include "languages/partials/accessibility_section.html" %}
         
         <!-- Utilisation du tag de template pour afficher les outils associés -->
         {% show_associated_tools language %}

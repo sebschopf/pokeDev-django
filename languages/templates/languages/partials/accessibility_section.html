@@ -1,0 +1,137 @@
+{% load static %}
+
+<section class="neo-section mb-8" id="accessibility">
+    <div class="bg-black text-white p-4">
+        <h2 class="title-black-bg">Accessibilité et difficulté d'apprentissage</h2>
+    </div>
+    
+    <div class="p-6">
+        {% if language.default_accessibility_level %}
+            <div class="mb-6">
+                <h3 class="text-xl font-black mb-3">Niveau d'accessibilité recommandé</h3>
+                
+                <div class="flex items-center mb-4">
+                    <div class="w-1/4 font-bold">Niveau :</div>
+                    <div class="w-3/4">
+                        <span class="neo-badge" 
+                              data-level-number="{{ language.default_accessibility_level.level_number }}">
+                            {{ language.default_accessibility_level.name }}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center mb-4">
+                    <div class="w-1/4 font-bold">Temps d'apprentissage estimé :</div>
+                    <div class="w-3/4">{{ language.default_accessibility_level.estimated_learning_time }}</div>
+                </div>
+                
+                <div class="flex items-center mb-4">
+                    <div class="w-1/4 font-bold">Score d'accessibilité :</div>
+                    <div class="w-3/4">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-4 mr-2 overflow-hidden">
+                                <div class="h-full rounded-full progress-bar"
+                                     data-score="{{ language.accessibility_score }}">
+                                </div>
+                            </div>
+                            <span class="font-bold">{{ language.accessibility_score }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% if accessibility_levels %}
+                <div>
+                    <h3 class="text-xl font-black mb-3">Évaluation par niveau d'expérience</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {% for level in accessibility_levels %}
+                            <div class="neo-card">
+                                <div class="bg-gray-200 p-3 border-b-2 border-black">
+                                    <h4 class="font-black">{{ level.accessibility_level.name }}</h4>
+                                </div>
+                                <div class="p-4">
+                                    <div class="mb-3">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-1/4 font-bold">Score :</div>
+                                            <div class="w-3/4">
+                                                <div class="flex items-center">
+                                                    <div class="w-full bg-gray-200 rounded-full h-4 mr-2 overflow-hidden">
+                                                        <div class="h-full rounded-full progress-bar"
+                                                             data-score="{{ level.accessibility_score }}">
+                                                        </div>
+                                                    </div>
+                                                    <span class="font-bold">{{ level.accessibility_score }}%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if level.notes %}
+                                        <div class="mt-3">
+                                            <p>{{ level.notes|linebreaks }}</p>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {% if level.evaluations %}
+                                        <div class="mt-4">
+                                            <h5 class="font-bold mb-2">Évaluations par critère</h5>
+                                            <ul class="space-y-2">
+                                                {% for eval in level.evaluations %}
+                                                    <li>
+                                                        <div class="flex justify-between items-center">
+                                                            <span>{{ eval.criteria.name }}</span>
+                                                            <span class="font-bold">{{ eval.score }}%</span>
+                                                        </div>
+                                                        {% if eval.justification %}
+                                                            <p class="text-sm text-gray-600 mt-1">{{ eval.justification }}</p>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            
+        {% else %}
+            <div class="p-4 bg-gray-100 rounded">
+                <p>Les informations d'accessibilité pour ce langage sont en cours de développement.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Appliquer les couleurs aux badges de niveau
+    document.querySelectorAll('[data-level-number]').forEach(function(element) {
+        var levelNumber = parseInt(element.getAttribute('data-level-number'));
+        if (levelNumber <= 2) {
+            element.classList.add('bg-green-400');
+        } else if (levelNumber <= 4) {
+            element.classList.add('bg-yellow-400');
+        } else {
+            element.classList.add('bg-red-400');
+        }
+    });
+    
+    // Appliquer les couleurs et largeurs aux barres de progression
+    document.querySelectorAll('.progress-bar').forEach(function(element) {
+        var score = parseFloat(element.getAttribute('data-score'));
+        element.style.width = score + '%';
+        
+        if (score >= 75) {
+            element.classList.add('bg-green-500');
+        } else if (score >= 50) {
+            element.classList.add('bg-yellow-500');
+        } else {
+            element.classList.add('bg-red-500');
+        }
+    });
+});
+</script>
