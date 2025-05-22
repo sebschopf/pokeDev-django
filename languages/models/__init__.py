@@ -7,7 +7,7 @@ from .usage import UsageCategories, LanguageUsage
 from .corrections import Corrections
 from .language_proposals import LanguageProposals
 from .accessibility import AccessibilityLevels, AccessibilityCriteria, LanguageAccessibilityLevels, LanguageAccessibilityEvaluations
-from .features import LanguageFeatures, LanguageFeatureValues
+from .features import LanguageFeatures
 
 # Exposer les classes au niveau du package
 __all__ = [
@@ -17,5 +17,6 @@ __all__ = [
     'UsageCategories', 'LanguageUsage',
     'AccessibilityLevels', 'AccessibilityCriteria', 
     'LanguageAccessibilityLevels', 'LanguageAccessibilityEvaluations',
-    'LanguageFeatures', 'LanguageFeatureValues',
+    'LanguageFeatures',
 ]
+

@@ -117,8 +117,8 @@ class Languages(models.Model):
         Récupère toutes les caractéristiques de ce langage
         Optimisé avec select_related pour réduire les requêtes
         """
-        from .features import LanguageFeatureValues
-        return LanguageFeatureValues.objects.filter(
+        from .features import LanguageFeature
+        return LanguageFeature.objects.filter(
             language=self
         ).select_related('feature').order_by('feature__display_order')
 
@@ -126,15 +126,15 @@ class Languages(models.Model):
         """
         Récupère la valeur d'une caractéristique spécifique pour ce langage
         """
-        from .features import LanguageFeatureValues, LanguageFeatures
+        from .features import LanguageFeature, LanguageFeatures
         try:
             feature = LanguageFeatures.objects.get(slug=feature_slug)
-            feature_value = LanguageFeatureValues.objects.get(
+            feature_value = LanguageFeature.objects.get(
                 language=self,
                 feature=feature
             )
             return feature_value.value
-        except (LanguageFeatures.DoesNotExist, LanguageFeatureValues.DoesNotExist):
+        except (LanguageFeatures.DoesNotExist, LanguageFeature.DoesNotExist):
             return None
 
     

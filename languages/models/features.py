@@ -1,7 +1,7 @@
 from django.db import models
 from .language import Languages
 
-class LanguageFeatures(models.Model):
+class Features(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
@@ -19,29 +19,29 @@ class LanguageFeatures(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'language_features'
+        db_table = 'features'
         ordering = ['display_order', 'name']
-        verbose_name = 'Caractéristique de langage'
-        verbose_name_plural = 'Caractéristiques de langage'
+        verbose_name = 'Caractéristique'
+        verbose_name_plural = 'Caractéristiques'
 
     def __str__(self):
         return self.name
 
-class LanguageFeatureValues(models.Model):
+class LanguageFeatures(models.Model):
     id = models.AutoField(primary_key=True)
     language = models.ForeignKey(Languages, models.DO_NOTHING)
-    feature = models.ForeignKey(LanguageFeatures, models.DO_NOTHING)
+    feature = models.ForeignKey(Features, models.DO_NOTHING)
     value = models.CharField(max_length=255)
-    notes = models.TextField(blank=True, null=True)
+    is_primary = models.BooleanField(default=True)
+    source_url = models.URLField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
-        db_table = 'language_feature_values'
-        unique_together = (('language', 'feature'),)
-        verbose_name = 'Valeur de caractéristique'
-        verbose_name_plural = 'Valeurs de caractéristiques'
+        db_table = 'language_features'
+        verbose_name = 'Caractéristique de langage'
+        verbose_name_plural = 'Caractéristiques de langage'
 
     def __str__(self):
         return f"{self.language.name} - {self.feature.name}: {self.value}"

@@ -108,7 +108,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='LanguageFeatureValues',
+            name='LanguageFeature',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('value', models.CharField(max_length=255)),
