@@ -1,25 +1,23 @@
 from django.contrib import admin
-from .models.profile import Profile
-from .models.language_expertise import LanguageExpertise
-from .models.comment import CorrectionComment
+from .models import Profile, LanguageExpertise, CorrectionComment
 
-@admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('username', 'full_name', 'role', 'created_at')
-    search_fields = ('username', 'full_name')
+    list_display = ('username', 'user', 'role', 'created_at', 'updated_at')
     list_filter = ('role', 'created_at')
-    readonly_fields = ('user', 'created_at', 'updated_at')
-
-@admin.register(LanguageExpertise)
-class LanguageExpertiseAdmin(admin.ModelAdmin):
-    list_display = ('user', 'language', 'expertise_level', 'created_at')
-    list_filter = ('expertise_level', 'created_at')
-    search_fields = ('user__username', 'language__name', 'notes')
-    # autocomplete_fields = ['user', 'language']
-
-@admin.register(CorrectionComment)
-class CorrectionCommentAdmin(admin.ModelAdmin):
-    list_display = ('correction', 'user', 'created_at')
-    list_filter = ('created_at',)
-    search_fields = ('correction__language__name', 'user__username', 'content')
+    search_fields = ('username', 'user__username', 'user__email')
     readonly_fields = ('created_at', 'updated_at')
+
+class LanguageExpertiseAdmin(admin.ModelAdmin):
+    list_display = ('user', 'language', 'expertise_level')  # Suppression de 'created_at'
+    list_filter = ('expertise_level',)  # Suppression de 'created_at'
+    search_fields = ('user__username', 'language__name')
+
+class CorrectionCommentAdmin(admin.ModelAdmin):
+    list_display = ('user', 'correction', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('user__username', 'content')
+    readonly_fields = ('created_at',)
+
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(LanguageExpertise, LanguageExpertiseAdmin)
+admin.site.register(CorrectionComment, CorrectionCommentAdmin)
