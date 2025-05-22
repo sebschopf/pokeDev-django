@@ -1,26 +1,32 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import views
-from . import views_language_experts
+from .views import (
+    profile, edit_profile, view_profile,
+    login_view, register,
+    dashboard,
+    manage_roles, stats_view, edit_user_role,
+    manage_language_experts,
+    error_view
+)
 
 app_name = 'utilisateurs'
 
 urlpatterns = [
     # URLs de tableau de bord et gestion des rôles
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('manage-roles/', views.manage_roles, name='manage_roles'),
-    path('stats/', views.stats_view, name='stats'),
-    path('edit-user-role/<uuid:user_id>/', views.edit_user_role, name='edit_user_role'),
-    path('manage-language-experts/', views_language_experts.manage_language_experts, name='manage_language_experts'),
+    path('dashboard/', dashboard, name='dashboard'),
+    path('manage-roles/', manage_roles, name='manage_roles'),
+    path('stats/', stats_view, name='stats'),
+    path('edit-user-role/<uuid:user_id>/', edit_user_role, name='edit_user_role'),
+    path('manage-language-experts/', manage_language_experts, name='manage_language_experts'),
 
     # URLs de profil
-    path('profile/', views.profile, name='profile'),
-    path('profile/edit/', views.edit_profile, name='edit_profile'),
-    path('profile/<str:username>/', views.view_profile, name='view_profile'),
+    path('profile/', profile, name='profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
+    path('profile/<str:username>/', view_profile, name='view_profile'),
     
     # URLs d'authentification
     path('login/', auth_views.LoginView.as_view(template_name='utilisateurs/login.html'), name='login'),
-    path('register/', views.register, name='register'),
+    path('register/', register, name='register'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     
     # URLs de changement de mot de passe

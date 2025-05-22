@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Profile
-from .models import LanguageExpertise
-from .decorators import role_required
+from ..models import Profile, LanguageExpertise
+from ..decorators import role_required
 
 @login_required
 @role_required('is_admin')
@@ -12,10 +11,10 @@ def manage_language_experts(request):
     Permet aux administrateurices de gérer les experts de langages.
     """
     try:
-        from languages.models.language import Language
+        from languages.models.language import Languages
         
         # Récupérer tous les langages et les profils
-        languages = Language.objects.all().order_by('name')
+        languages = Languages.objects.all().order_by('name')
         profiles = Profile.objects.filter(role__in=['verified', 'validator', 'admin']).select_related('user')
         
         if request.method == 'POST':
@@ -40,7 +39,7 @@ def manage_language_experts(request):
                         messages.success(request, f"Expertise supprimée pour {profile.username}.")
                 except Profile.DoesNotExist:
                     messages.error(request, "Profil non trouvé.")
-                except Language.DoesNotExist:
+                except Languages.DoesNotExist:
                     messages.error(request, "Langage non trouvé.")
             
             return redirect('utilisateurs:manage_language_experts')

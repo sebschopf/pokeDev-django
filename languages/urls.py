@@ -1,28 +1,28 @@
-# languages/urls.py
 from django.urls import path, include
-from . import views
-from . import views_corrections
-from . import views_api  # Importer le nouveau module views_api
+from .views import list, LanguageDetailView, framework_detail
+from .views.corrections_views import propose_correction, correction_list, correction_detail
+from .views.api_views import get_field_value
+from .views.search_views import advanced_search
 
 app_name = 'languages'
 
 # URLs pour les langages
 language_patterns = [
-    path('', views.list, name='list'),
-    path('<slug:slug>/', views.LanguageDetailView.as_view(), name='detail'),
-    path('<slug:slug>/propose-correction/', views_corrections.propose_correction, name='propose_correction'),
-    path('<slug:language_slug>/<slug:framework_slug>/', views.framework_detail, name='framework_detail'),
+    path('', list, name='list'),
+    path('<slug:slug>/', LanguageDetailView.as_view(), name='detail'),
+    path('<slug:slug>/propose-correction/', propose_correction, name='propose_correction'),
+    path('<slug:language_slug>/<slug:framework_slug>/', framework_detail, name='framework_detail'),
 ]
 
 # URLs pour les corrections
 correction_patterns = [
-    path('', views_corrections.correction_list, name='correction_list'),
-    path('<int:correction_id>/', views_corrections.correction_detail, name='correction_detail'),
+    path('', correction_list, name='correction_list'),
+    path('<int:correction_id>/', correction_detail, name='correction_detail'),
 ]
 
 # URLs pour l'API
 api_patterns = [
-    path('field-value/<slug:slug>/<str:field_name>/', views_api.get_field_value, name='get_field_value'),
+    path('field-value/<slug:slug>/<str:field_name>/', get_field_value, name='get_field_value'),
 ]
 
 # URLs principales
@@ -35,4 +35,7 @@ urlpatterns = [
     
     # URLs pour l'API
     path('api/', include(api_patterns)),
+
+    # URL pour la recherche avancée (si nécessaire)
+    path('search/', advanced_search, name='advanced_search'),  # Ajouter cette ligne si nécessaire
 ]
