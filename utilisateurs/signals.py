@@ -14,5 +14,10 @@ def save_user_profile(sender, instance, **kwargs):
     """Sauvegarde le profil de l'utilisateur."""
     try:
         instance.profile.save()
-    except Profile.DoesNotExist:
-        Profile.objects.create(user=instance, username=instance.username)
+    except User.profile.RelatedObjectDoesNotExist:
+        # Si le profil n'existe pas, le créer correctement
+        # IMPORTANT: Ne pas utiliser l'UUID comme clé primaire ici
+        Profile.objects.create(
+            user=instance,
+            username=instance.username)
+        # Ne pas définir l'ID manuellement, laissez Django le gérer

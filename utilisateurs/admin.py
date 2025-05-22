@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models.profile import Profile, UserRole
+from .models.profile import Profile
 from .models.language_expertise import LanguageExpertise
 from .models.comment import CorrectionComment
 
@@ -8,7 +8,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('username', 'full_name', 'role', 'created_at')
     search_fields = ('username', 'full_name')
     list_filter = ('role', 'created_at')
-    readonly_fields = ('id', 'created_at', 'updated_at')
+    readonly_fields = ('user', 'created_at', 'updated_at')
 
 @admin.register(LanguageExpertise)
 class LanguageExpertiseAdmin(admin.ModelAdmin):
