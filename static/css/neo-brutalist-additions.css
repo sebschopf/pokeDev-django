@@ -198,7 +198,7 @@
 }
 
 .neo-section.languages-container .language-card {
-  background-color: white;
+  background-color: #111111;
   border: 3px solid #000000;
   padding: 1rem;
   display: flex;
@@ -212,6 +212,7 @@
   transform: translateY(-5px);
   box-shadow: 5px 5px 0 #000000;
   background-color: #f9fafb;
+}
 
 /* Style pour le titre de section */
 h2.section-title {
@@ -220,4 +221,85 @@ h2.section-title {
   margin-bottom: 1rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+/* Style pour les formulaires néo-brutalistes */
+.neo-form {
+  background-color: white;
+  border: 4px solid black;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
+}
+
+.neo-form label {
+  display: block;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.neo-form input,
+.neo-form textarea,
+.neo-form select {
+  width: 100%;
+  border: 3px solid black;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  background-color: white;
+}
+
+.neo-form input:focus,
+.neo-form textarea:focus,
+.neo-form select:focus {
+  outline: none;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Boutons de formulaire */
+.neo-form-button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: 3px solid black;
+  padding: 0.75rem 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.neo-form-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+}
+
+.neo-form-button.green {
+  background-color: #10b981;
+  border-color: black;
+}
+
+.neo-form-button.red {
+  background-color: #ef4444;
+  border-color: black;
+}
+
+/* Titre de formulaire */
+.neo-form-title {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+}
+
+/* Champ de formulaire */
+.neo-form-field {
+  margin-bottom: 1.5rem;
+}
+
+.neo-form-field:last-child {
+  margin-bottom: 0;
 }
