@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
-from ..models import Languages, LanguageFeatures, LanguageFeatureValues
+from ..models import Languages, LanguageFeatures
 
 def advanced_search(request):
     # Récupérer toutes les caractéristiques pour le formulaire
@@ -53,19 +53,19 @@ def advanced_search(request):
                             # Pour les caractéristiques booléennes
                             if value == 'Oui':
                                 query = query.filter(
-                                    languagefeaturevalues__feature_id=feature_id,
-                                    languagefeaturevalues__value__iexact='Oui'
+                                    LanguageFeature__feature_id=feature_id,
+                                    LanguageFeature__value__iexact='Oui'
                                 )
                             elif value == 'Non':
                                 query = query.filter(
-                                    languagefeaturevalues__feature_id=feature_id,
-                                    languagefeaturevalues__value__iexact='Non'
+                                    LanguageFeature__feature_id=feature_id,
+                                    LanguageFeature__value__iexact='Non'
                                 )
                         else:
                             # Pour les caractéristiques textuelles
                             query = query.filter(
-                                languagefeaturevalues__feature_id=feature_id,
-                                languagefeaturevalues__value__icontains=value
+                                LanguageFeature__feature_id=feature_id,
+                                LanguageFeature__value__icontains=value
                             )
                         
                         params[f'feature_{feature_id}'] = value

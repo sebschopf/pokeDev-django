@@ -6,7 +6,7 @@ from ..models import Languages, UsageCategories
 from ..models.library import LibraryLanguages
 from ..models.usage import LanguageUsage
 from ..models.accessibility import AccessibilityLevels, LanguageAccessibilityLevels, LanguageAccessibilityEvaluations
-from ..models.features import LanguageFeatures, LanguageFeatureValues
+from ..models.features import LanguageFeatures
 
 # Vue basée sur une fonction pour la liste des langages
 def list(request):
@@ -24,7 +24,7 @@ class LanguageListView(ListView):
             'default_accessibility_level'
         ).prefetch_related(
             'languageaccessibilitylevels_set__accessibility_level',
-            'languagefeaturevalues_set__feature',
+            'languagefeatures_set__feature',
             Prefetch('languageusage_set', queryset=LanguageUsage.objects.select_related('category'))
         )
 
@@ -45,8 +45,8 @@ class LanguageDetailView(DetailView):
                 to_attr='prefetched_accessibility_levels'
             ),
             Prefetch(
-                'languagefeaturevalues_set',
-                queryset=LanguageFeatureValues.objects.select_related('feature').order_by('feature__display_order'),
+                'languagefeatures_set',
+                queryset=LanguageFeatures.objects.select_related('feature').order_by('feature__display_order'),
                 to_attr='prefetched_features'
             ),
             Prefetch(
@@ -116,7 +116,7 @@ class LanguageDetailView(DetailView):
                 features = language.prefetched_features
             else:
                 # Fallback au cas où les données préchargées ne sont pas disponibles
-                features = LanguageFeatureValues.objects.filter(
+                features = LanguageFeatures.objects.filter(
                     language=language
                 ).select_related('feature').order_by('feature__display_order')
             
