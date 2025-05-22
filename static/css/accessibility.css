@@ -1,0 +1,55 @@
+/* Styles pour la section d'accessibilité */
+
+/* Badges de niveau d'accessibilité */
+.neo-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Barres de progression */
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Cartes de niveau d'accessibilité */
+.neo-card {
+    border: 2px solid #000;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.neo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Section d'accessibilité */
+#accessibility .neo-section {
+    border: 3px solid #000;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+/* Titres dans la section d'accessibilité */
+#accessibility h3 {
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Liste des évaluations */
+#accessibility ul.space-y-2 li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#accessibility ul.space-y-2 li:last-child {
+    border-bottom: none;
+}
