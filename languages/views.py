@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.db.models import Q
-from .models import Languages, Libraries, TechnologyCategories, TechnologySubtypes, UsageCategories
+from .models import Languages, Libraries, UsageCategories
 from .models.library import LibraryLanguages
-from .forms import SubmitCorrectionForm
+from .models.accessibility import AccessibilityLevels, LanguageAccessibilityLevels, LanguageAccessibilityEvaluations
+
 
 # Vue basée sur une fonction pour la liste des langages
 def list(request):
@@ -59,5 +59,29 @@ class LanguageDetailView(DetailView):
         # Ajouter les frameworks populaires s'ils ne sont pas déjà dans la liste des frameworks
         if language.popular_frameworks:
             context['popular_frameworks'] = language.popular_frameworks
+        
+        # Récupérer les informations d'accessibilité
+        try:
+            # Récupérer le niveau d'accessibilité par défaut
+            if language.default_accessibility_level_id:
+                default_level = AccessibilityLevels.objects.get(id=language.default_accessibility_level_id)
+                context['default_accessibility_level'] = default_level
+            
+            # Récupérer tous les niveaux d'accessibilité pour ce langage
+            accessibility_levels = LanguageAccessibilityLevels.objects.filter(
+                language=language
+            ).select_related('accessibility_level').order_by('accessibility_level__level_order')
+            context['accessibility_levels'] = accessibility_levels
+            
+            # Récupérer les évaluations d'accessibilité pour chaque niveau
+            # Modifié pour correspondre à la structure réelle de la base de données
+            for level in accessibility_levels:
+                level.evaluations = LanguageAccessibilityEvaluations.objects.filter(
+                    language_accessibility_level_id=level.id
+                ).select_related('criteria').order_by('-score')
+            
+        except Exception as e:
+            # En cas d'erreur, logger l'erreur mais ne pas planter la page
+            print(f"Erreur lors de la récupération des données d'accessibilité: {e}")
         
         return context
