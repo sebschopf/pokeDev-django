@@ -115,7 +115,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # URL de redirection après connexion/déconnexion
-LOGIN_REDIRECT_URL = 'utilisateurs/profile/'
+LOGIN_REDIRECT_URL = 'languages:list'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'utilisateurs/login/'
 

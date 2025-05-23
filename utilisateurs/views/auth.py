@@ -10,7 +10,7 @@ def login_view(request):
     Vue personnalisée pour la connexion des utilisateurice.
     """
     if request.user.is_authenticated:
-        return redirect('utilisateurs:profile')
+        return redirect('/languages')
         
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -21,9 +21,9 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Bienvenue, {username}!")
-                # Rediriger vers la page demandée ou le profil
-                next_page = request.POST.get('next', 'utilisateurs:profile')
-                return redirect(next_page)
+                
+                # Simplifier la redirection - toujours aller à languages:list
+                return redirect('/languages')
             else:
                 messages.error(request, "Nom d'utilisateurice ou mot de passe invalide.")
         else:
@@ -41,7 +41,8 @@ def register(request):
     Vue pour l'inscription d'un nouvel utilisateurice.
     """
     if request.user.is_authenticated:
-        return redirect('utilisateurs:profile')
+        # Correction ici aussi
+        return redirect('/languages')
         
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -56,7 +57,8 @@ def register(request):
             # Connecter l'utilisateurice après l'inscription
             login(request, user)
             messages.success(request, "Votre compte a été créé avec succès!")
-            return redirect('utilisateurs:profile')
+            # Correction ici aussi
+            return redirect('/languages')
     else:
         form = CustomUserCreationForm()
     

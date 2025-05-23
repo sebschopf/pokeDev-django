@@ -28,6 +28,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='utilisateurs/login.html'), name='login'),
     path('register/', register, name='register'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+   
     
     # URLs de changement de mot de passe
     path('password_change/', auth_views.PasswordChangeView.as_view(
