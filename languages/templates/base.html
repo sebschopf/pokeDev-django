@@ -37,9 +37,12 @@
                         <a href="{% url 'utilisateurs:profile' %}" class="py-1 px-3 text-sm neo-button">
                             Profil
                         </a>
-                        <a href="{% url 'utilisateurs:logout' %}" class="py-1 px-3 text-sm neo-button">
-                            Déconnexion
-                        </a>
+                       <form method="post" action="{% url 'utilisateurs:logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="py-1 px-3 text-sm neo-button" style="background: none; border: none; cursor: pointer;">
+                                Déconnexion
+                            </button>
+                        </form>
                     {% else %}
                         <a href="{% url 'utilisateurs:login' %}" class="py-1 px-3 text-sm neo-button">
                             Connexion
