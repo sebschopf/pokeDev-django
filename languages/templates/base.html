@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/svg-styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/neo-brutalist-additions.css' %}">
     {% block extra_css %}{% endblock %}
+
     
     <!-- Styles inline -->
     <style>
@@ -23,6 +24,7 @@
             <nav class="flex items-center">
                 <ul class="flex space-x-4 mr-6">
                     <li><a href="{% url 'languages:list' %}" class="py-1 px-3 text-sm neo-button">Langages</a></li>
+                    <li><a href="{% url 'languages:accessibility_methodology' %}" class="py-1 px-3 text-sm neo-button">Méthodologie</a></li>
                     {% if user.is_staff %}
                         <li><a href="{% url 'admin:index' %}" class="py-1 px-3 text-sm neo-button">Admin</a></li>
                     {% endif %}
@@ -83,5 +85,6 @@
             });
         });
     </script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>
