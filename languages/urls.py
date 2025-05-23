@@ -3,9 +3,11 @@ from .views import list, LanguageDetailView, framework_detail
 from .views.corrections_views import propose_correction, correction_list, correction_detail
 from .views.api_views import get_field_value
 from .views.search_views import advanced_search
-from .views import corrections_views
+from .views import corrections_views, docs_views
 
 app_name = 'languages'
+
+
 
 # URLs pour les langages
 language_patterns = [
@@ -21,13 +23,17 @@ correction_patterns = [
     path('<int:correction_id>/', correction_detail, name='correction_detail'),
 ]
 
-# URLs pour l'API
+# URLs pour l'API (à controler si elle est juste avec urlpatterns principales)
 api_patterns = [
     path('field-value/<slug:slug>/<str:field_name>/', get_field_value, name='get_field_value'),
 ]
 
 # URLs principales
 urlpatterns = [
+
+        # URL pour la documentation
+    path('accessibility-methodology/', docs_views.accessibility_methodology, name='accessibility_methodology'),
+    
     # URLs pour les langages
     path('', include(language_patterns)),
     
@@ -39,4 +45,6 @@ urlpatterns = [
 
     # URL pour la recherche avancée (si nécessaire)
     path('search/', advanced_search, name='advanced_search'),  # Ajouter cette ligne si nécessaire
+
+
 ]

@@ -1,30 +1,17 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
-from ..models.db_docs import DbDocsChapter, DbDocsSection
+from django.shortcuts import render
+from languages.models.accessibility import AccessibilityLevels, AccessibilityCriteria
 
-class ChapterListView(ListView):
-    model = DbDocsChapter
-    template_name = 'languages/db_docs/chapter_list.html'
-    context_object_name = 'chapters'
+def accessibility_methodology(request):
+    """
+    Vue pour afficher la méthodologie d'évaluation de l'accessibilité des langages.
+    """
+    # Récupérer les niveaux d'accessibilité et les critères
+    accessibility_levels = AccessibilityLevels.objects.all().order_by('level_order')
+    accessibility_criteria = AccessibilityCriteria.objects.all().order_by('-weight')
     
-    def get_queryset(self):
-        return DbDocsChapter.objects.all().order_by('order')
-
-class ChapterDetailView(DetailView):
-    model = DbDocsChapter
-    template_name = 'languages/db_docs/chapter_detail.html'
-    context_object_name = 'chapter'
-    slug_field = 'slug'
+    context = {
+        'accessibility_levels': accessibility_levels,
+        'accessibility_criteria': accessibility_criteria,
+    }
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        chapter = self.get_object()
-        
-        # Récupérer les sections du chapitre
-        sections = DbDocsSection.objects.filter(chapter=chapter).order_by('order')
-        context['sections'] = sections
-        
-        # Récupérer tous les chapitres pour la navigation
-        context['all_chapters'] = DbDocsChapter.objects.all().order_by('order')
-        
-        return context
+    return render(request, 'languages/accessibility_methodology.html', context)

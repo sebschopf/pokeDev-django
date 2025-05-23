@@ -1,6 +1,5 @@
 ### Méthodologie pour le score d'accessibilité des langages de programmation
 
-Vous avez tout à fait raison de vouloir clarifier la méthodologie derrière le score d'accessibilité. Voici une proposition détaillée pour établir ces scores de manière objective et cohérente.
 
 ## Définition du score d'accessibilité
 
