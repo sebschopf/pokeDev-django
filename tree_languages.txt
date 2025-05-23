@@ -1,0 +1,143 @@
+languages
+ ┣ admin
+ ┃ ┣ mixins
+ ┃ ┃ ┣ __pycache__
+ ┃ ┃ ┃ ┣ language_admin_mixins.cpython-313.pyc
+ ┃ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┃ ┣ language_admin_mixins.py
+ ┃ ┃ ┗ __init__.py
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ accessibility_admin.cpython-313.pyc
+ ┃ ┃ ┣ admin_customization.cpython-313.pyc
+ ┃ ┃ ┣ corrections_admin.cpython-313.pyc
+ ┃ ┃ ┣ features_admin.cpython-313.pyc
+ ┃ ┃ ┣ language_admin.cpython-313.pyc
+ ┃ ┃ ┣ library_admin.cpython-313.pyc
+ ┃ ┃ ┣ proposal_admin.cpython-313.pyc
+ ┃ ┃ ┣ technology_admin.cpython-313.pyc
+ ┃ ┃ ┣ utils.cpython-313.pyc
+ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┣ accessibility_admin.py
+ ┃ ┣ corrections_admin.py
+ ┃ ┣ features_admin.py
+ ┃ ┣ language_admin.py
+ ┃ ┣ library_admin.py
+ ┃ ┣ proposal_admin.py
+ ┃ ┣ technology_admin.py
+ ┃ ┣ utils.py
+ ┃ ┗ __init__.py
+ ┣ config
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ display_names.cpython-313.pyc
+ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┣ display_names.py
+ ┃ ┗ __init__.py
+ ┣ management
+ ┃ ┗ commands
+ ┃ ┃ ┣ __pycache__
+ ┃ ┃ ┃ ┣ build_tailwind.cpython-313.pyc
+ ┃ ┃ ┃ ┣ check_svg_content.cpython-313.pyc
+ ┃ ┃ ┃ ┣ check_svg_sql.cpython-313.pyc
+ ┃ ┃ ┃ ┣ fix_svg_colors.cpython-313.pyc
+ ┃ ┃ ┃ ┗ import_svg_from_files.cpython-313.pyc
+ ┃ ┃ ┣ build_tailwind.py
+ ┃ ┃ ┣ check_svg_content.py
+ ┃ ┃ ┣ check_svg_data.py
+ ┃ ┃ ┣ check_svg_sql.py
+ ┃ ┃ ┗ fix_svg_colors.py
+ ┣ migrations
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ 0001_initial.cpython-313.pyc
+ ┃ ┃ ┣ 0002_alter_corrections_table_comment.cpython-313.pyc
+ ┃ ┃ ┣ 0003_accessibilitycriteria_accessibilitylevels_and_more.cpython-313.pyc
+ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┣ 0001_initial.py
+ ┃ ┣ 0002_alter_corrections_table_comment.py
+ ┃ ┣ 0003_accessibilitycriteria_accessibilitylevels_and_more.py
+ ┃ ┗ __init__.py
+ ┣ models
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ accessibility.cpython-313.pyc
+ ┃ ┃ ┣ corrections.cpython-313.pyc
+ ┃ ┃ ┣ features.cpython-313.pyc
+ ┃ ┃ ┣ framework.cpython-313.pyc
+ ┃ ┃ ┣ language.cpython-313.pyc
+ ┃ ┃ ┣ language_proposals.cpython-313.pyc
+ ┃ ┃ ┣ library.cpython-313.pyc
+ ┃ ┃ ┣ technology.cpython-313.pyc
+ ┃ ┃ ┣ technology_categories.cpython-313.pyc
+ ┃ ┃ ┣ usage.cpython-313.pyc
+ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┣ accessibility.py
+ ┃ ┣ corrections.py
+ ┃ ┣ db_docs.py
+ ┃ ┣ features.py
+ ┃ ┣ framework.py
+ ┃ ┣ language.py
+ ┃ ┣ language_proposals.py
+ ┃ ┣ library.py
+ ┃ ┣ technology.py
+ ┃ ┣ technology_categories.py
+ ┃ ┣ usage.py
+ ┃ ┗ __init__.py
+ ┣ templates
+ ┃ ┣ admin
+ ┃ ┃ ┗ languages
+ ┃ ┃ ┃ ┣ corrections
+ ┃ ┃ ┃ ┃ ┗ change_form.html
+ ┃ ┃ ┃ ┗ languages
+ ┃ ┃ ┃ ┃ ┗ change_form.html
+ ┃ ┣ languages
+ ┃ ┃ ┣ partials
+ ┃ ┃ ┃ ┣ accessibility_section.html
+ ┃ ┃ ┃ ┗ features_section.html
+ ┃ ┃ ┣ corrections_detail.html
+ ┃ ┃ ┣ corrections_list.html
+ ┃ ┃ ┣ debug.html
+ ┃ ┃ ┣ detail.html
+ ┃ ┃ ┣ detail_outil_associe.html
+ ┃ ┃ ┣ list.html
+ ┃ ┃ ┗ propose_correction.html
+ ┃ ┗ base.html
+ ┣ templatetags
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ accessibility_filters.cpython-313.pyc
+ ┃ ┃ ┣ language_filters.cpython-313.pyc
+ ┃ ┃ ┣ library_tags.cpython-313.pyc
+ ┃ ┃ ┣ used_for_filters.cpython-313.pyc
+ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┣ accessibility_filters.py
+ ┃ ┣ language_filters.py
+ ┃ ┣ library_tags.py
+ ┃ ┣ used_for_filters.py
+ ┃ ┗ __init__.py
+ ┣ views
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ api_views.cpython-313.pyc
+ ┃ ┃ ┣ corrections_views.cpython-313.pyc
+ ┃ ┃ ┣ framework_views.cpython-313.pyc
+ ┃ ┃ ┣ language_views.cpython-313.pyc
+ ┃ ┃ ┣ search_views.cpython-313.pyc
+ ┃ ┃ ┗ __init__.cpython-313.pyc
+ ┃ ┣ api_views.py
+ ┃ ┣ corrections_views.py
+ ┃ ┣ docs_views.py
+ ┃ ┣ framework_views.py
+ ┃ ┣ language_views.py
+ ┃ ┣ search_views.py
+ ┃ ┗ __init__.py
+ ┣ __pycache__
+ ┃ ┣ admin.cpython-313.pyc
+ ┃ ┣ apps.cpython-313.pyc
+ ┃ ┣ forms.cpython-313.pyc
+ ┃ ┣ tests.cpython-313.pyc
+ ┃ ┣ urls.cpython-313.pyc
+ ┃ ┣ views.cpython-313.pyc
+ ┃ ┣ views_api.cpython-313.pyc
+ ┃ ┣ views_corrections.cpython-313.pyc
+ ┃ ┗ __init__.cpython-313.pyc
+ ┣ admin.py
+ ┣ apps.py
+ ┣ forms.py
+ ┣ urls.py
+ ┗ __init__.py
