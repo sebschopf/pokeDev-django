@@ -18,28 +18,28 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <header class="p-4" style="background-color: white; border-bottom: 3px solid black;">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'languages:list' %}" class="text-2xl font-bold text-black">PokeDev</a>
+    <header class="p-4">
+        <div class=" mx-auto container flex justify-between items-center">
+            <a href="{% url 'languages:list' %}" class="title-black-bg">PokeDev</a>
             <nav class="flex items-center">
                 <ul class="flex space-x-4 mr-6">
-                    <li><a href="{% url 'languages:list' %}" class="py-1 px-3 text-sm neo-button">Langages</a></li>
-                    <li><a href="{% url 'languages:accessibility_methodology' %}" class="py-1 px-3 text-sm neo-button">Méthodologie</a></li>
+                    <li><a href="{% url 'languages:list' %}" class="neo-button">Langages</a></li>
+                    <li><a href="{% url 'languages:accessibility_methodology' %}" class="neo-button">Méthodologie</a></li>
                     {% if user.is_staff %}
-                        <li><a href="{% url 'admin:index' %}" class="py-1 px-3 text-sm neo-button">Admin</a></li>
+                        <li><a href="{% url 'admin:index' %}" class="neo-button">Admin</a></li>
                     {% endif %}
                 </ul>
                 
                 <!-- Boutons d'authentification -->
                 <div class="flex items-center space-x-2">
                     {% if user.is_authenticated %}
-                        <span class="mr-2 text-black">{{ user.username }}</span>
-                        <a href="{% url 'utilisateurs:profile' %}" class="py-1 px-3 text-sm neo-button">
+                        <span>{{ user.username }}</span>
+                        <a href="{% url 'utilisateurs:profile' %}" class="neo-button">
                             Profil
                         </a>
                        <form method="post" action="{% url 'utilisateurs:logout' %}" style="display: inline;">
                             {% csrf_token %}
-                            <button type="submit" class="py-1 px-3 text-sm neo-button" style="background: none; border: none; cursor: pointer;">
+                            <button type="submit">
                                 Déconnexion
                             </button>
                         </form>
