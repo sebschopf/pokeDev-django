@@ -191,7 +191,7 @@
 
 /* Styles pour les cartes de langage dans la page de détail d'un outil */
 .neo-section.languages-container {
-  border: 4px solid #000000 !important;
+  border: 4px solid #111111 !important;
   padding: 1.5rem;
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 1);
   background-color: #fefce8;
@@ -199,7 +199,7 @@
 
 .neo-section.languages-container .language-card {
   background-color: #111111;
-  border: 3px solid #000000;
+  border: 3px solid #111111;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -216,7 +216,7 @@
 
 /* Style pour le titre de section */
 h2.section-title {
-  border-bottom: 4px solid #000000;
+  border-bottom: 4px solid #111111;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
   font-weight: 900;
