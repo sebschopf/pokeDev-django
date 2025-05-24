@@ -30,6 +30,7 @@ urlpatterns = [
     path('outils/', include('tools.urls')),
     path('languages/', include('languages.urls')),
     path('', include('system.urls')),
+    path('dependencies/', include('dependencies.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Hommage aux Contributeurs et contributrices de Open Source - PokeDev{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Icônes personnalisées en jaune */
+.icon-github, .icon-web {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(240, 200, 8);
+    border: 3px solid black;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.icon-github:hover, .icon-web:hover {
+    background-color: black;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+.icon-github:hover svg, .icon-web:hover svg {
+    fill: rgb(240, 200, 8);
+}
+
+.icon-github svg, .icon-web svg {
+    width: 1rem;
+    height: 1rem;
+    fill: black;
+    transition: fill 0.2s;
+}
+
+/* Condition spéciale pour les SVG dans les boutons neo-button */
+.neo-button svg {
+    fill: rgb(240, 200, 8) !important;
+}
+
+.neo-button:hover svg {
+    fill: rgb(240, 200, 8) !important;
+}
+/* Condition spéciale pour les SVG dans les boutons correction-button en fin de page */
+
+.correction-button {
+    display: inline-flex;
+    width: clamp(200px, 50vw, 400px) !important;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+}
+
+.correction-button svg {
+    
+    fill: black !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    transition: fill 0.2s;
+}
+
+.correction-button:hover svg {
+    fill: rgb(240, 200, 8) !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-background">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="neo-section">
+                <h1 class="text-4xl font-bold text-black mb-4">
+                    <span class="neo-marker">Hommage aux Héros·ïnes de l'Open Source</span>
+                </h1>
+                <p class="text-xl text-black max-w-3xl mx-auto font-bold">
+                    PokeDev n'existerait pas sans ces incroyables contributeurices qui ont dédié leur temps et leur talent 
+                    à créer des outils que nous utilisons tous les jours. Voici une très humble façon de leur dire merci.
+                </p>
+                <div class="mt-6">
+                    <span class="neo-marker text-2xl">
+                        {{ total_dependencies }} dépendances utilisées
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dependencies by Category - Layout en colonnes -->
+        <section class="mb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for category, deps in categories.items %}
+            <div class="flex flex-col">
+                <!-- Titre de la catégorie -->
+                <h2 class="section-title text-2xl mb-4">
+                    {{ category }}
+                </h2>
+                
+                <!-- Cartes de cette catégorie -->
+                <div class="space-y-4 flex-1">
+                    {% for dep in deps %}
+                    <div class="card">
+                        <div class="p-4">
+                            <!-- Header -->
+                            <div class="flex items-start justify-between text-lg font-bold mb-3">
+                                <div>
+                                    <h3 class="text-lg font-black text-black">{{ dep.name }}</h3>
+                                    <span class="neo-badge mt-1 text-xs">
+                                        v{{ dep.version }}
+                                    </span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="category-badge text-xs">
+                                        {{ dep.license }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Description - Taille augmentée -->
+                            <p class="text-black text-sm mb-4 leading-relaxed font-bold">
+                                {{ dep.description }}
+                            </p>
+
+                            <!-- Maintainers avec icônes SVG -->
+                            <div class="mb-4">
+                                <h4 class="font-black text-black mb-3 text-sm uppercase">
+                                    Créateurices/Mainteneureuses
+                                </h4>
+                                <div class="space-y-2">
+                                    {% for maintainer in dep.maintainers %}
+                                    <div class="flex items-center justify-between bg-white border-2 border-black p-2">
+                                        <span class="text-sm font-bold text-black">
+                                            {{ maintainer.name }}
+                                        </span>
+                                        <div class="flex space-x-1">
+                                            {% if maintainer.github %}
+                                            <a href="{{ maintainer.github }}" target="_blank" 
+                                               class="icon-github" title="GitHub de {{ maintainer.name }}">
+                                                <svg viewBox="0 0 24 24">
+                                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                                </svg>
+                                            </a>
+                                            {% endif %}
+                                            {% if maintainer.website %}
+                                            <a href="{{ maintainer.website }}" target="_blank" 
+                                               class="icon-web" title="Site web de {{ maintainer.name }}">
+                                                <svg viewBox="0 0 24 24">
+                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                                </svg>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <p class="text-sm text-black mt-3 font-bold">
+                                    Actuellement maintenu par: <strong>{{ dep.current_lead }}</strong>
+                                </p>
+                            </div>
+
+                            <!-- Links avec icônes SVG -->
+                            <div class="flex space-x-2">
+                                <a href="{{ dep.github }}" target="_blank" 
+                                   class="flex-1 neo-button text-center text-sm flex items-center justify-center space-x-1">
+                                    <svg class="w-3 h-3" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="{{ dep.website }}" target="_blank" 
+                                   class="flex-1 view-more-btn text-center text-sm flex items-center justify-center space-x-1">
+                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                    </svg>
+                                    <span>Site</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- Footer Message -->
+        <div class="text-center mt-16">
+            <div class="neo-section">
+                <h2 class="neo-ribbon-title text-2xl mb-4">
+                    Merci à toutes et tous !
+                </h2>
+                <p class="text-black max-w-2xl mx-auto leading-relaxed font-bold">
+                    Chaque ligne de code, chaque commit, chaque issue résolue contribue à faire avancer 
+                    l'écosystème open source. Grâce à vous toutes et tous, des projets comme PokeDev peuvent voir le jour 
+                    et aider d'autres personnes à apprendre et grandir.
+                </p>
+                <div class="mt-6">
+                    <a href="https://github.com/sponsors" target="_blank" 
+                       class="correction-button flex items-center justify-center space-x-2">
+                        <svg class="fill-current" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>Sponsoriser l'Open Source</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

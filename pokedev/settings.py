@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'languages',
     'tools.apps.ToolsConfig',
     'utilisateurs.apps.UtilisateursConfig',
+    'dependencies.apps.DependenciesConfig',
     'stats',
     'django_extensions',
 
