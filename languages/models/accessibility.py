@@ -4,12 +4,12 @@ from .language import Languages
 
 class AccessibilityLevels(models.Model):
     id = models.AutoField(primary_key=True)
-    level_number = models.IntegerField(db_index=True)  # Ajout d'index
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
-    prerequisites = models.TextField(blank=True, null=True)
-    estimated_learning_time = models.CharField(max_length=255, blank=True, null=True)
-    level_order = models.IntegerField(db_index=True)  # Ajout d'index
+    level_number = models.IntegerField(db_index=True)
+    name = models.CharField(max_length=50)  # Ajusté selon la DB
+    description = models.TextField()
+    prerequisites = models.TextField()
+    estimated_learning_time = models.CharField(max_length=50)  # Ajusté selon la DB
+    level_order = models.IntegerField(db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -26,6 +26,7 @@ class AccessibilityLevels(models.Model):
 
     def __str__(self):
         return f"{self.level_number}. {self.name}"
+
     @classmethod
     def get_level_by_number(cls, level_number):
         """
@@ -48,7 +49,7 @@ class AccessibilityCriteria(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    weight = models.FloatField(default=0, db_index=True)  # Ajout d'index
+    weight = models.FloatField(default=0, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -65,14 +66,17 @@ class AccessibilityCriteria(models.Model):
     def __str__(self):
         return self.name
 
+
 class LanguageAccessibilityLevels(models.Model):
     id = models.AutoField(primary_key=True)
-    language = models.ForeignKey(Languages, models.DO_NOTHING, db_index=True)  # Expliciter l'index
-    accessibility_level = models.ForeignKey(AccessibilityLevels, models.DO_NOTHING, db_index=True)  # Expliciter l'index
+    language = models.ForeignKey(Languages, models.DO_NOTHING, db_index=True)
+    accessibility_level = models.ForeignKey(AccessibilityLevels, models.DO_NOTHING, db_index=True)
     notes = models.TextField(blank=True, null=True)
-    accessibility_score = models.FloatField(blank=True, null=True, db_index=True)  # Ajout d'index
+    accessibility_score = models.FloatField(blank=True, null=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # Champ manquant ajouté selon la structure DB
+    score_explanation = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -107,9 +111,9 @@ class LanguageAccessibilityLevels(models.Model):
             '-accessibility_score'
         )[:limit]
 
+
 class LanguageAccessibilityEvaluations(models.Model):
     id = models.AutoField(primary_key=True)
-    # Relation avec LanguageAccessibilityLevels
     language_accessibility_level = models.ForeignKey(
         LanguageAccessibilityLevels, 
         models.DO_NOTHING, 
