@@ -1,0 +1,78 @@
+{% comment %}
+Menu mobile avec Tailwind pur
+Usage: {% include 'components/mobile-menu.html' %}
+{% endcomment %}
+
+<nav class="mobile-menu" 
+     id="mobileMenu" 
+     role="navigation" 
+     aria-label="Navigation mobile"
+     aria-hidden="true">
+     
+    <!-- Container du menu -->
+    <div class="mobile-menu-content">
+        <!-- Bouton de fermeture -->
+        <button class="mobile-menu-close" 
+                onclick="toggleMobileMenu()"
+                aria-label="Fermer le menu">
+            ×
+        </button>
+        
+        <ul>
+            <li>
+                <a href="{% url 'languages:list' %}"
+                   {% if request.resolver_match.url_name == 'list' %}aria-current="page"{% endif %}>
+                    Langages
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'languages:accessibility_methodology' %}"
+                   {% if request.resolver_match.url_name == 'accessibility_methodology' %}aria-current="page"{% endif %}>
+                    Méthodologie
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'dependencies:tribute' %}"
+                   {% if request.resolver_match.url_name == 'tribute' %}aria-current="page"{% endif %}>
+                    Remerciements
+                </a>
+            </li>
+            {% if user.is_staff %}
+                <li>
+                    <a href="{% url 'admin:index' %}" target="_blank" rel="noopener noreferrer">
+                        Admin
+                    </a>
+                </li>
+            {% endif %}
+            
+            <!-- Section utilisateur -->
+            <li class="user-section">
+                {% if user.is_authenticated %}
+                    <span class="user-icon-brutal">{{ user.username|first|upper }}</span>
+                    <span class="font-black">{{ user.username }}</span>
+                {% else %}
+                    <span class="user-icon-brutal">?</span>
+                    <span class="font-black">NON CONNECTÉ</span>
+                {% endif %}
+            </li>
+            
+            <!-- Menu authentification -->
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'utilisateurs:profile' %}">Profil</a>
+                </li>
+                <li>
+                    <form method="post" action="{% url 'utilisateurs:logout' %}" class="m-0">
+                        {% csrf_token %}
+                        <button type="submit" aria-label="Se déconnecter">
+                            Déconnexion
+                        </button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'utilisateurs:login' %}">Connexion</a></li>
+                <li><a href="{% url 'utilisateurs:register' %}">Inscription</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

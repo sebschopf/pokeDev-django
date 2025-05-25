@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Correction #{{ correction.id }} - PokeDev{% endblock %}
+{% block meta_description %}Détail de la demande de correction pour {{ correction.language.name }}.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    
+    <!-- Breadcrumb -->
+    <nav class="mb-8" aria-label="Fil d'Ariane">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="{% url 'languages:correction_list' %}" class="text-neo-black hover:underline font-bold">Corrections</a></li>
+        <li class="text-neo-black font-black">></li>
+        <li class="text-neo-black font-black">Correction #{{ correction.id }}</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h1 class="text-3xl font-black text-neo-black mb-4">
+        Demande de correction #{{ correction.id }}
+      </h1>
+      <p class="text-lg text-neo-black">
+        Correction proposée pour {{ correction.language.name }}
+      </p>
+    </header>
+
+    <!-- Informations générales -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h2 class="text-2xl font-black text-neo-black mb-6 uppercase">
+        Informations générales
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <div class="flex justify-between border-b-2 border-gray-200 pb-2">
+            <span class="font-black text-neo-black">Langage :</span>
+            <span class="text-neo-black">{{ correction.language.name }}</span>
+          </div>
+          <div class="flex justify-between border-b-2 border-gray-200 pb-2">
+            <span class="font-black text-neo-black">Champ concerné :</span>
+            <span class="text-neo-black">{{ correction.field }}</span>
+          </div>
+          <div class="flex justify-between border-b-2 border-gray-200 pb-2">
+            <span class="font-black text-neo-black">Soumis par :</span>
+            <span class="text-neo-black">{{ correction.user_id|default:"Anonyme" }}</span>
+          </div>
+          <div class="flex justify-between border-b-2 border-gray-200 pb-2">
+            <span class="font-black text-neo-black">Date :</span>
+            <span class="text-neo-black">{{ correction.created_at|date:"d/m/Y H:i" }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="font-black text-neo-black">Statut :</span>
+            <span>
+              {% if correction.status == 'pending' %}
+                <span class="px-3 py-1 bg-yellow-400 border-2 border-neo-black font-black text-neo-black">
+                  En attente
+                </span>
+              {% elif correction.status == 'approved' %}
+                <span class="px-3 py-1 bg-green-400 border-2 border-neo-black font-black text-neo-black">
+                  Approuvée
+                </span>
+              {% elif correction.status == 'rejected' %}
+                <span class="px-3 py-1 bg-red-400 border-2 border-neo-black font-black text-neo-black">
+                  Rejetée
+                </span>
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenu de la correction -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h2 class="text-2xl font-black text-neo-black mb-6 uppercase">
+        Contenu de la correction
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Valeur actuelle -->
+        <div class="border-4 border-neo-black">
+          <div class="bg-gray-200 border-b-4 border-neo-black p-4">
+            <h3 class="font-black text-neo-black uppercase">Valeur actuelle</h3>
+          </div>
+          <div class="p-6 bg-neo-white">
+            <pre class="whitespace-pre-wrap text-neo-black font-mono text-sm">{{ current_value }}</pre>
+          </div>
+        </div>
+        
+        <!-- Valeur proposée -->
+        <div class="border-4 border-neo-black">
+          <div class="bg-gray-200 border-b-4 border-neo-black p-4">
+            <h3 class="font-black text-neo-black uppercase">Valeur proposée</h3>
+          </div>
+          <div class="p-6 bg-neo-white">
+            <pre class="whitespace-pre-wrap text-neo-black font-mono text-sm">{{ correction.correction_text }}</pre>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Justification -->
+      <div class="border-4 border-neo-black">
+        <div class="bg-gray-200 border-b-4 border-neo-black p-4">
+          <h3 class="font-black text-neo-black uppercase">Justification</h3>
+        </div>
+        <div class="p-6 bg-neo-white">
+          <p class="text-neo-black leading-relaxed">
+            {{ correction.suggestion|default:"Aucune justification fournie"|linebreaks }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire de révision -->
+    {% if correction.status == 'pending' %}
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8">
+      <h2 class="text-2xl font-black text-neo-black mb-6 uppercase">
+        Réviser cette demande
+      </h2>
+      
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        <div>
+          <label for="{{ form.status.id_for_label }}" class="block text-lg font-black text-neo-black mb-3">
+            Décision
+          </label>
+          <select name="{{ form.status.name }}" 
+                  id="{{ form.status.id_for_label }}"
+                  class="w-full p-4 border-4 border-neo-black bg-neo-white text-neo-black font-bold focus:outline-none focus:ring-4 focus:ring-pokedev-yellow">
+            {% for value, label in form.status.field.choices %}
+              <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        
+        <div>
+          <label for="{{ form.suggestion.id_for_label }}" class="block text-lg font-black text-neo-black mb-3">
+            Commentaire (optionnel)
+          </label>
+          <textarea name="{{ form.suggestion.name }}" 
+                    id="{{ form.suggestion.id_for_label }}"
+                    rows="4"
+                    class="w-full p-4 border-4 border-neo-black bg-neo-white text-neo-black font-bold focus:outline-none focus:ring-4 focus:ring-pokedev-yellow"
+                    placeholder="Expliquez votre décision ou laissez des instructions supplémentaires..."></textarea>
+          <p class="mt-2 text-sm text-gray-600">
+            Expliquez votre décision pour aider l'utilisateur à comprendre.
+          </p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button type="submit" name="approve" 
+                  class="px-6 py-3 bg-green-400 border-4 border-neo-black font-black text-neo-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover">
+            APPROUVER
+          </button>
+          <button type="submit" name="reject" 
+                  class="px-6 py-3 bg-red-400 border-4 border-neo-black font-black text-neo-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover">
+            REJETER
+          </button>
+          {% include 'components/button_neo.html' with text="Annuler" href="/languages/corrections/" extra_classes="ml-auto" %}
+        </div>
+      </form>
+    </section>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

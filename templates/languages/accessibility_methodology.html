@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Méthodologie d'accessibilité - PokeDev{% endblock %}
+{% block meta_description %}Découvrez la méthodologie pour évaluer l'accessibilité des langages de programmation selon différents niveaux d'expertise.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    
+    <!-- Header -->
+    <header class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h1 class="text-3xl font-black text-neo-black mb-4 uppercase">
+        Méthodologie pour le score d'accessibilité
+      </h1>
+      <p class="text-lg text-neo-black">
+        Comment est évaluée la facilité d'apprentissage des langages de programmation ?
+      </p>
+    </header>
+
+    <!-- Introduction -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <div class="bg-pokedev-yellow border-4 border-neo-black p-6 mb-6">
+        <h2 class="text-2xl font-black text-neo-black mb-4 uppercase">
+          Pourquoi évaluer l'accessibilité ?
+        </h2>
+        <div class="space-y-4 text-neo-black">
+          <p>
+            Choisir un premier langage de programmation ou un nouveau langage à apprendre peut être déroutant face à la multitude d'options disponibles. 
+            Cette méthodologie d'évaluation de l'accessibilité vise à guider ce choix en fonction du niveau d'expertise et des objectifs.
+          </p>
+          <p>
+            Cette méthodologie a été développée en analysant les retours d'expérience de programmeureuses de tous niveaux et en étudiant les caractéristiques 
+            intrinsèques des langages qui facilitent ou compliquent l'apprentissage.
+          </p>
+        </div>
+      </div>
+
+      <!-- Définition -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-black text-neo-black mb-4 uppercase">
+          Définition du score d'accessibilité
+        </h2>
+        <p class="text-neo-black leading-relaxed">
+          Le score d'accessibilité est une valeur numérique entre 0 et 100 qui représente la facilité d'apprentissage et d'utilisation d'un langage de programmation pour un niveau de compétence donné. Plus le score est élevé, plus le langage est considéré comme accessible à ce niveau.
+        </p>
+      </div>
+    </section>
+
+    <!-- Critères d'évaluation -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h2 class="text-2xl font-black text-neo-black mb-6 uppercase">
+        Critères d'évaluation
+      </h2>
+      <p class="text-neo-black mb-6">
+        Le score d'accessibilité est basé sur plusieurs critères pondérés :
+      </p>
+      
+      <!-- Grid en 2 colonnes pour les critères -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for criterion in accessibility_criteria %}
+        <div class="border-4 border-neo-black p-6 bg-gray-50">
+          <h3 class="text-xl font-black text-neo-black mb-3">
+            {{ criterion.name }} ({{ criterion.weight }}%)
+          </h3>
+          <p class="text-neo-black mb-4">{{ criterion.description }}</p>
+          
+          {% if criterion.name == "Simplicité syntaxique" %}
+          <ol class="list-decimal list-inside space-y-1 text-neo-black pl-4">
+            <li>Verbosité du code</li>
+            <li>Cohérence des règles syntaxiques</li>
+            <li>Lisibilité du code</li>
+          </ol>
+          {% elif criterion.name == "Courbe d'apprentissage" %}
+          <ol class="list-decimal list-inside space-y-1 text-neo-black pl-4">
+            <li>Temps nécessaire pour maîtriser les concepts de base</li>
+            <li>Progression des concepts simples aux concepts avancés</li>
+            <li>Facilité à écrire son premier programme fonctionnel</li>
+          </ol>
+          {% elif criterion.name == "Écosystème et ressources" %}
+          <ol class="list-decimal list-inside space-y-1 text-neo-black pl-4">
+            <li>Documentation officielle (qualité, exhaustivité, exemples)</li>
+            <li>Tutoriels et cours disponibles</li>
+            <li>Communauté et forums d'entraide</li>
+            <li>Disponibilité de ressources en français</li>
+          </ol>
+          {% elif criterion.name == "Outils de développement" %}
+          <ol class="list-decimal list-inside space-y-1 text-neo-black pl-4">
+            <li>IDEs et éditeurs de code adaptés</li>
+            <li>Débogueurs et outils de diagnostic</li>
+            <li>Facilité d'installation et de configuration</li>
+          </ol>
+          {% elif criterion.name == "Gestion des erreurs" %}
+          <ol class="list-decimal list-inside space-y-1 text-neo-black pl-4">
+            <li>Clarté des messages d'erreur</li>
+            <li>Facilité à identifier la source des problèmes</li>
+            <li>Mécanismes de gestion des exceptions</li>
+          </ol>
+          {% elif criterion.name == "Concepts requis" %}
+          <ol class="list-decimal list-inside space-y-1 text-neo-black pl-4">
+            <li>Nombre de concepts à maîtriser</li>
+            <li>Complexité des paradigmes de programmation</li>
+            <li>Nécessité de comprendre des concepts avancés pour des tâches simples</li>
+          </ol>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Visualisation des critères avec le composant -->
+      <div class="mt-8 border-4 border-neo-black p-6 bg-gray-50">
+        <h3 class="text-xl font-black text-neo-black mb-6 uppercase">
+          Répartition des critères d'évaluation
+        </h3>
+        <div class="space-y-4">
+          {% for criterion in accessibility_criteria %}
+            {% include 'components/progress_bar.html' with label=criterion.name percentage=criterion.weight %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Échelle d'interprétation -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h2 class="text-2xl font-black text-neo-black mb-6 uppercase">
+        Échelle d'interprétation
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border-4 border-neo-black">
+          <thead>
+            <tr class="bg-pokedev-yellow">
+              <th class="p-4 text-left font-black text-neo-black border-r-2 border-neo-black">Score</th>
+              <th class="p-4 text-left font-black text-neo-black">Interprétation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-green-100">90-100</td>
+              <td class="p-4 text-neo-black">Extrêmement accessible - Idéal pour les personnes qui découvrent</td>
+            </tr>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-green-50">80-89</td>
+              <td class="p-4 text-neo-black">Très accessible - Recommandé pour les personnes débutantes</td>
+            </tr>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-yellow-100">70-79</td>
+              <td class="p-4 text-neo-black">Accessible - Adapté aux personnes débutantes pleines de motivation</td>
+            </tr>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-yellow-50">60-69</td>
+              <td class="p-4 text-neo-black">Modérément accessible - Nécessite quelques connaissances préalables</td>
+            </tr>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-orange-100">50-59</td>
+              <td class="p-4 text-neo-black">Moyennement accessible - Recommandé après avoir appris un langage plus simple</td>
+            </tr>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-orange-50">40-49</td>
+              <td class="p-4 text-neo-black">Peu accessible - Nécessite une bonne compréhension des concepts de programmation</td>
+            </tr>
+            <tr class="border-b-2 border-neo-black">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-red-100">30-39</td>
+              <td class="p-4 text-neo-black">Difficile d'accès - Pour programmeureuses avec fortes expériences</td>
+            </tr>
+            <tr>
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black bg-red-200">0-29</td>
+              <td class="p-4 text-neo-black">Très difficile d'accès - Pour des personnes spécialistes ou cas d'usage spécifiques</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-8">
+      <h2 class="text-2xl font-black text-neo-black mb-6 uppercase">
+        Questions fréquentes
+      </h2>
+      <div class="space-y-6">
+        <div class="border-4 border-neo-black p-6 bg-gray-50">
+          <h3 class="text-lg font-black text-neo-black mb-3">
+            Un score bas signifie-t-il que le langage est mauvais ?
+          </h3>
+          <p class="text-neo-black">
+            Non, un score bas indique simplement que le langage est plus difficile à apprendre pour le niveau concerné. Les langages avec des scores bas peuvent être extrêmement puissants et adaptés à des cas d'usage spécifiques.
+          </p>
+        </div>
+        
+        <div class="border-4 border-neo-black p-6 bg-gray-50">
+          <h3 class="text-lg font-black text-neo-black mb-3">
+            Les scores sont-ils objectifs ?
+          </h3>
+          <p class="text-neo-black">
+            Nous (la communauté participante) nous efforçons d'être aussi objectifs que possible en utilisant des critères mesurables, mais toute évaluation comporte une part de subjectivité. Les scores sont continuellement révisés et ajustés en fonction des retours.
+          </p>
+        </div>
+        
+        <div class="border-4 border-neo-black p-6 bg-gray-50">
+          <h3 class="text-lg font-black text-neo-black mb-3">
+            Comment puis-je contribuer à l'évaluation ?
+          </h3>
+          <p class="text-neo-black">
+            Du moment que vous avez un compte enregistré, vous pouvez proposer des corrections ou des ajustements via le système de suggestions. Les contributions sont examinées par des validateurs qui peuvent demander des précisions à des personnes expertes enregistrées et reconnues.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Méthodologie pour le score d'accessibilité des langages de programmation",
+  "description": "Découvrez notre méthodologie pour évaluer l'accessibilité des langages de programmation selon différents niveaux d'expertise",
+  "author": {
+    "@type": "Organization",
+    "name": "PokeDev"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PokeDev"
+  },
+  "datePublished": "2024-01-01",
+  "dateModified": "{{ "now"|date:"c" }}"
+}
+</script>
+{% endblock %}

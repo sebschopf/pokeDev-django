@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% load static %}
+{% load library_tags %}
+
+{% block title %}{{ language.name }} - Langage de programmation{% endblock %}
+{% block meta_description %}{{ language.short_description|default:language.description|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    
+    <!-- Breadcrumb -->
+    <nav class="mb-8" aria-label="Fil d'Ariane">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="{% url 'languages:list' %}" class="text-neo-black hover:underline font-bold">Langages</a></li>
+        <li class="text-neo-black font-black">></li>
+        <li class="text-neo-black font-black">{{ language.name }}</li>
+      </ol>
+    </nav>
+
+    <!-- Header principal -->
+    <header class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        
+        <!-- Logo -->
+        <div class="lg:col-span-1 flex justify-center">
+          {% if language.logo_svg %}
+            <div class="svg-container language-detail">
+              {{ language.logo_svg|safe }}
+            </div>
+          {% else %}
+            <div class="w-32 h-32 bg-gray-200 border-4 border-neo-black flex items-center justify-center">
+              <span class="text-4xl font-black text-neo-black">{{ language.name|first }}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Informations principales -->
+        <div class="lg:col-span-2">
+          <h1 class="text-4xl font-black text-neo-black mb-4">{{ language.name }}</h1>
+          
+          {% if language.short_description %}
+            <p class="text-xl text-neo-black mb-6">{{ language.short_description }}</p>
+          {% endif %}
+
+          <!-- Métadonnées -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            {% if language.year_created %}
+              <div class="bg-pokedev-yellow border-2 border-neo-black p-3">
+                <div class="font-black text-neo-black">Créé en</div>
+                <div class="text-neo-black">{{ language.year_created }}</div>
+              </div>
+            {% endif %}
+            
+            {% if language.creator %}
+              <div class="bg-pokedev-yellow border-2 border-neo-black p-3">
+                <div class="font-black text-neo-black">Créateur</div>
+                <div class="text-neo-black">{{ language.creator }}</div>
+              </div>
+            {% endif %}
+            
+            {% if language.type %}
+              <div class="bg-pokedev-yellow border-2 border-neo-black p-3">
+                <div class="font-black text-neo-black">Type</div>
+                <div class="text-neo-black">{{ language.type }}</div>
+              </div>
+            {% endif %}
+            
+            {% if language.usage_rate %}
+              <div class="bg-pokedev-yellow border-2 border-neo-black p-3">
+                <div class="font-black text-neo-black">Popularité</div>
+                <div class="text-neo-black">{{ language.usage_rate }}%</div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Colonne principale -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- Description -->
+        {% if language.description %}
+          <section class="bg-neo-white border-4 border-neo-black shadow-neo p-6">
+            <h2 class="text-2xl font-black text-neo-black mb-4 uppercase">Description</h2>
+            <div class="prose prose-lg max-w-none">
+              <p class="text-neo-black leading-relaxed">{{ language.description|linebreaks }}</p>
+            </div>
+          </section>
+        {% endif %}
+
+        <!-- Points forts et utilisation -->
+        {% if language.strengths or language.used_for %}
+          <section class="bg-neo-white border-4 border-neo-black shadow-neo p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              
+              {% if language.strengths %}
+                <div>
+                  <h3 class="text-xl font-black text-neo-black mb-4 uppercase">Points forts</h3>
+                  <ul class="space-y-2">
+                    {% for strength in language.strengths %}
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-neo-black mt-2 mr-3 flex-shrink-0"></span>
+                        <span class="text-neo-black">{{ strength }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+
+              {% if language.used_for %}
+                <div>
+                  <h3 class="text-xl font-black text-neo-black mb-4 uppercase">Utilisé pour</h3>
+                  <p class="text-neo-black">{{ language.used_for }}</p>
+                </div>
+              {% endif %}
+            </div>
+          </section>
+        {% endif %}
+
+        <!-- ✨ SECTIONS AJOUTÉES ✨ -->
+        
+        <!-- Section des caractéristiques techniques -->
+        {% include 'languages/partials/feature_section.html' %}
+
+        <!-- Section d'accessibilité -->
+        {% include 'languages/partials/accessibility_section.html' %}
+
+        <!-- Section des outils associés -->
+        {% include 'languages/partials/tools_section.html' %}
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1 space-y-6">
+        
+        <!-- Barre de popularité -->
+        {% if language.usage_rate %}
+          <div class="bg-neo-white border-4 border-neo-black shadow-neo p-6">
+            <h3 class="text-lg font-black text-neo-black mb-4 uppercase">Popularité</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm font-bold">
+                <span class="text-neo-black">Taux d'utilisation</span>
+                <span class="text-neo-black">{{ language.usage_rate }}%</span>
+              </div>
+              <div class="w-full bg-gray-200 border-2 border-neo-black h-4">
+                <div class="bg-pokedev-yellow h-full border-r-2 border-neo-black progress-bar" 
+                     data-width="{{ language.usage_rate }}"></div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Actions -->
+        <div class="bg-neo-white border-4 border-neo-black shadow-neo p-6">
+          <h3 class="text-lg font-black text-neo-black mb-4 uppercase">Actions</h3>
+          <div class="space-y-3">
+            {% include 'components/button_neo.html' with text="Retour à la liste" href="/languages/" %}
+            
+            {% if user.is_authenticated %}
+              {% include 'components/button_action.html' with text="Proposer correction" href="/languages/"|add:language.slug|add:"/correction/" %}
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Informations techniques -->
+        {% if language.is_open_source is not None or language.website %}
+          <div class="bg-neo-white border-4 border-neo-black shadow-neo p-6">
+            <h3 class="text-lg font-black text-neo-black mb-4 uppercase">Informations</h3>
+            <div class="space-y-3">
+              {% if language.is_open_source is not None %}
+                <div class="flex justify-between">
+                  <span class="text-neo-black font-bold">Licence:</span>
+                  <span class="text-neo-black">
+                    {% if language.is_open_source %}Open Source{% else %}Propriétaire{% endif %}
+                  </span>
+                </div>
+              {% endif %}
+              
+              {% if language.website %}
+                <div>
+                  <span class="text-neo-black font-bold block mb-1">Site officiel:</span>
+                  <a href="{{ language.website }}" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     class="text-blue-600 hover:underline break-all">
+                    {{ language.website }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- JSON-LD Donnée de structure -->
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ language.name }}",
+  "description": "{{ language.description|default:language.short_description }}",
+  "url": "{{ request.build_absolute_uri }}",
+  "dateCreated": "{{ language.year_created }}-01-01",
+  "creator": {
+    "@type": "Person",
+    "name": "{{ language.creator }}"
+  },
+  "programmingLanguage": "{{ language.name }}",
+  "operatingSystem": "Cross-platform",
+  "applicationCategory": "DeveloperApplication"
+}
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<!-- ✨ OPTIMISATION : Chargement conditionnel et optimisé -->
+    {% if features_by_type or accessibility_levels %}
+        <script src="{% static 'js/tabs.js' %}" defer></script>
+    {% endif %}
+    
+    <!-- Préchargement optionnel pour les utilisateurs connectés -->
+    {% if user.is_authenticated %}
+        <link rel="prefetch" href="{% static 'js/correction-form.js' %}">
+    {% endif %}
+{% endblock %}

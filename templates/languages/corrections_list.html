@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Administration des corrections - PokeDev{% endblock %}
+{% block meta_description %}Interface d'administration pour gérer les demandes de correction des langages de programmation.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    
+    <!-- Header -->
+    <header class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h1 class="text-3xl font-black text-neo-black mb-4 uppercase">
+        Administration des corrections
+      </h1>
+      <p class="text-lg text-neo-black">
+        Gérez les demandes de correction soumises par la communauté
+      </p>
+    </header>
+
+    <!-- Filtres -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo p-6 mb-8">
+      <h2 class="text-xl font-black text-neo-black mb-4 uppercase">
+        Filtrer par statut
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="{% url 'languages:correction_list' %}" 
+           class="px-4 py-2 border-4 border-neo-black font-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover {% if not current_status %}bg-pokedev-yellow text-neo-black{% else %}bg-neo-white text-neo-black hover:bg-pokedev-yellow{% endif %}">
+          Tous
+        </a>
+        {% for status_value, status_label in status_choices %}
+        <a href="{% url 'languages:correction_list' %}?status={{ status_value }}" 
+           class="px-4 py-2 border-4 border-neo-black font-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover {% if current_status == status_value %}bg-pokedev-yellow text-neo-black{% else %}bg-neo-white text-neo-black hover:bg-pokedev-yellow{% endif %}">
+          {{ status_label }}
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Liste des corrections -->
+    <section class="bg-neo-white border-4 border-neo-black shadow-neo">
+      <div class="bg-pokedev-yellow border-b-4 border-neo-black p-4">
+        <h2 class="text-xl font-black text-neo-black uppercase">
+          Liste des demandes ({{ corrections.count }})
+        </h2>
+      </div>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-gray-100 border-b-4 border-neo-black">
+              <th class="p-4 text-left font-black text-neo-black border-r-2 border-neo-black">Langage</th>
+              <th class="p-4 text-left font-black text-neo-black border-r-2 border-neo-black">Champ</th>
+              <th class="p-4 text-left font-black text-neo-black border-r-2 border-neo-black">Utilisateur</th>
+              <th class="p-4 text-left font-black text-neo-black border-r-2 border-neo-black">Date</th>
+              <th class="p-4 text-left font-black text-neo-black border-r-2 border-neo-black">Statut</th>
+              <th class="p-4 text-left font-black text-neo-black">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for correction in corrections %}
+            <tr class="border-b-2 border-neo-black hover:bg-gray-50">
+              <td class="p-4 border-r-2 border-neo-black font-bold text-neo-black">
+                {{ correction.language.name }}
+              </td>
+              <td class="p-4 border-r-2 border-neo-black text-neo-black">
+                {{ correction.field }}
+              </td>
+              <td class="p-4 border-r-2 border-neo-black text-neo-black">
+                {{ correction.user_id.username|default:"Anonyme" }}
+              </td>
+              <td class="p-4 border-r-2 border-neo-black text-neo-black">
+                {{ correction.created_at|date:"d/m/Y H:i" }}
+              </td>
+              <td class="p-4 border-r-2 border-neo-black">
+                {% if correction.status == 'pending' %}
+                  <span class="px-3 py-1 bg-yellow-400 border-2 border-neo-black font-black text-neo-black">
+                    En attente
+                  </span>
+                {% elif correction.status == 'approved' %}
+                  <span class="px-3 py-1 bg-green-400 border-2 border-neo-black font-black text-neo-black">
+                    Approuvée
+                  </span>
+                {% elif correction.status == 'rejected' %}
+                  <span class="px-3 py-1 bg-red-400 border-2 border-neo-black font-black text-neo-black">
+                    Rejetée
+                  </span>
+                {% endif %}
+              </td>
+              <td class="p-4">
+                {% include 'components/button_neo.html' with text="Examiner" href="/languages/corrections/"|add:correction.id|add:"/" extra_classes="text-sm" %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="p-8 text-center">
+                <div class="bg-gray-100 border-4 border-neo-black p-6">
+                  <h3 class="text-xl font-black text-neo-black mb-2">Aucune demande trouvée</h3>
+                  <p class="text-neo-black">Il n'y a actuellement aucune demande de correction.</p>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

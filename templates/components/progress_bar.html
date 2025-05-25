@@ -1,0 +1,10 @@
+{# Template Django - ignore CSS warnings #}
+<!-- Composant barre de progression -->
+<div class="flex items-center gap-4">
+  <div class="w-1/3 text-sm font-bold text-neo-black">{{ label }}</div>
+  <div class="flex-1 bg-neo-black border-3 border-neo-black h-6 relative overflow-hidden">
+    <div class="bg-pokedev-yellow h-full transition-all duration-500 ease-out" 
+         style="width: {{ percentage|floatformat:0 }}%"></div>
+  </div>
+  <div class="w-12 text-sm font-black text-neo-black">{{ percentage|floatformat:0 }}%</div>
+</div>

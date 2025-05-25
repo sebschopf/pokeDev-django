@@ -1,0 +1,34 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO avec simple tags (plus robuste) -->
+{% load seo_tags %}
+<title>{% seo_title object %}</title>
+<meta name="description" content="{% seo_description object %}">
+<meta name="keywords" content="{% seo_keywords object %}">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{% seo_title object %}">
+<meta property="og:description" content="{% seo_description object %}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PokeDev">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% seo_title object %}">
+<meta name="twitter:description" content="{% seo_description object %}">
+
+{% load static %}
+
+<!-- Favicons -->
+{% include 'includes/favicons.html' %}
+
+<!-- Preconnect pour optimiser les performances -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- CSS -->
+<link rel="stylesheet" href="{% static 'css/output.css' %}">
+
+{% block extra_css %}{% endblock %}

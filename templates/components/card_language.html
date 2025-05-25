@@ -1,0 +1,50 @@
+{% comment %}
+Carte néo-brutaliste pour un langage
+Usage: {% include 'components/card_language.html' with language=language %}
+{% endcomment %}
+
+<div class="bg-white border-4 border-black shadow-neo hover:shadow-neo hover:-translate-y-1 transition-all duration-200 p-6">
+    <!-- Logo/SVG -->
+    {% if language.logo_svg %}
+        <div class="svg-container card">
+            {{ language.logo_svg|safe }}
+        </div>
+    {% elif language.logo_path %}
+        <div class="svg-container card">
+            <img src="{{ language.logo_path }}" alt="{{ language.name }} logo" class="w-full max-w-[120px] h-auto max-h-[120px]">
+        </div>
+    {% else %}
+        <div class="svg-container card">
+            <div class="w-24 h-24 bg-gray-200 border-2 border-black flex items-center justify-center font-black text-2xl">
+                {{ language.name|first }}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Contenu -->
+    <div class="space-y-4">
+        <div>
+            <h3 class="text-xl font-black text-black mb-2">{{ language.name }}</h3>
+            <p class="text-sm text-gray-600">Créé en {{ language.year_created }} par {{ language.creator }}</p>
+        </div>
+
+        <p class="text-gray-700 text-sm">{{ language.short_description }}</p>
+
+        <!-- Taux d'utilisation -->
+        <div class="space-y-2">
+            <div class="flex justify-between text-sm">
+                <span class="font-bold">Taux d'utilisation</span>
+                <span class="font-black">{{ language.usage_rate }}%</span>
+            </div>
+            <div class="w-full bg-gray-200 border-2 border-black h-3">
+                <div class="bg-pokedev-yellow h-full border-r-2 border-black transition-all duration-500 progress-bar" 
+                     data-width="{{ language.usage_rate|default:0 }}"></div>
+            </div>
+        </div>
+
+        <!-- Bouton voir plus -->
+        <div class="pt-2">
+            {% include 'components/button_neo.html' with text="Voir plus" href=language.get_absolute_url %}
+        </div>
+    </div>
+</div>

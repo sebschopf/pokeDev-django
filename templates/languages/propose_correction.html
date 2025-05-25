@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Proposer une correction pour {{ language.name }}{% endblock %}
+{% block meta_description %}Proposez des corrections et améliorations concernant les informations du langage {{ language.name }}.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    
+    <!-- Breadcrumb -->
+    <nav class="mb-8" aria-label="Fil d'Ariane">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="{% url 'languages:list' %}" class="text-neo-black hover:underline font-bold">Langages</a></li>
+        <li class="text-neo-black font-black">></li>
+        <li><a href="{% url 'languages:detail' language.slug %}" class="text-neo-black hover:underline font-bold">{{ language.name }}</a></li>
+        <li class="text-neo-black font-black">></li>
+        <li class="text-neo-black font-black">Correction</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h1 class="text-3xl font-black text-neo-black mb-4">
+        Proposer une correction pour {{ language.name }}
+      </h1>
+      <p class="text-neo-black">
+        Aidez-nous à améliorer les informations sur ce langage en proposant des corrections ou des ajouts.
+      </p>
+    </header>
+
+    <!-- Formulaire -->
+    <div class="bg-neo-white border-4 border-neo-black shadow-neo p-8">
+      <form method="post" class="space-y-8" id="correction-form">
+        {% csrf_token %}
+        
+        <!-- Champ à corriger -->
+        <div>
+          <label for="{{ form.field.id_for_label }}" class="block text-lg font-black text-neo-black mb-3">
+            Champ à corriger
+          </label>
+          <select name="{{ form.field.name }}" 
+                  id="{{ form.field.id_for_label }}"
+                  class="w-full p-4 border-4 border-neo-black bg-neo-white text-neo-black font-bold focus:outline-none focus:ring-4 focus:ring-pokedev-yellow">
+            <option value="">Sélectionnez un champ</option>
+            {% for value, label in form.field.field.choices %}
+              <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+          {% if form.field.errors %}
+            <div class="mt-2 p-3 bg-red-100 border-2 border-red-500 text-red-700 font-bold">
+              {{ form.field.errors.0 }}
+            </div>
+          {% endif %}
+          
+          <!-- Valeur actuelle -->
+          <div id="current-value-container" class="mt-4 p-4 bg-gray-100 border-2 border-neo-black hidden">
+            <p class="font-black text-neo-black mb-2">Valeur actuelle :</p>
+            <div id="current-value" class="text-neo-black"></div>
+          </div>
+        </div>
+
+        <!-- Nouvelle valeur -->
+        <div>
+          <label for="{{ form.correction_text.id_for_label }}" class="block text-lg font-black text-neo-black mb-3">
+            Nouvelle valeur proposée
+          </label>
+          <textarea name="{{ form.correction_text.name }}" 
+                    id="{{ form.correction_text.id_for_label }}"
+                    rows="6"
+                    class="w-full p-4 border-4 border-neo-black bg-neo-white text-neo-black font-bold focus:outline-none focus:ring-4 focus:ring-pokedev-yellow"
+                    placeholder="Entrez la nouvelle valeur..."></textarea>
+          {% if form.correction_text.errors %}
+            <div class="mt-2 p-3 bg-red-100 border-2 border-red-500 text-red-700 font-bold">
+              {{ form.correction_text.errors.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Justification -->
+        <div>
+          <label for="{{ form.suggestion.id_for_label }}" class="block text-lg font-black text-neo-black mb-3">
+            Justification de la correction
+          </label>
+          <textarea name="{{ form.suggestion.name }}" 
+                    id="{{ form.suggestion.id_for_label }}"
+                    rows="4"
+                    class="w-full p-4 border-4 border-neo-black bg-neo-white text-neo-black font-bold focus:outline-none focus:ring-4 focus:ring-pokedev-yellow"
+                    placeholder="Expliquez pourquoi cette correction est nécessaire..."></textarea>
+          {% if form.suggestion.errors %}
+            <div class="mt-2 p-3 bg-red-100 border-2 border-red-500 text-red-700 font-bold">
+              {{ form.suggestion.errors.0 }}
+            </div>
+          {% endif %}
+          <p class="mt-2 text-sm text-gray-600">
+            Expliquez les raisons de votre correction pour aider les modérateurs.
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          {% include 'components/button_action.html' with text="Soumettre la correction" type="submit" %}
+          {% include 'components/button_neo.html' with text="Annuler" href="/languages/"|add:language.slug|add:"/" %}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/correction-form.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+
+{% comment %}
+Navigation desktop avec Tailwind pur
+Usage: {% include 'components/navigation-desktop.html' %}
+{% endcomment %}
+
+<nav class="desktop-nav hidden md:flex items-center space-x-2" role="navigation" aria-label="Navigation principale">
+    <a href="{% url 'languages:list' %}" 
+       class="nav-link {% if request.resolver_match.url_name == 'list' %}active{% endif %}"
+       {% if request.resolver_match.url_name == 'list' %}aria-current="page"{% endif %}>
+        Langages
+    </a>
+    
+    <a href="{% url 'languages:accessibility_methodology' %}" 
+       class="nav-link {% if request.resolver_match.url_name == 'accessibility_methodology' %}active{% endif %}"
+       {% if request.resolver_match.url_name == 'accessibility_methodology' %}aria-current="page"{% endif %}>
+        Méthodologie
+    </a>
+    
+    <a href="{% url 'dependencies:tribute' %}" 
+       class="nav-link {% if request.resolver_match.url_name == 'tribute' %}active{% endif %}"
+       {% if request.resolver_match.url_name == 'tribute' %}aria-current="page"{% endif %}>
+        Remerciements
+    </a>
+    
+    {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}" 
+           class="nav-link" 
+           target="_blank" 
+           rel="noopener noreferrer">
+            Admin
+        </a>
+    {% endif %}
+    
+    <!-- Section utilisateur -->
+    <div class="flex items-center space-x-2 ml-4 pl-4 border-l-4 border-neo-black">
+        {% if user.is_authenticated %}
+            <span class="text-sm text-gray-600">👤 {{ user.username }}</span>
+            <a href="{% url 'utilisateurs:profile' %}" class="nav-link text-sm">Profil</a>
+            <form method="post" action="{% url 'utilisateurs:logout' %}" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="nav-link text-sm">Déconnexion</button>
+            </form>
+        {% else %}
+            <a href="{% url 'utilisateurs:login' %}" class="nav-link text-sm">Connexion</a>
+            <a href="{% url 'utilisateurs:register' %}" class="nav-link text-sm">Inscription</a>
+        {% endif %}
+    </div>
+</nav>

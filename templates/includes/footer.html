@@ -1,0 +1,19 @@
+<footer class="p-4 mt-8 bg-neo-white border-t-4 border-neo-black" role="contentinfo">
+    <div class="container mx-auto text-center">
+        <p class="text-neo-black font-bold">
+            &copy; {% now "Y" %} 
+            <span itemscope itemtype="https://schema.org/Organization">
+                <span itemprop="name">PokeDev</span>
+            </span> 
+            - Tous droits réservés
+        </p>
+        
+        <nav class="mt-2" role="navigation" aria-label="Navigation footer">
+            <ul class="flex justify-center space-x-4 text-sm">
+                <li><a href="{% url 'languages:accessibility_methodology' %}" class="text-blue-600 hover:underline">Méthodologie</a></li>
+                <li><a href="{% url 'dependencies:tribute' %}" class="text-blue-600 hover:underline">Remerciements</a></li>
+                <li><a href="/sitemap.xml" class="text-blue-600 hover:underline">Plan du site</a></li>
+            </ul>
+        </nav>
+    </div>
+</footer>

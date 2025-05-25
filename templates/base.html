@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr" class="font-roboto">
+<head>
+    {% include 'includes/head.html' %}
+</head>
+
+<body class="min-h-screen bg-pokedev-yellow font-roboto">
+    <!-- Lien d'évitement pour l'accessibilité -->
+    <a href="#main-content" class="skip-link">
+        Aller au contenu principal
+    </a>
+    
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+    
+    <!-- Breadcrumbs SEO -->
+    {% load seo_tags %}
+    {% seo_breadcrumbs object %}
+    
+    <!-- Contenu principal -->
+    <main id="main-content" role="main">
+        {% if messages %}
+            <div class="container mx-auto mt-4">
+                {% for message in messages %}
+                    <div class="p-4 mb-2 border-4 border-neo-black bg-pokedev-yellow font-bold">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Bouton scroll to top -->
+    {% include 'includes/scroll-to-top.html' %}
+    
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+    
+    <!-- Scripts -->
+    {% include 'includes/scripts.html' %}
+    
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Schema.org pour le site global -->
+    {% include 'includes/schema-org.html' %}
+</body>
+</html>

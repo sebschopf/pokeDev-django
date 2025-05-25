@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Langages de programmation - PokeDev{% endblock %}
+{% block meta_description %}Découvrez les langages de programmation les plus populaires avec leurs caractéristiques, points forts et outils associés.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header de page -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-black text-neo-black mb-4 uppercase">
+        Langages de programmation
+      </h1>
+      <p class="text-xl text-neo-black max-w-3xl mx-auto">
+        Explorez les caractéristiques, forces et écosystèmes des langages de programmation les plus populaires
+      </p>
+    </header>
+
+    <!-- Grille de cartes -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for language in languages %}
+        {% include 'components/card_language.html' with language=language %}
+      {% empty %}
+        <div class="col-span-full text-center py-12">
+          <div class="bg-neo-white border-4 border-neo-black p-8 shadow-neo">
+            <h2 class="text-2xl font-black text-neo-black mb-4">Aucun langage trouvé</h2>
+            <p class="text-neo-black">La base de données semble vide pour le moment.</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Statistiques -->
+    {% if languages %}
+    <footer class="mt-16 text-center">
+      <div class="bg-neo-white border-4 border-neo-black p-6 shadow-neo inline-block">
+        <p class="text-lg font-black text-neo-black">
+          {{ languages|length }} langage{{ languages|length|pluralize }} référencé{{ languages|length|pluralize }}
+        </p>
+      </div>
+    </footer>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+<!-- Données de structure -->
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Langages de programmation",
+  "description": "Collection des langages de programmation avec leurs caractéristiques et outils",
+  "url": "{{ request.build_absolute_uri }}",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ languages|length }},
+    "itemListElement": [
+      {% for language in languages %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "item": {
+          "@type": "SoftwareApplication",
+          "name": "{{ language.name }}",
+          "description": "{{ language.short_description|default:language.description }}",
+          "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'languages:detail' language.slug %}",
+          "dateCreated": "{{ language.year_created }}-01-01",
+          "creator": {
+            "@type": "Person",
+            "name": "{{ language.creator }}"
+          }
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}

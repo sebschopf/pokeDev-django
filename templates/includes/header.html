@@ -1,0 +1,39 @@
+<header class="p-4 bg-pokedev-yellow border-b-4 border-neo-black" role="banner">
+    <div class="mx-auto container">
+        <!-- Header principal -->
+        <div class="flex justify-between items-center">
+            <!-- Logo/Titre avec microdata simplifiées -->
+            <h1 itemscope itemtype="https://schema.org/Organization">
+                <a href="{% url 'languages:list' %}" 
+                   class="logo-pokedev" 
+                   itemprop="url"
+                   aria-label="PokeDev - Accueil">
+                    <span itemprop="name">PokeDev</span>
+                </a>
+                
+                <!-- Données enrichies essentielles -->
+                <meta itemprop="description" content="Cartes interactives des langages de programmation">
+                <meta itemprop="foundingDate" content="2024">
+                <meta itemprop="email" content="contact@pokedev.dev">
+            </h1>
+            
+            <!-- Navigation desktop -->
+            {% include 'components/navigation-desktop.html' %}
+
+            <!-- Bouton menu mobile -->
+            <button class="mobile-menu-button" 
+                    id="mobileMenuButton"
+                    onclick="toggleMobileMenu()"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+                    aria-label="Ouvrir le menu de navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Menu mobile -->
+    {% include 'components/mobile-menu.html' %}
+</header>

@@ -1,0 +1,14 @@
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PokeDev",
+    "description": "Cartes interactives des langages de programmation et de leurs outils",
+    "url": "{{ request.build_absolute_uri|slice:':-1' }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "PokeDev",
+        "url": "{{ request.build_absolute_uri|slice:':-1' }}"
+    }
+}
+</script>

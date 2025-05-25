@@ -1,0 +1,116 @@
+{% load static %}
+{% load language_filters %}
+
+{% if features_by_type %}
+<section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+  <h2 class="text-3xl font-black text-neo-black mb-6 uppercase">
+    Caractéristiques techniques
+  </h2>
+  
+  <!-- Navigation des onglets -->
+  <div class="flex flex-wrap gap-2 mb-6" role="tablist">
+    {% for feature_type in features_by_type.keys %}
+    <button class="feature-tab-btn px-4 py-2 border-4 border-neo-black font-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover {% if forloop.first %}bg-neo-black text-pokedev-yellow{% else %}bg-neo-white text-neo-black hover:bg-pokedev-yellow{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            data-target="features-panel-{{ feature_type|slugify }}">
+      {{ feature_type }}
+    </button>
+    {% endfor %}
+  </div>
+  
+  <!-- Contenu des onglets -->
+  {% for feature_type, features in features_by_type.items %}
+  <div id="features-panel-{{ feature_type|slugify }}" 
+       class="feature-tab-content"
+       role="tabpanel">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for feature_value in features %}
+      <div class="border-4 border-neo-black bg-neo-white p-6 hover:-translate-y-1 transition-all duration-200 shadow-neo hover:shadow-neo-hover">
+        
+        <!-- Nom de la caractéristique -->
+        <h3 class="text-lg font-black text-neo-black mb-3 uppercase">
+          {{ feature_value.feature.name }}
+        </h3>
+        
+        <!-- Valeur de la caractéristique -->
+        <div class="mb-4">
+          {% if feature_value.feature.is_boolean %}
+            {% if feature_value.formatted_value %}
+              <span class="inline-flex items-center px-4 py-2 bg-green-400 border-4 border-neo-black font-black text-neo-black shadow-neo">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                OUI
+              </span>
+            {% else %}
+              <span class="inline-flex items-center px-4 py-2 bg-red-400 border-4 border-neo-black font-black text-neo-black shadow-neo">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                NON
+              </span>
+            {% endif %}
+          {% else %}
+            <div class="px-4 py-2 bg-pokedev-yellow border-4 border-neo-black font-black text-neo-black shadow-neo">
+              {{ feature_value.formatted_value }}
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Description de la caractéristique -->
+        {% if feature_value.feature.description %}
+        <div class="mb-4 p-3 bg-gray-100 border-2 border-neo-black">
+          <p class="text-sm text-neo-black leading-relaxed">
+            {{ feature_value.feature.description }}
+          </p>
+        </div>
+        {% endif %}
+        
+        <!-- Détails de la valeur -->
+        {% if feature_value.value_details %}
+        <div class="p-3 bg-pokedev-yellow border-l-4 border-neo-black mb-4">
+          <h4 class="font-black text-neo-black mb-1">Détails :</h4>
+          <p class="text-sm font-bold text-neo-black">
+            {{ feature_value.value_details|strip }}
+          </p>
+        </div>
+        {% endif %}
+        
+        <!-- Source URL -->
+        {% if feature_value.source_url %}
+        <div class="mb-4">
+          <a href="{{ feature_value.source_url }}" 
+             target="_blank" 
+             class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-bold">
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            Source
+          </a>
+        </div>
+        {% endif %}
+        
+        <!-- Poids d'importance -->
+        {% if feature_value.feature.importance_weight %}
+        <div class="mt-3 flex items-center justify-between text-xs">
+          <span class="text-gray-600 font-bold">Importance :</span>
+          <div class="flex items-center gap-1">
+            {% for i in "12345"|make_list %}
+              {% if forloop.counter <= feature_value.feature.importance_weight %}
+                <div class="w-2 h-2 bg-neo-black"></div>
+              {% else %}
+                <div class="w-2 h-2 bg-gray-300 border border-neo-black"></div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}

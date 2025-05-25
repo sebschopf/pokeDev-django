@@ -1,0 +1,73 @@
+{% load static %}
+
+{% if accessibility_levels %}
+<section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+  <h2 class="text-3xl font-black text-neo-black mb-6 uppercase">
+    Score d'accessibilité
+  </h2>
+  
+  <!-- Navigation des onglets de niveaux -->
+  <div class="flex flex-wrap gap-2 mb-6" role="tablist">
+    {% for level in accessibility_levels %}
+    <button class="level-tab-btn px-4 py-2 border-4 border-neo-black font-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover {% if forloop.first %}bg-neo-black text-pokedev-yellow{% else %}bg-neo-white text-neo-black hover:bg-pokedev-yellow{% endif %}"
+            role="tab"
+            data-target="level-panel-{{ level.id }}">
+      {{ level.name }}
+    </button>
+    {% endfor %}
+  </div>
+  
+  <!-- Contenu des onglets de niveaux -->
+  {% for level in accessibility_levels %}
+  <div id="level-panel-{{ level.id }}" 
+       class="level-tab-content"
+       role="tabpanel">
+    
+    <div class="p-6 border-4 border-neo-black bg-gray-50">
+      <h3 class="text-xl font-black text-neo-black mb-4">{{ level.name }}</h3>
+      <p class="text-neo-black mb-4">{{ level.description }}</p>
+      
+      <!-- Prérequis -->
+      {% if level.prerequisites %}
+      <div class="mb-4 p-4 bg-blue-100 border-2 border-neo-black">
+        <h4 class="font-black text-neo-black mb-2">Prérequis :</h4>
+        <p class="text-sm text-neo-black">{{ level.prerequisites }}</p>
+      </div>
+      {% endif %}
+      
+      <!-- Temps d'apprentissage estimé -->
+      {% if level.estimated_learning_time %}
+      <div class="mb-4 p-4 bg-green-100 border-2 border-neo-black">
+        <h4 class="font-black text-neo-black mb-2">Temps d'apprentissage estimé :</h4>
+        <p class="text-sm text-neo-black">{{ level.estimated_learning_time }}</p>
+      </div>
+      {% endif %}
+      
+      <!-- Score d'accessibilité -->
+      {% if level.accessibility_score %}
+      <div class="bg-pokedev-yellow border-4 border-neo-black p-4 mb-4">
+        <div class="text-2xl font-black text-neo-black">
+          Score : {{ level.accessibility_score }}/100
+        </div>
+        
+        <!-- Explication du score -->
+        {% if level.score_explanation %}
+        <div class="mt-3 p-3 bg-white border-2 border-neo-black">
+          <p class="text-sm text-neo-black">{{ level.score_explanation }}</p>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+      
+      <!-- Notes supplémentaires -->
+      {% if level.notes %}
+      <div class="p-4 bg-yellow-100 border-l-4 border-neo-black">
+        <h4 class="font-black text-neo-black mb-2">Notes :</h4>
+        <p class="text-sm text-neo-black">{{ level.notes }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
