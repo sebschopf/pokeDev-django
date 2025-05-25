@@ -1,0 +1,30 @@
+# Robots.txt pour PokeDev
+User-agent: *
+
+# Pages autorisées (explicite)
+Allow: /
+Allow: /languages/
+Allow: /languages/*/
+Allow: /outils/
+Allow: /outils/*
+allow: /dependencies/
+
+# Pages interdites
+Disallow: /admin/
+Disallow: /api/
+Disallow: /__debug__/
+Disallow: /static/
+Disallow: /media/
+Disallow: /utilisateurs/
+Disallow: /*?*  # URLs avec paramètres de requête
+
+# Fichiers spécifiques interdits
+Disallow: /*.json$
+Disallow: /*.xml$ 
+Disallow: /favicon.ico
+
+# Sitemap
+Sitemap: https://pokedev-django-production.up.railway.app/sitemap.xml
+
+# Délai entre les requêtes
+Crawl-delay: 1

@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'whitenoise.runserver_nostatic',
     # Applications personnalisées
     'system.apps.SystemConfig',
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
 
 ]
-
+SITE_ID = 1  # ID du site pour django.contrib.sites
 MIDDLEWARE = [
     'system.middleware.HealthCheckMiddleware',
     'django.middleware.security.SecurityMiddleware',

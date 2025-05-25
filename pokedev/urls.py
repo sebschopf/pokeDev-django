@@ -32,6 +32,9 @@ urlpatterns = [
     path('', include('system.urls')),
     path('dependencies/', include('dependencies.urls')),
     path('api/', include('api.urls')),
+    # SEO URLs - IMPORTANT: à la fin pour éviter les conflits
+    path('sitemap.xml', include('seo.urls')),
+    path('robots.txt', include('seo.urls')),
 ]
 
 if settings.DEBUG:

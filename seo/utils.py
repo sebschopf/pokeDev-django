@@ -167,3 +167,150 @@ def generate_seo_context(obj, request=None):
         'seo_og_image': generator.get_og_image(),
         'seo_structured_data': json.dumps(generator.get_structured_data(), ensure_ascii=False),
     }
+
+# ============================================================================
+# = FONCTIONS POUR SITEMAP ET ROBOTS.TXT
+# ============================================================================
+
+from django.contrib.sites.models import Site
+from django.utils import timezone
+from languages.models import Languages
+
+def generate_sitemap_data():
+    """Utilitaire pour générer les données du sitemap"""
+    try:
+        current_site = Site.objects.get_current()
+        domain = f"https://{current_site.domain}"
+    except:
+        # Fallback si pas de site configuré
+        domain = "https://pokedev-django-production.up.railway.app"
+    
+    urls = []
+    
+    # Page d'accueil
+    urls.append({
+        'location': domain + '/',
+        'lastmod': timezone.now(),
+        'changefreq': 'daily',
+        'priority': '1.0'
+    })
+    
+    # Page liste des langages
+    try:
+        urls.append({
+            'location': domain + reverse('languages:list'),
+            'lastmod': timezone.now(),
+            'changefreq': 'daily',
+            'priority': '0.9'
+        })
+    except:
+        pass
+    
+    # Page méthodologie
+    try:
+        urls.append({
+            'location': domain + reverse('languages:accessibility_methodology'),
+            'lastmod': timezone.now(),
+            'changefreq': 'monthly',
+            'priority': '0.7'
+        })
+    except:
+        pass
+    
+    # Page remerciements
+    try:
+        urls.append({
+            'location': domain + reverse('dependencies:tribute'),
+            'lastmod': timezone.now(),
+            'changefreq': 'monthly',
+            'priority': '0.5'
+        })
+    except:
+        pass
+    
+    # Pages des langages individuels
+    try:
+        languages = Languages.objects.all().order_by('name')
+        for language in languages:
+            urls.append({
+                'location': domain + reverse('languages:detail', kwargs={'slug': language.slug}),
+                'lastmod': language.updated_at if hasattr(language, 'updated_at') else timezone.now(),
+                'changefreq': 'weekly',
+                'priority': '0.8'
+            })
+    except Exception as e:
+        print(f"Erreur lors de la génération des URLs de langages: {e}")
+    
+    return urls
+
+def ping_search_engines():
+    """Notifie les moteurs de recherche de la mise à jour du sitemap"""
+    import requests
+    
+    try:
+        current_site = Site.objects.get_current()
+        sitemap_url = f"https://{current_site.domain}/sitemap.xml"
+    except:
+        sitemap_url = "https://pokedev-django-production.up.railway.app/sitemap.xml"
+    
+    # URLs de ping des moteurs de recherche
+    ping_urls = [
+        f"http://www.google.com/webmasters/tools/ping?sitemap={sitemap_url}",
+        f"http://www.bing.com/webmaster/ping.aspx?siteMap={sitemap_url}",
+    ]
+    
+    results = []
+    for ping_url in ping_urls:
+        try:
+            response = requests.get(ping_url, timeout=10)
+            results.append({
+                'url': ping_url,
+                'status': response.status_code,
+                'success': response.status_code == 200
+            })
+            print(f"Ping {ping_url}: {response.status_code}")
+        except Exception as e:
+            results.append({
+                'url': ping_url,
+                'status': 'error',
+                'success': False,
+                'error': str(e)
+            })
+            print(f"Erreur ping {ping_url}: {e}")
+    
+    return results
+
+def get_robots_content(request=None):
+    """Génère le contenu du robots.txt"""
+    try:
+        current_site = Site.objects.get_current()
+        domain = f"https://{current_site.domain}"
+    except:
+        domain = "https://pokedev-django-production.up.railway.app"
+    
+    content = f"""User-agent: *
+
+# Pages autorisées
+Allow: /
+Allow: /languages/
+Allow: /languages/*/
+
+# Pages interdites
+Disallow: /admin/
+Disallow: /api/
+Disallow: /__debug__/
+Disallow: /static/
+Disallow: /media/
+Disallow: /utilisateurs/
+Disallow: /stats/
+Disallow: /outils/
+Disallow: /db-docs/
+
+# Sitemap
+Sitemap: {domain}/sitemap.xml
+
+# Délai entre requêtes
+Crawl-delay: 1
+"""
+    
+    return content
