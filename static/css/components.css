@@ -1,0 +1,29 @@
+/* Composants spécifiques qui complètent Tailwind */
+
+/* Lien d'évitement */
+.skip-link {
+  @apply absolute -top-10 left-2 bg-black text-white p-2 z-50 transition-all;
+}
+.skip-link:focus {
+  @apply top-0;
+}
+
+/* Logo PokeDev */
+.logo-pokedev {
+  @apply text-2xl font-black text-neo-black hover:text-pokedev-yellow transition-colors;
+}
+
+/* Boutons néo-brutalistes */
+.btn-neo {
+  @apply px-4 py-2 bg-neo-white border-4 border-neo-black font-bold transition-all duration-200 hover:bg-pokedev-yellow hover:-translate-y-1;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 1);
+}
+
+.btn-neo:hover {
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 1);
+}
+
+/* Scroll to top visible */
+#scrollToTop.visible {
+  @apply opacity-100 visible;
+}

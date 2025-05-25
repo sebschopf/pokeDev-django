@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Styles pour les conteneurs SVG */
+/* Configuration des couleurs personnalisées */
+@layer base {
+  :root {
+    --pokedev-yellow: #f5d413;
+    --neo-black: #131417;
+    --neo-white: #f7f8fa;
+  }
+}
+
+/* Styles néo-brutalistes - seulement ce qu'on ne peut pas faire avec Tailwind */
 @layer components {
+  /* Conteneurs SVG */
   .svg-container {
     @apply w-full flex justify-center items-center mb-4 p-4 transition-transform;
   }
@@ -26,5 +36,166 @@
 
   .language-detail .svg-container {
     @apply h-[200px] my-8 mx-auto max-w-[300px];
+  }
+
+  /* Boutons néo-brutalistes */
+  .btn-neo {
+    @apply px-4 py-2 bg-neo-white border-4 border-neo-black font-bold transition-all duration-200 hover:bg-pokedev-yellow hover:-translate-y-1 cursor-pointer shadow-neo hover:shadow-neo-hover;
+  }
+
+  .btn-neo:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 rgba(19, 20, 23, 1);
+  }
+
+  /* Logo PokeDev */
+  .logo-pokedev {
+    @apply text-2xl font-black bg-neo-black text-pokedev-yellow px-4 py-2 transition-colors hover:bg-pokedev-yellow hover:text-neo-black;
+  }
+
+  /* Cartes néo-brutalistes */
+  .card {
+    @apply bg-neo-white border-4 border-neo-black transition-all duration-200 hover:-translate-y-1 shadow-neo hover:shadow-neo-hover;
+  }
+
+  /* Lien d'évitement */
+  .skip-link {
+    @apply absolute -top-10 left-2 bg-neo-black text-neo-white p-2 z-50 transition-all rounded-b;
+  }
+
+  .skip-link:focus {
+    @apply top-0;
+  }
+
+  /* Menu mobile */
+  .mobile-menu-button {
+    @apply hidden bg-neo-black text-neo-white border-4 border-neo-black p-2 font-black cursor-pointer transition-all duration-200 relative z-[1001] hover:bg-pokedev-yellow hover:text-neo-black hover:-translate-y-0.5;
+  }
+
+  .mobile-menu {
+    @apply hidden fixed inset-0 bg-neo-black bg-opacity-95 z-[1000] overflow-y-auto p-8;
+  }
+
+  .mobile-menu.active {
+    @apply flex items-center justify-center animate-fadeIn;
+  }
+
+  .mobile-menu-content {
+    @apply bg-neo-white border-4 border-neo-black max-w-md w-full relative animate-slideUp shadow-neo-lg;
+  }
+
+  .mobile-menu-close {
+    @apply absolute -top-4 -right-4 bg-pokedev-yellow border-4 border-neo-black w-12 h-12 flex items-center justify-center cursor-pointer z-[1001] text-xl font-black text-neo-black transition-all duration-200 hover:bg-neo-black hover:text-pokedev-yellow hover:-translate-y-0.5 shadow-neo;
+  }
+
+  .mobile-menu ul {
+    @apply list-none m-0 p-0;
+  }
+
+  .mobile-menu li {
+    @apply border-b-4 border-neo-black bg-neo-white last:border-b-0;
+  }
+
+  .mobile-menu a,
+  .mobile-menu button {
+    @apply block w-full text-center p-5 border-0 bg-neo-white text-neo-black font-black uppercase no-underline transition-all duration-200 text-base hover:bg-pokedev-yellow hover:text-neo-black hover:translate-x-1;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .mobile-menu .user-section {
+    @apply bg-pokedev-yellow border-t-4 border-b-4 border-neo-black p-4 text-center font-black text-neo-black;
+  }
+
+  /* Navigation desktop - AVEC SPÉCIFICITÉ RENFORCÉE */
+  .desktop-nav .nav-link {
+    @apply px-4 py-2 font-bold border-0 transition-all duration-200 cursor-pointer;
+    background-color: rgb(19, 20, 23) !important; /* Fond noir forcé */
+    color: rgb(245, 212, 19) !important; /* Texte jaune forcé */
+  }
+
+  .desktop-nav .nav-link:hover,
+  .desktop-nav .nav-link.active {
+    @apply border-4;
+    background-color: rgb(245, 212, 19) !important; /* Fond jaune forcé */
+    color: rgb(19, 20, 23) !important; /* Texte noir forcé */
+    border-color: rgb(19, 20, 23) !important; /* Bordure noire forcée */
+  }
+
+  /* Styles pour les boutons dans la section utilisateur */
+  .desktop-nav button.nav-link {
+    @apply px-4 py-2 font-bold border-0 transition-all duration-200 cursor-pointer;
+    background-color: rgb(19, 20, 23) !important;
+    color: rgb(245, 212, 19) !important;
+  }
+
+  .desktop-nav button.nav-link:hover {
+    @apply border-4;
+    background-color: rgb(245, 212, 19) !important;
+    color: rgb(19, 20, 23) !important;
+    border-color: rgb(19, 20, 23) !important;
+  }
+
+  /* Boutons d'onglets pour les sections */
+  .feature-tab-btn,
+  .level-tab-btn {
+    @apply px-4 py-2 font-black bg-neo-black text-pokedev-yellow border-4 border-neo-black transition-all duration-200 cursor-pointer hover:bg-pokedev-yellow hover:text-neo-black hover:-translate-y-1 shadow-neo hover:shadow-neo-hover;
+  }
+
+  .feature-tab-btn.active,
+  .level-tab-btn.active {
+    @apply bg-pokedev-yellow text-neo-black;
+  }
+
+  /* Scroll to top - visible */
+  #scrollToTop {
+    @apply fixed bottom-8 right-8 w-16 h-16 bg-neo-black border-4 border-neo-black flex items-center justify-center transition-all duration-300 z-50 hover:bg-pokedev-yellow hover:-translate-y-1 shadow-neo hover:shadow-neo-hover;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #scrollToTop.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .mobile-menu-button {
+      @apply block;
+    }
+    .desktop-nav {
+      @apply hidden;
+    }
+  }
+
+  /* Focus pour l'accessibilité */
+  .mobile-menu-button:focus,
+  .mobile-menu-close:focus,
+  .mobile-menu a:focus,
+  .mobile-menu button:focus,
+  .desktop-nav .nav-link:focus {
+    @apply outline-4 outline-pokedev-yellow;
+    outline-offset: 2px;
+  }
+}
+
+/* Utilitaires pour les barres de progression */
+@layer utilities {
+  .progress-bar {
+    @apply transition-all duration-500;
+  }
+
+  .loading-spinner {
+    @apply w-6 h-6 border-2 border-neo-white border-t-transparent rounded-full;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
