@@ -9,7 +9,7 @@ load_dotenv()
 # Construction des chemins à l'intérieur du projet: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: Garder la clef secrète... secrète!
+# SECURITY WARNING: Garder la clef secrète... secrète!... mais vraiment SECRÈTE! OKAY !?!?!?
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-development')
 
 # SECURITY WARNING: Pas de mode débug en production!
@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-    'system',
+    # Applications personnalisées
+    'system.apps.SystemConfig',
     'db_docs.apps.DbDocsConfig',
     'languages',
     'tools.apps.ToolsConfig',
@@ -34,6 +35,8 @@ INSTALLED_APPS = [
     'dependencies.apps.DependenciesConfig',
     'stats',
     'django_extensions',
+    'seo.apps.SeoConfig',
+    'api.apps.ApiConfig',
 
 ]
 
@@ -96,11 +99,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = 'fr-fr'
-TIME_ZONE = 'Europe/Paris'
+TIME_ZONE = 'Europe/Zurich'
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# encodage des fichiers
+DEFAULT_CHARSET = 'utf-8'
+FILE_CHARSET = 'utf-8'
+
+# fichiers statiques (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [

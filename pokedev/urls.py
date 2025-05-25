@@ -31,6 +31,7 @@ urlpatterns = [
     path('languages/', include('languages.urls')),
     path('', include('system.urls')),
     path('dependencies/', include('dependencies.urls')),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:

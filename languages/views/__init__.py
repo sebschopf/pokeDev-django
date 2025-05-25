@@ -5,7 +5,7 @@ from .docs_views import accessibility_methodology  # Importation de la vue de m�
 from .framework_views import framework_detail  # Importation depuis le bon fichier
 from .language_views import list, LanguageDetailView, LanguageListView  # Importation des vues de liste et de détail des langages
 from .search_views import advanced_search  # Importation de la vue de recherche avancée
-
+from .mobile_menu_views import mobile_menu_partial, mobile_menu_partial_json  # Importation de la vue pour le menu mobile
 
 __all__ = [
     'get_field_value',
@@ -17,5 +17,7 @@ __all__ = [
     'list',
     'LanguageDetailView',
     'LanguageListView',
-    'advanced_search'
+    'advanced_search',
+    'mobile_menu_partial',  
+    'mobile_menu_partial_json' 
 ]
