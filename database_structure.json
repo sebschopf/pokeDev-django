@@ -1,48 +1,12 @@
 {
   "accessibility_criteria": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('accessibility_criteria_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "weight",
-        "data_type": "numeric",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "name",
+      "description",
+      "weight",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -51,111 +15,57 @@
     "sample_data": [
       {
         "id": 1,
-        "name": "Simplicit\u00e9 syntaxique",
-        "description": "\u00c9value la clart\u00e9 et la concision de la syntaxe du langage",
-        "weight": "25.00",
-        "created_at": "2025-05-21 23:53:33.447165+00:00",
-        "updated_at": "2025-05-21 23:53:33.447165+00:00"
+        "name": "Simplicité syntaxique",
+        "description": "Évalue la clarté et la concision de la syntaxe du langage",
+        "weight": 25.0,
+        "created_at": "2025-05-21T23:53:33.447165+00:00",
+        "updated_at": "2025-05-21T23:53:33.447165+00:00"
       },
       {
         "id": 2,
         "name": "Courbe d'apprentissage",
-        "description": "\u00c9value la rapidit\u00e9 avec laquelle on peut devenir productif",
-        "weight": "20.00",
-        "created_at": "2025-05-21 23:53:33.447165+00:00",
-        "updated_at": "2025-05-21 23:53:33.447165+00:00"
+        "description": "Évalue la rapidité avec laquelle on peut devenir productif",
+        "weight": 20.0,
+        "created_at": "2025-05-21T23:53:33.447165+00:00",
+        "updated_at": "2025-05-21T23:53:33.447165+00:00"
       },
       {
         "id": 3,
-        "name": "\u00c9cosyst\u00e8me et ressources",
-        "description": "\u00c9value la disponibilit\u00e9 des ressources d'apprentissage",
-        "weight": "15.00",
-        "created_at": "2025-05-21 23:53:33.447165+00:00",
-        "updated_at": "2025-05-21 23:53:33.447165+00:00"
+        "name": "Écosystème et ressources",
+        "description": "Évalue la disponibilité des ressources d'apprentissage",
+        "weight": 15.0,
+        "created_at": "2025-05-21T23:53:33.447165+00:00",
+        "updated_at": "2025-05-21T23:53:33.447165+00:00"
       },
       {
         "id": 4,
-        "name": "Outils de d\u00e9veloppement",
-        "description": "\u00c9value la qualit\u00e9 et l'accessibilit\u00e9 des outils",
-        "weight": "10.00",
-        "created_at": "2025-05-21 23:53:33.447165+00:00",
-        "updated_at": "2025-05-21 23:53:33.447165+00:00"
+        "name": "Outils de développement",
+        "description": "Évalue la qualité et l'accessibilité des outils",
+        "weight": 10.0,
+        "created_at": "2025-05-21T23:53:33.447165+00:00",
+        "updated_at": "2025-05-21T23:53:33.447165+00:00"
       },
       {
         "id": 5,
         "name": "Gestion des erreurs",
-        "description": "\u00c9value la clart\u00e9 des messages d'erreur et la facilit\u00e9 de d\u00e9bogage",
-        "weight": "15.00",
-        "created_at": "2025-05-21 23:53:33.447165+00:00",
-        "updated_at": "2025-05-21 23:53:33.447165+00:00"
+        "description": "Évalue la clarté des messages d'erreur et la facilité de débogage",
+        "weight": 15.0,
+        "created_at": "2025-05-21T23:53:33.447165+00:00",
+        "updated_at": "2025-05-21T23:53:33.447165+00:00"
       }
     ]
   },
   "accessibility_levels": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('accessibility_levels_id_seq'::regclass)"
-      },
-      {
-        "column_name": "level_number",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "prerequisites",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "estimated_learning_time",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "level_order",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "level_number",
+      "name",
+      "description",
+      "prerequisites",
+      "estimated_learning_time",
+      "level_order",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -165,76 +75,64 @@
       {
         "id": 1,
         "level_number": 1,
-        "name": "D\u00e9butant",
-        "description": "Pour les personnes sans exp\u00e9rience pr\u00e9alable en programmation. Concepts de base et syntaxe simple.",
-        "prerequisites": "Aucun pr\u00e9requis technique. Connaissances de base en informatique (navigation web, utilisation d'un \u00e9diteur de texte).",
+        "name": "Débutant",
+        "description": "Pour les personnes sans expérience préalable en programmation. Concepts de base et syntaxe simple.",
+        "prerequisites": "Aucun prérequis technique. Connaissances de base en informatique (navigation web, utilisation d'un éditeur de texte).",
         "estimated_learning_time": "2-4 semaines",
         "level_order": 1,
-        "created_at": "2025-05-21 23:41:58.343388+00:00",
-        "updated_at": "2025-05-21 23:41:58.343388+00:00"
+        "created_at": "2025-05-21T23:41:58.343388+00:00",
+        "updated_at": "2025-05-21T23:41:58.343388+00:00"
       },
       {
         "id": 2,
         "level_number": 2,
-        "name": "\u00c9l\u00e9mentaire",
-        "description": "Pour ceux qui comprennent les bases de la programmation. Introduction aux structures de donn\u00e9es simples et \u00e0 la logique conditionnelle.",
-        "prerequisites": "Compr\u00e9hension des variables, des op\u00e9rations de base et de la syntaxe d'un langage de programmation.",
+        "name": "Élémentaire",
+        "description": "Pour celles et ceux qui comprennent les bases de la programmation. Introduction aux structures de données simples et à la logique conditionnelle.",
+        "prerequisites": "Compréhension des variables, des opérations de base et de la syntaxe d'un langage de programmation.",
         "estimated_learning_time": "1-2 mois",
         "level_order": 2,
-        "created_at": "2025-05-21 23:41:58.343388+00:00",
-        "updated_at": "2025-05-21 23:41:58.343388+00:00"
+        "created_at": "2025-05-21T23:41:58.343388+00:00",
+        "updated_at": "2025-05-21T23:41:58.343388+00:00"
       },
       {
         "id": 3,
         "level_number": 3,
-        "name": "Interm\u00e9diaire",
-        "description": "Pour les programmeurs ayant d\u00e9j\u00e0 une exp\u00e9rience. Concepts plus avanc\u00e9s comme les fonctions complexes et la programmation orient\u00e9e objet de base.",
-        "prerequisites": "Ma\u00eetrise des boucles, conditions, fonctions simples et structures de donn\u00e9es de base.",
+        "name": "Intermédiaire",
+        "description": "Pour les programmeureuses ayant déjà une expérience. Concepts plus avancés comme les fonctions complexes et la programmation orientée objet de base.",
+        "prerequisites": "Maîtrise des boucles, conditions, fonctions simples et structures de données de base.",
         "estimated_learning_time": "3-6 mois",
         "level_order": 3,
-        "created_at": "2025-05-21 23:41:58.343388+00:00",
-        "updated_at": "2025-05-21 23:41:58.343388+00:00"
-      },
-      {
-        "id": 4,
-        "level_number": 4,
-        "name": "Avanc\u00e9",
-        "description": "Pour les d\u00e9veloppeurs exp\u00e9riment\u00e9s. Concepts avanc\u00e9s comme la programmation orient\u00e9e objet compl\u00e8te, la gestion des erreurs sophistiqu\u00e9e et l'optimisation.",
-        "prerequisites": "Bonne compr\u00e9hension de la POO, des structures de donn\u00e9es complexes et des algorithmes de base.",
-        "estimated_learning_time": "6-12 mois",
-        "level_order": 4,
-        "created_at": "2025-05-21 23:41:58.343388+00:00",
-        "updated_at": "2025-05-21 23:41:58.343388+00:00"
+        "created_at": "2025-05-21T23:41:58.343388+00:00",
+        "updated_at": "2025-05-21T23:41:58.343388+00:00"
       },
       {
         "id": 5,
         "level_number": 5,
         "name": "Expert",
-        "description": "Pour les d\u00e9veloppeurs tr\u00e8s exp\u00e9riment\u00e9s. Sujets sp\u00e9cialis\u00e9s comme la m\u00e9taprogrammation, l'optimisation avanc\u00e9e et les concepts th\u00e9oriques profonds.",
-        "prerequisites": "Ma\u00eetrise compl\u00e8te du langage, exp\u00e9rience avec des projets complexes et compr\u00e9hension des principes de conception avanc\u00e9s.",
+        "description": "Pour les développeureuses très expérimentés. Sujets spécialisés comme la métaprogrammation, l'optimisation avancée et les concepts théoriques profonds.",
+        "prerequisites": "Maîtrise complète du langage, expérience avec des projets complexes et compréhension des principes de conception avancés.",
         "estimated_learning_time": "1-2 ans ou plus",
         "level_order": 5,
-        "created_at": "2025-05-21 23:41:58.343388+00:00",
-        "updated_at": "2025-05-21 23:41:58.343388+00:00"
+        "created_at": "2025-05-21T23:41:58.343388+00:00",
+        "updated_at": "2025-05-21T23:41:58.343388+00:00"
+      },
+      {
+        "id": 4,
+        "level_number": 4,
+        "name": "Avancé",
+        "description": "Pour les développeureuses avec une forte expérience. Concepts avancés comme la programmation orientée objet complète, la gestion des erreurs sophistiquée et l'optimisation.",
+        "prerequisites": "Bonne compréhension de la POO, des structures de données complexes et des algorithmes de base.",
+        "estimated_learning_time": "6-12 mois",
+        "level_order": 4,
+        "created_at": "2025-05-21T23:41:58.343388+00:00",
+        "updated_at": "2025-05-21T23:41:58.343388+00:00"
       }
     ]
   },
   "auth_group": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 150,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "name"
     ],
     "primary_keys": [
       "id"
@@ -244,40 +142,22 @@
   },
   "auth_group_permissions": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "group_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "permission_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "group_id",
+      "permission_id"
     ],
     "primary_keys": [
       "id"
     ],
     "foreign_keys": [
       {
-        "column_name": "group_id",
-        "foreign_table_name": "auth_group",
+        "column_name": "permission_id",
+        "foreign_table_name": "auth_permission",
         "foreign_column_name": "id"
       },
       {
-        "column_name": "permission_id",
-        "foreign_table_name": "auth_permission",
+        "column_name": "group_id",
+        "foreign_table_name": "auth_group",
         "foreign_column_name": "id"
       }
     ],
@@ -285,34 +165,10 @@
   },
   "auth_permission": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "content_type_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "codename",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "name",
+      "content_type_id",
+      "codename"
     ],
     "primary_keys": [
       "id"
@@ -359,83 +215,17 @@
   },
   "auth_user": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "password",
-        "data_type": "character varying",
-        "character_maximum_length": 128,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "last_login",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "is_superuser",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "username",
-        "data_type": "character varying",
-        "character_maximum_length": 150,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "first_name",
-        "data_type": "character varying",
-        "character_maximum_length": 150,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "last_name",
-        "data_type": "character varying",
-        "character_maximum_length": 150,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "email",
-        "data_type": "character varying",
-        "character_maximum_length": 254,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "is_staff",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "is_active",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "date_joined",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "password",
+      "last_login",
+      "is_superuser",
+      "username",
+      "first_name",
+      "last_name",
+      "email",
+      "is_staff",
+      "is_active",
+      "date_joined"
     ],
     "primary_keys": [
       "id"
@@ -443,9 +233,35 @@
     "foreign_keys": [],
     "sample_data": [
       {
+        "id": 3,
+        "password": "pbkdf2_sha256$1000000$tN96pESyjhswo1AifbkNyI$0wfhA/byQ/34GyqFw14A7ErLD3SgPE0ukof93u0Ckw0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Synn",
+        "first_name": "",
+        "last_name": "",
+        "email": "synn@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-05-22T10:13:49.653087+00:00"
+      },
+      {
+        "id": 4,
+        "password": "pbkdf2_sha256$1000000$fnmZ8ivusC9din2FHht6Y7$8XXgvEoieE4vNFT1RbVnkddiSXfYsn4Xv1WH4HTwJX0=",
+        "last_login": "2025-05-22T11:35:33.059305+00:00",
+        "is_superuser": false,
+        "username": "Synnv",
+        "first_name": "",
+        "last_name": "",
+        "email": "synn.spam@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-05-22T11:34:29.228545+00:00"
+      },
+      {
         "id": 1,
         "password": "pbkdf2_sha256$1000000$S22Wd77pSlBk0e7TDzEioO$0uvUeZ/C/B17oiERDPdDBkAV0MZHlWzlUJ9nCO8keE8=",
-        "last_login": "2025-05-16 17:48:25.665985+00:00",
+        "last_login": "2025-05-23T11:33:14.484964+00:00",
         "is_superuser": true,
         "username": "mous_tik",
         "first_name": "",
@@ -453,46 +269,41 @@
         "email": "pokedev@moustik.mozmail.com",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2025-05-15 11:08:41.631645+00:00"
+        "date_joined": "2025-05-15T11:08:41.631645+00:00"
+      },
+      {
+        "id": 2,
+        "password": "pbkdf2_sha256$1000000$okDq8hhgzwHxp0LR6f3ork$0LBa4CtkqtpEh42Cm0Q/BRNFdO45xKESMaVuAtuQXGY=",
+        "last_login": "2025-05-23T14:22:27.052211+00:00",
+        "is_superuser": false,
+        "username": "lilium",
+        "first_name": "",
+        "last_name": "",
+        "email": "foo@bar.baz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-05-22T08:52:34+00:00"
       }
     ]
   },
   "auth_user_groups": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "group_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "user_id",
+      "group_id"
     ],
     "primary_keys": [
       "id"
     ],
     "foreign_keys": [
       {
-        "column_name": "user_id",
-        "foreign_table_name": "auth_user",
+        "column_name": "group_id",
+        "foreign_table_name": "auth_group",
         "foreign_column_name": "id"
       },
       {
-        "column_name": "group_id",
-        "foreign_table_name": "auth_group",
+        "column_name": "user_id",
+        "foreign_table_name": "auth_user",
         "foreign_column_name": "id"
       }
     ],
@@ -500,40 +311,22 @@
   },
   "auth_user_user_permissions": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "permission_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "user_id",
+      "permission_id"
     ],
     "primary_keys": [
       "id"
     ],
     "foreign_keys": [
       {
-        "column_name": "user_id",
-        "foreign_table_name": "auth_user",
+        "column_name": "permission_id",
+        "foreign_table_name": "auth_permission",
         "foreign_column_name": "id"
       },
       {
-        "column_name": "permission_id",
-        "foreign_table_name": "auth_permission",
+        "column_name": "user_id",
+        "foreign_table_name": "auth_user",
         "foreign_column_name": "id"
       }
     ],
@@ -541,90 +334,18 @@
   },
   "corrections": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('corrections_id_seq'::regclass)"
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "framework",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "correction_text",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "status",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "'pending'::text"
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "field",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "suggestion",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "reviewed_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "reviewed_by_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      }
+      "id",
+      "language_id",
+      "framework",
+      "correction_text",
+      "status",
+      "created_at",
+      "updated_at",
+      "field",
+      "suggestion",
+      "user_id",
+      "reviewed_at",
+      "reviewed_by_id"
     ],
     "primary_keys": [
       "id"
@@ -633,11 +354,6 @@
       {
         "column_name": "language_id",
         "foreign_table_name": "languages",
-        "foreign_column_name": "id"
-      },
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
         "foreign_column_name": "id"
       },
       {
@@ -653,8 +369,8 @@
         "framework": null,
         "correction_text": "LESS TEST",
         "status": "approved",
-        "created_at": "2025-05-21 14:35:53.662474+00:00",
-        "updated_at": "2025-05-21 14:35:53.662474+00:00",
+        "created_at": "2025-05-21T14:35:53.662474+00:00",
+        "updated_at": "2025-05-21T14:35:53.662474+00:00",
         "field": "name",
         "suggestion": "pour le test",
         "user_id": null,
@@ -667,10 +383,24 @@
         "framework": null,
         "correction_text": "LESS",
         "status": "approved",
-        "created_at": "2025-05-21 17:18:41.915299+00:00",
-        "updated_at": "2025-05-21 17:18:41.915299+00:00",
+        "created_at": "2025-05-21T17:18:41.915299+00:00",
+        "updated_at": "2025-05-21T17:18:41.915299+00:00",
         "field": "name",
-        "suggestion": "le test est pass\u00e9, on peut revenir \u00e0 la bonne d\u00e9nomination du nom",
+        "suggestion": "le test est passé, on peut revenir à la bonne dénomination du nom",
+        "user_id": null,
+        "reviewed_at": null,
+        "reviewed_by_id": null
+      },
+      {
+        "id": 4,
+        "language_id": 32,
+        "framework": null,
+        "correction_text": "fsdfdsbvdsafb",
+        "status": "rejected",
+        "created_at": "2025-05-22T09:06:33.981152+00:00",
+        "updated_at": "2025-05-22T09:06:33.981155+00:00",
+        "field": "type",
+        "suggestion": "dsfdsvfsdfvdsavfsdfva",
         "user_id": null,
         "reviewed_at": null,
         "reviewed_by_id": null
@@ -679,41 +409,11 @@
   },
   "db_docs_chapter": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "title",
-        "data_type": "character varying",
-        "character_maximum_length": 200,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "slug",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "order",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "title",
+      "slug",
+      "order",
+      "description"
     ],
     "primary_keys": [
       "id"
@@ -725,21 +425,21 @@
         "title": "Relations",
         "slug": "relations",
         "order": 400,
-        "description": "Documentation des relations entre les tables (cl\u00e9s \u00e9trang\u00e8res, contraintes)"
+        "description": "Documentation des relations entre les tables (clés étrangères, contraintes)"
       },
       {
         "id": 5,
         "title": "Vues",
         "slug": "vues",
         "order": 500,
-        "description": "Description des vues d\u00e9finies dans la base de donn\u00e9es"
+        "description": "Description des vues définies dans la base de données"
       },
       {
         "id": 6,
-        "title": "Fonctions et proc\u00e9dures",
+        "title": "Fonctions et procédures",
         "slug": "fonctions-et-procedures",
         "order": 600,
-        "description": "Documentation des fonctions et proc\u00e9dures stock\u00e9es"
+        "description": "Documentation des fonctions et procédures stockées"
       },
       {
         "id": 7,
@@ -750,57 +450,21 @@
       },
       {
         "id": 8,
-        "title": "Types personnalis\u00e9s",
+        "title": "Types personnalisés",
         "slug": "types-personnalises",
         "order": 800,
-        "description": "Documentation des types de donn\u00e9es personnalis\u00e9s"
+        "description": "Documentation des types de données personnalisés"
       }
     ]
   },
   "db_docs_section": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "title",
-        "data_type": "character varying",
-        "character_maximum_length": 200,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "content",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "sql_example",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "order",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "chapter_id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "title",
+      "content",
+      "sql_example",
+      "order",
+      "chapter_id"
     ],
     "primary_keys": [
       "id"
@@ -816,7 +480,7 @@
       {
         "id": 2,
         "title": "Architecture",
-        "content": "<p>La base de donn\u00e9es est organis\u00e9e en plusieurs sch\u00e9mas qui s\u00e9parent les diff\u00e9rentes fonctionnalit\u00e9s de l'application.</p>",
+        "content": "<p>La base de données est organisée en plusieurs schémas qui séparent les différentes fonctionnalités de l'application.</p>",
         "sql_example": "",
         "order": 2,
         "chapter_id": 1
@@ -824,7 +488,7 @@
       {
         "id": 4,
         "title": "Structure des tables",
-        "content": "<p>Les tables sont les objets principaux de la base de donn\u00e9es qui stockent les donn\u00e9es.</p>",
+        "content": "<p>Les tables sont les objets principaux de la base de données qui stockent les données.</p>",
         "sql_example": "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';",
         "order": 1,
         "chapter_id": 3
@@ -832,23 +496,23 @@
       {
         "id": 14,
         "title": "Bonnes pratiques d'utilisation",
-        "content": "<ol>\r\n    <li><strong>Utiliser les sch\u00e9mas</strong> : Respecter l'organisation en sch\u00e9mas pour les requ\u00eates</li>\r\n    <li><strong>Privil\u00e9gier les contraintes</strong> : Utiliser les contraintes existantes pour garantir l'int\u00e9grit\u00e9 des donn\u00e9es</li>\r\n    <li><strong>Respecter les politiques RLS</strong> : Ne pas contourner les politiques de s\u00e9curit\u00e9</li>\r\n    <li><strong>Indexation</strong> : Utiliser les index existants pour optimiser les performances</li>\r\n    <li><strong>Transactions</strong> : Utiliser des transactions pour les op\u00e9rations complexes</li>\r\n</ol>",
+        "content": "<ol>\r\n    <li><strong>Utiliser les schémas</strong> : Respecter l'organisation en schémas pour les requêtes</li>\r\n    <li><strong>Privilégier les contraintes</strong> : Utiliser les contraintes existantes pour garantir l'intégrité des données</li>\r\n    <li><strong>Respecter les politiques RLS</strong> : Ne pas contourner les politiques de sécurité</li>\r\n    <li><strong>Indexation</strong> : Utiliser les index existants pour optimiser les performances</li>\r\n    <li><strong>Transactions</strong> : Utiliser des transactions pour les opérations complexes</li>\r\n</ol>",
         "sql_example": "",
         "order": 107,
         "chapter_id": 1
       },
       {
         "id": 5,
-        "title": "Mod\u00e8le de donn\u00e9es principal",
-        "content": "<p>Le c\u0153ur de la base de donn\u00e9es repose sur les entit\u00e9s suivantes :</p>\r\n\r\n<h3>Langages de programmation</h3>\r\n<p>La table <code>languages</code> stocke les informations sur les diff\u00e9rents langages de programmation, incluant :</p>\r\n<ul>\r\n    <li>Informations de base (nom, ann\u00e9e de cr\u00e9ation, cr\u00e9ateur)</li>\r\n    <li>Descriptions d\u00e9taill\u00e9es et r\u00e9sum\u00e9es</li>\r\n    <li>Caract\u00e9ristiques techniques (type, taux d'utilisation, open source)</li>\r\n    <li>Points forts et cas d'utilisation</li>\r\n    <li>Frameworks populaires associ\u00e9s</li>\r\n    <li>Ressources visuelles (logos)</li>\r\n</ul>\r\n\r\n<h3>Biblioth\u00e8ques et frameworks</h3>\r\n<p>Les tables <code>libraries</code> et leurs associations stockent les biblioth\u00e8ques et frameworks li\u00e9s aux langages, avec :</p>\r\n<ul>\r\n    <li>Informations descriptives</li>\r\n    <li>Relations avec les langages</li>\r\n    <li>Cat\u00e9gorisation et typage</li>\r\n    <li>Statut officiel ou communautaire</li>\r\n</ul>\r\n\r\n<h3>Cat\u00e9gorisation</h3>\r\n<p>Plusieurs tables de cat\u00e9gorisation permettent d'organiser les langages et biblioth\u00e8ques :</p>\r\n<ul>\r\n    <li><code>usage_categories</code> : Cat\u00e9gories d'utilisation (web, mobile, data science, etc.)</li>\r\n    <li><code>technology_categories</code> : Types de technologies</li>\r\n    <li><code>technology_subtypes</code> : Sous-types plus sp\u00e9cifiques</li>\r\n</ul>\r\n\r\n<h3>Gestion des utilisateurs</h3>\r\n<p>Le syst\u00e8me comprend une gestion des utilisateurs avec diff\u00e9rents r\u00f4les :</p>\r\n<ul>\r\n    <li>Utilisateurs non enregistr\u00e9s (visiteurs)</li>\r\n    <li>Utilisateurs enregistr\u00e9s</li>\r\n    <li>Utilisateurs v\u00e9rifi\u00e9s</li>\r\n    <li>Validateurs</li>\r\n    <li>R\u00e9f\u00e9rents de langage</li>\r\n    <li>Administrateurs</li>\r\n</ul>",
+        "title": "Modèle de données principal",
+        "content": "<p>Le cœur de la base de données repose sur les entités suivantes :</p>\r\n\r\n<h3>Langages de programmation</h3>\r\n<p>La table <code>languages</code> stocke les informations sur les différents langages de programmation, incluant :</p>\r\n<ul>\r\n    <li>Informations de base (nom, année de création, créateur)</li>\r\n    <li>Descriptions détaillées et résumées</li>\r\n    <li>Caractéristiques techniques (type, taux d'utilisation, open source)</li>\r\n    <li>Points forts et cas d'utilisation</li>\r\n    <li>Frameworks populaires associés</li>\r\n    <li>Ressources visuelles (logos)</li>\r\n</ul>\r\n\r\n<h3>Bibliothèques et frameworks</h3>\r\n<p>Les tables <code>libraries</code> et leurs associations stockent les bibliothèques et frameworks liés aux langages, avec :</p>\r\n<ul>\r\n    <li>Informations descriptives</li>\r\n    <li>Relations avec les langages</li>\r\n    <li>Catégorisation et typage</li>\r\n    <li>Statut officiel ou communautaire</li>\r\n</ul>\r\n\r\n<h3>Catégorisation</h3>\r\n<p>Plusieurs tables de catégorisation permettent d'organiser les langages et bibliothèques :</p>\r\n<ul>\r\n    <li><code>usage_categories</code> : Catégories d'utilisation (web, mobile, data science, etc.)</li>\r\n    <li><code>technology_categories</code> : Types de technologies</li>\r\n    <li><code>technology_subtypes</code> : Sous-types plus spécifiques</li>\r\n</ul>\r\n\r\n<h3>Gestion des utilisateurs</h3>\r\n<p>Le système comprend une gestion des utilisateurs avec différents rôles :</p>\r\n<ul>\r\n    <li>Utilisateurs non enregistrés (visiteurs)</li>\r\n    <li>Utilisateurs enregistrés</li>\r\n    <li>Utilisateurs vérifiés</li>\r\n    <li>Validateurs</li>\r\n    <li>Référents de langage</li>\r\n    <li>Administrateurs</li>\r\n</ul>",
         "sql_example": "",
         "order": 102,
         "chapter_id": 1
       },
       {
         "id": 13,
-        "title": "Diagramme conceptuel simplifi\u00e9",
-        "content": "<pre>\r\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\r\n\u2502  languages  \u2502\u25c4\u2500\u2500\u2500\u2500\u2524 language_usage    \u2502\u2500\u2500\u2500\u2500\u25ba\u2502 usage_categories\u2502\r\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n       \u25b2                                              \u25b2\r\n       \u2502                                              \u2502\r\n       \u2502            \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510             \u2502\r\n       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524 libraries          \u2502\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n                            \u25b2\r\n                            \u2502\r\n                    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\r\n                    \u2502 library_languages \u2502\r\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n</pre>",
+        "title": "Diagramme conceptuel simplifié",
+        "content": "<pre>\r\n┌─────────────┐     ┌───────────────────┐     ┌─────────────────┐\r\n│  languages  │◄────┤ language_usage    │────►│ usage_categories│\r\n└─────────────┘     └───────────────────┘     └─────────────────┘\r\n       ▲                                              ▲\r\n       │                                              │\r\n       │            ┌───────────────────┐             │\r\n       └───────────┤ libraries          │─────────────┘\r\n                    └───────────────────┘\r\n                            ▲\r\n                            │\r\n                    ┌───────────────────┐\r\n                    │ library_languages │\r\n                    └───────────────────┘\r\n</pre>",
         "sql_example": "",
         "order": 106,
         "chapter_id": 1
@@ -857,62 +521,14 @@
   },
   "django_admin_log": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "action_time",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "object_id",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "object_repr",
-        "data_type": "character varying",
-        "character_maximum_length": 200,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "action_flag",
-        "data_type": "smallint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "change_message",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "content_type_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "action_time",
+      "object_id",
+      "object_repr",
+      "action_flag",
+      "change_message",
+      "content_type_id",
+      "user_id"
     ],
     "primary_keys": [
       "id"
@@ -932,7 +548,7 @@
     "sample_data": [
       {
         "id": 1,
-        "action_time": "2025-05-20 14:44:42.578384+00:00",
+        "action_time": "2025-05-20T14:44:42.578384+00:00",
         "object_id": "1",
         "object_repr": "Vue d'ensemble",
         "action_flag": 2,
@@ -942,7 +558,7 @@
       },
       {
         "id": 2,
-        "action_time": "2025-05-20 14:51:32.469453+00:00",
+        "action_time": "2025-05-20T14:51:32.469453+00:00",
         "object_id": "1",
         "object_repr": "Vue d'ensemble - Introduction",
         "action_flag": 2,
@@ -952,7 +568,7 @@
       },
       {
         "id": 3,
-        "action_time": "2025-05-20 14:51:47.938331+00:00",
+        "action_time": "2025-05-20T14:51:47.938331+00:00",
         "object_id": "1",
         "object_repr": "Vue d'ensemble",
         "action_flag": 2,
@@ -962,7 +578,7 @@
       },
       {
         "id": 4,
-        "action_time": "2025-05-20 14:52:30.240171+00:00",
+        "action_time": "2025-05-20T14:52:30.240171+00:00",
         "object_id": "1",
         "object_repr": "Vue d'ensemble - Introduction",
         "action_flag": 2,
@@ -972,9 +588,9 @@
       },
       {
         "id": 5,
-        "action_time": "2025-05-20 14:54:49.534558+00:00",
+        "action_time": "2025-05-20T14:54:49.534558+00:00",
         "object_id": "1",
-        "object_repr": "Vue d'ensemble - Introduction \u00e0 la base de donn\u00e9es",
+        "object_repr": "Vue d'ensemble - Introduction à la base de données",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"Title\", \"Content\"]}}]",
         "content_type_id": 27,
@@ -984,27 +600,9 @@
   },
   "django_content_type": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "app_label",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "model",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "app_label",
+      "model"
     ],
     "primary_keys": [
       "id"
@@ -1040,34 +638,10 @@
   },
   "django_migrations": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "app",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "applied",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "app",
+      "name",
+      "applied"
     ],
     "primary_keys": [
       "id"
@@ -1078,57 +652,39 @@
         "id": 1,
         "app": "contenttypes",
         "name": "0001_initial",
-        "applied": "2025-05-15 03:30:01.089371+00:00"
+        "applied": "2025-05-15T03:30:01.089371+00:00"
       },
       {
         "id": 2,
         "app": "auth",
         "name": "0001_initial",
-        "applied": "2025-05-15 03:30:01.253087+00:00"
+        "applied": "2025-05-15T03:30:01.253087+00:00"
       },
       {
         "id": 3,
         "app": "admin",
         "name": "0001_initial",
-        "applied": "2025-05-15 03:30:01.292735+00:00"
+        "applied": "2025-05-15T03:30:01.292735+00:00"
       },
       {
         "id": 4,
         "app": "admin",
         "name": "0002_logentry_remove_auto_add",
-        "applied": "2025-05-15 03:30:01.302787+00:00"
+        "applied": "2025-05-15T03:30:01.302787+00:00"
       },
       {
         "id": 5,
         "app": "admin",
         "name": "0003_logentry_add_action_flag_choices",
-        "applied": "2025-05-15 03:30:01.313830+00:00"
+        "applied": "2025-05-15T03:30:01.313830+00:00"
       }
     ]
   },
   "django_session": {
     "columns": [
-      {
-        "column_name": "session_key",
-        "data_type": "character varying",
-        "character_maximum_length": 40,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "session_data",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "expire_date",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "session_key",
+      "session_data",
+      "expire_date"
     ],
     "primary_keys": [
       "session_key"
@@ -1136,117 +692,66 @@
     "foreign_keys": [],
     "sample_data": [
       {
-        "session_key": "1pb524zvq0i9olci7lgs621j16q5ov7i",
-        "session_data": ".eJxVjDkOwjAUBe_iGlnxLlPScwbrLzYOIFuKkwpxd4iUAto3M-8lEmxrTdvIS5pZnIUSp98NgR657YDv0G5dUm_rMqPcFXnQIa-d8_NyuH8HFUb91kDWBRcweJ7YFIUKfXQRTMnEVlsKoOOESmc2PpM2HJx2xSIzQvBRvD_u0Dhe:1uFWSi:Zcs1KM5Wwq4I_fCJlGmjpgg-FPNCsSa35-oXfo7CgnU",
-        "expire_date": "2025-05-29 11:09:16.601388+00:00"
+        "session_key": "hxj5k6sfc1ecvpzq72831fthvsfpo0pm",
+        "session_data": "e30:1uI1fk:wWXQk06LPEIxoG46KLbLdjuIAqEdAXKqiN7gStFMYjE",
+        "expire_date": "2025-06-05T08:53:04.484110+00:00"
       },
       {
-        "session_key": "mh564r88sxu0v5ug2kixftq8qe19n8f1",
-        "session_data": ".eJxVjDkOwjAUBe_iGlnxLlPScwbrLzYOIFuKkwpxd4iUAto3M-8lEmxrTdvIS5pZnIUSp98NgR657YDv0G5dUm_rMqPcFXnQIa-d8_NyuH8HFUb91kDWBRcweJ7YFIUKfXQRTMnEVlsKoOOESmc2PpM2HJx2xSIzQvBRvD_u0Dhe:1uFzAX:htnjBa7Mb_-1g4O8c7VOaz4Y-7lioIQL_VDtIKbkJ3M",
-        "expire_date": "2025-05-30 17:48:25.678263+00:00"
+        "session_key": "toik362hwkprokc9jm1pzdhxc0zrdtao",
+        "session_data": "e30:1uI1gL:qsxG92WJra6_4pJedLw5kyRV4wCwMePbNTypSM0Jbns",
+        "expire_date": "2025-06-05T08:53:41.822334+00:00"
+      },
+      {
+        "session_key": "kkz23lcpeplql1nr0tm0kpqz2i03iz1s",
+        "session_data": "e30:1uI29G:iFAEGDGc6E_hFJKYGaSuNGoexP3dUHnf3Vk90w-Xgkg",
+        "expire_date": "2025-06-05T09:23:34.677326+00:00"
+      },
+      {
+        "session_key": "zri6lgpefgexzsyk5kapncuhyj5me5wr",
+        "session_data": ".eJxVjEEOwiAQRe_C2pAyQym4dO8ZmmEYpGpoUtqV8e7apAvd_vfef6mRtrWMW5NlnJI6K6tOv1skfkjdQbpTvc2a57ouU9S7og_a9HVO8rwc7t9BoVa-NTKm4EJv2BiSLBZkcA4G9KEDjwwiHoSQu2zZup45o-eIBB1AhKDeH9fLN50:1uI4Cz:dSA0sdrNavhiA6uLfxOJIAe4-_LMmOr9N1hWDFBK48I",
+        "expire_date": "2025-06-05T11:35:33.068873+00:00"
+      },
+      {
+        "session_key": "69ykybys7ec05xtddhz83u2ytwgmbjtr",
+        "session_data": ".eJxVjDkOwjAUBe_iGlnxLlPScwbrLzYOIFuKkwpxd4iUAto3M-8lEmxrTdvIS5pZnIUSp98NgR657YDv0G5dUm_rMqPcFXnQIa-d8_NyuH8HFUb91kDWBRcweJ7YFIUKfXQRTMnEVlsKoOOESmc2PpM2HJx2xSIzQvBRvD_u0Dhe:1uIOyl:bD5izRswPha6H7y1YQjKkFMYBUxHfRRfSNck5n5Tykc",
+        "expire_date": "2025-06-06T09:46:15.700977+00:00"
+      }
+    ]
+  },
+  "django_site": {
+    "columns": [
+      "id",
+      "domain",
+      "name"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [],
+    "sample_data": [
+      {
+        "id": 1,
+        "domain": "example.com",
+        "name": "example.com"
       }
     ]
   },
   "features": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('features_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "slug",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "feature_type",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "is_boolean",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "false"
-      },
-      {
-        "column_name": "has_multiple_values",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "false"
-      },
-      {
-        "column_name": "possible_values",
-        "data_type": "jsonb",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "default_value",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "importance_weight",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "5"
-      },
-      {
-        "column_name": "display_order",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "icon_path",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      }
+      "id",
+      "name",
+      "slug",
+      "description",
+      "feature_type",
+      "is_boolean",
+      "has_multiple_values",
+      "possible_values",
+      "default_value",
+      "importance_weight",
+      "display_order",
+      "icon_path",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -1257,7 +762,7 @@
         "id": 1,
         "name": "Typage",
         "slug": "typing",
-        "description": "Syst\u00e8me de typage du langage",
+        "description": "Système de typage du langage",
         "feature_type": "technical",
         "is_boolean": false,
         "has_multiple_values": false,
@@ -1266,50 +771,50 @@
           "Dynamique",
           "Fort",
           "Faible",
-          "Inf\u00e9r\u00e9",
+          "Inféré",
           "Graduel"
         ],
         "default_value": null,
         "importance_weight": 9,
         "display_order": 10,
         "icon_path": null,
-        "created_at": "2025-05-22 04:23:48.292372+00:00",
-        "updated_at": "2025-05-22 04:23:48.292372+00:00"
+        "created_at": "2025-05-22T04:23:48.292372+00:00",
+        "updated_at": "2025-05-22T04:23:48.292372+00:00"
       },
       {
         "id": 2,
         "name": "Paradigme",
         "slug": "paradigm",
-        "description": "Paradigmes de programmation support\u00e9s par le langage",
+        "description": "Paradigmes de programmation supportés par le langage",
         "feature_type": "technical",
         "is_boolean": false,
         "has_multiple_values": true,
         "possible_values": [
-          "Orient\u00e9 objet",
+          "Orienté objet",
           "Fonctionnel",
-          "Proc\u00e9dural",
-          "Imp\u00e9ratif",
-          "D\u00e9claratif",
-          "R\u00e9actif"
+          "Procédural",
+          "Impératif",
+          "Déclaratif",
+          "Réactif"
         ],
         "default_value": null,
         "importance_weight": 8,
         "display_order": 20,
         "icon_path": null,
-        "created_at": "2025-05-22 04:23:48.292372+00:00",
-        "updated_at": "2025-05-22 04:23:48.292372+00:00"
+        "created_at": "2025-05-22T04:23:48.292372+00:00",
+        "updated_at": "2025-05-22T04:23:48.292372+00:00"
       },
       {
         "id": 3,
         "name": "Compilation",
         "slug": "compilation",
-        "description": "Mode de compilation ou d'interpr\u00e9tation du langage",
+        "description": "Mode de compilation ou d'interprétation du langage",
         "feature_type": "technical",
         "is_boolean": false,
         "has_multiple_values": false,
         "possible_values": [
-          "Compil\u00e9",
-          "Interpr\u00e9t\u00e9",
+          "Compilé",
+          "Interprété",
           "JIT",
           "Hybride"
         ],
@@ -1317,35 +822,35 @@
         "importance_weight": 7,
         "display_order": 30,
         "icon_path": null,
-        "created_at": "2025-05-22 04:23:48.292372+00:00",
-        "updated_at": "2025-05-22 04:23:48.292372+00:00"
+        "created_at": "2025-05-22T04:23:48.292372+00:00",
+        "updated_at": "2025-05-22T04:23:48.292372+00:00"
       },
       {
         "id": 4,
-        "name": "Gestion m\u00e9moire",
+        "name": "Gestion mémoire",
         "slug": "memory-management",
-        "description": "M\u00e9thode de gestion de la m\u00e9moire",
+        "description": "Méthode de gestion de la mémoire",
         "feature_type": "technical",
         "is_boolean": false,
         "has_multiple_values": false,
         "possible_values": [
           "Garbage Collection",
           "Manuelle",
-          "R\u00e9f\u00e9rence compt\u00e9e",
+          "Référence comptée",
           "RAII"
         ],
         "default_value": null,
         "importance_weight": 7,
         "display_order": 40,
         "icon_path": null,
-        "created_at": "2025-05-22 04:23:48.292372+00:00",
-        "updated_at": "2025-05-22 04:23:48.292372+00:00"
+        "created_at": "2025-05-22T04:23:48.292372+00:00",
+        "updated_at": "2025-05-22T04:23:48.292372+00:00"
       },
       {
         "id": 5,
         "name": "Typage fort",
         "slug": "strong-typing",
-        "description": "Le langage impose-t-il des r\u00e8gles strictes de typage?",
+        "description": "Le langage impose-t-il des règles strictes de typage?",
         "feature_type": "technical",
         "is_boolean": true,
         "has_multiple_values": false,
@@ -1357,62 +862,20 @@
         "importance_weight": 6,
         "display_order": 50,
         "icon_path": null,
-        "created_at": "2025-05-22 04:23:48.292372+00:00",
-        "updated_at": "2025-05-22 04:23:48.292372+00:00"
+        "created_at": "2025-05-22T04:23:48.292372+00:00",
+        "updated_at": "2025-05-22T04:23:48.292372+00:00"
       }
     ]
   },
   "language_accessibility_evaluations": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('language_accessibility_evaluations_id_seq'::regclass)"
-      },
-      {
-        "column_name": "language_accessibility_level_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "criteria_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "score",
-        "data_type": "numeric",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "justification",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "language_accessibility_level_id",
+      "criteria_id",
+      "score",
+      "justification",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -1433,75 +896,27 @@
   },
   "language_accessibility_levels": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('language_accessibility_levels_id_seq'::regclass)"
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "accessibility_level_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "notes",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "accessibility_score",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "score_explanation",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      }
+      "id",
+      "language_id",
+      "accessibility_level_id",
+      "notes",
+      "accessibility_score",
+      "created_at",
+      "updated_at",
+      "score_explanation"
     ],
     "primary_keys": [
       "id"
     ],
     "foreign_keys": [
       {
-        "column_name": "language_id",
-        "foreign_table_name": "languages",
+        "column_name": "accessibility_level_id",
+        "foreign_table_name": "accessibility_levels",
         "foreign_column_name": "id"
       },
       {
-        "column_name": "accessibility_level_id",
-        "foreign_table_name": "accessibility_levels",
+        "column_name": "language_id",
+        "foreign_table_name": "languages",
         "foreign_column_name": "id"
       }
     ],
@@ -1510,132 +925,108 @@
         "id": 1,
         "language_id": 5,
         "accessibility_level_id": 1,
-        "notes": "Syntaxe claire et lisible, id\u00e9al pour les d\u00e9butants. Excellente documentation et communaut\u00e9.",
+        "notes": "Syntaxe claire et lisible, idéal pour les débutants. Excellente documentation et communauté.",
         "accessibility_score": 90,
-        "created_at": "2025-05-21 23:58:38.648679+00:00",
-        "updated_at": "2025-05-21 23:58:38.648679+00:00",
+        "created_at": "2025-05-21T23:58:38.648679+00:00",
+        "updated_at": "2025-05-21T23:58:38.648679+00:00",
         "score_explanation": null
       },
       {
         "id": 2,
         "language_id": 3,
         "accessibility_level_id": 1,
-        "notes": "Accessible pour les d\u00e9butants mais avec quelques particularit\u00e9s. Omnipr\u00e9sent sur le web.",
+        "notes": "Accessible pour les débutants mais avec quelques particularités. Omniprésent sur le web.",
         "accessibility_score": 75,
-        "created_at": "2025-05-21 23:58:38.648679+00:00",
-        "updated_at": "2025-05-21 23:58:38.648679+00:00",
+        "created_at": "2025-05-21T23:58:38.648679+00:00",
+        "updated_at": "2025-05-21T23:58:38.648679+00:00",
         "score_explanation": null
       },
       {
         "id": 3,
         "language_id": 11,
         "accessibility_level_id": 1,
-        "notes": "Syntaxe \u00e9l\u00e9gante et lisible, con\u00e7ue pour le plaisir du programmeur.",
+        "notes": "Syntaxe élégante et lisible, conçue pour le plaisir du programmeur.",
         "accessibility_score": 85,
-        "created_at": "2025-05-21 23:58:38.648679+00:00",
-        "updated_at": "2025-05-21 23:58:38.648679+00:00",
+        "created_at": "2025-05-21T23:58:38.648679+00:00",
+        "updated_at": "2025-05-21T23:58:38.648679+00:00",
         "score_explanation": null
       },
       {
         "id": 4,
         "language_id": 10,
         "accessibility_level_id": 1,
-        "notes": "Facile \u00e0 apprendre pour le d\u00e9veloppement web, documentation compl\u00e8te.",
+        "notes": "Facile à apprendre pour le développement web, documentation complète.",
         "accessibility_score": 70,
-        "created_at": "2025-05-21 23:58:38.648679+00:00",
-        "updated_at": "2025-05-21 23:58:38.648679+00:00",
+        "created_at": "2025-05-21T23:58:38.648679+00:00",
+        "updated_at": "2025-05-21T23:58:38.648679+00:00",
         "score_explanation": null
       },
       {
         "id": 5,
         "language_id": 6,
         "accessibility_level_id": 1,
-        "notes": "Syntaxe verbeuse mais structur\u00e9e, n\u00e9cessite de comprendre l'OOP d\u00e8s le d\u00e9but.",
+        "notes": "Syntaxe verbeuse mais structurée, nécessite de comprendre l'OOP dès le début.",
         "accessibility_score": 50,
-        "created_at": "2025-05-21 23:58:38.648679+00:00",
-        "updated_at": "2025-05-21 23:58:38.648679+00:00",
+        "created_at": "2025-05-21T23:58:38.648679+00:00",
+        "updated_at": "2025-05-21T23:58:38.648679+00:00",
         "score_explanation": null
       }
     ]
   },
-  "language_features": {
+  "language_feature_values": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('language_features_id_seq'::regclass)"
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "feature_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "value",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "value_details",
-        "data_type": "jsonb",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "is_primary",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "false"
-      },
-      {
-        "column_name": "source_url",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      }
+      "id",
+      "language_id",
+      "feature_id",
+      "value",
+      "value_details",
+      "is_primary",
+      "source_url",
+      "created_at",
+      "updated_at",
+      "notes"
     ],
     "primary_keys": [
       "id"
     ],
     "foreign_keys": [
       {
-        "column_name": "language_id",
-        "foreign_table_name": "languages",
+        "column_name": "feature_id",
+        "foreign_table_name": "language_features",
         "foreign_column_name": "id"
       },
       {
+        "column_name": "language_id",
+        "foreign_table_name": "languages",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": []
+  },
+  "language_features": {
+    "columns": [
+      "id",
+      "language_id",
+      "feature_id",
+      "value",
+      "value_details",
+      "is_primary",
+      "source_url",
+      "created_at",
+      "updated_at"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
         "column_name": "feature_id",
         "foreign_table_name": "features",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "language_id",
+        "foreign_table_name": "languages",
         "foreign_column_name": "id"
       }
     ],
@@ -1648,8 +1039,8 @@
         "value_details": null,
         "is_primary": true,
         "source_url": "https://julialang.org/applications/",
-        "created_at": "2025-05-22 04:36:19.203429+00:00",
-        "updated_at": "2025-05-22 04:36:19.203429+00:00"
+        "created_at": "2025-05-22T04:36:19.203429+00:00",
+        "updated_at": "2025-05-22T04:36:19.203429+00:00"
       },
       {
         "id": 1,
@@ -1659,8 +1050,8 @@
         "value_details": null,
         "is_primary": true,
         "source_url": "https://docs.python.org/3/reference/datamodel.html",
-        "created_at": "2025-05-22 04:36:19.203429+00:00",
-        "updated_at": "2025-05-22 04:46:04.063553+00:00"
+        "created_at": "2025-05-22T04:36:19.203429+00:00",
+        "updated_at": "2025-05-22T04:46:04.063553+00:00"
       },
       {
         "id": 56,
@@ -1670,19 +1061,19 @@
         "value_details": null,
         "is_primary": true,
         "source_url": "https://docs.python.org/3/reference/datamodel.html",
-        "created_at": "2025-05-22 04:46:04.063553+00:00",
-        "updated_at": "2025-05-22 04:46:04.063553+00:00"
+        "created_at": "2025-05-22T04:46:04.063553+00:00",
+        "updated_at": "2025-05-22T04:46:04.063553+00:00"
       },
       {
         "id": 9,
         "language_id": 5,
         "feature_id": 2,
-        "value": "Orient\u00e9 objet",
+        "value": "Orienté objet",
         "value_details": null,
         "is_primary": true,
         "source_url": "https://docs.python.org/3/tutorial/classes.html",
-        "created_at": "2025-05-22 04:36:19.203429+00:00",
-        "updated_at": "2025-05-22 04:46:04.063553+00:00"
+        "created_at": "2025-05-22T04:36:19.203429+00:00",
+        "updated_at": "2025-05-22T04:46:04.063553+00:00"
       },
       {
         "id": 10,
@@ -1692,115 +1083,31 @@
         "value_details": null,
         "is_primary": false,
         "source_url": "https://docs.python.org/3/howto/functional.html",
-        "created_at": "2025-05-22 04:36:19.203429+00:00",
-        "updated_at": "2025-05-22 04:46:04.063553+00:00"
+        "created_at": "2025-05-22T04:36:19.203429+00:00",
+        "updated_at": "2025-05-22T04:46:04.063553+00:00"
       }
     ]
   },
   "language_proposals": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('language_proposals_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "type",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_year",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "creator",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "used_for",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "strengths",
-        "data_type": "ARRAY",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "popular_frameworks",
-        "data_type": "ARRAY",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "status",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": "'pending'::character varying"
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "name",
+      "type",
+      "description",
+      "created_year",
+      "creator",
+      "used_for",
+      "strengths",
+      "popular_frameworks",
+      "user_id",
+      "status",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
     ],
-    "foreign_keys": [
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      }
-    ],
+    "foreign_keys": [],
     "sample_data": [
       {
         "id": 1,
@@ -1819,41 +1126,17 @@
         ],
         "user_id": null,
         "status": "pending",
-        "created_at": "2025-04-18 15:30:03.735286+00:00",
-        "updated_at": "2025-04-18 15:30:03.735286+00:00"
+        "created_at": "2025-04-18T15:30:03.735286+00:00",
+        "updated_at": "2025-04-18T15:30:03.735286+00:00"
       }
     ]
   },
   "language_usage": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('language_usage_id_seq'::regclass)"
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "category_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      }
+      "id",
+      "language_id",
+      "category_id",
+      "created_at"
     ],
     "primary_keys": [
       "id"
@@ -1875,176 +1158,56 @@
         "id": 1,
         "language_id": 1,
         "category_id": 1,
-        "created_at": "2025-03-28 17:01:33.839708+00:00"
+        "created_at": "2025-03-28T17:01:33.839708+00:00"
       },
       {
         "id": 2,
         "language_id": 2,
         "category_id": 1,
-        "created_at": "2025-03-28 17:01:33.839708+00:00"
+        "created_at": "2025-03-28T17:01:33.839708+00:00"
       },
       {
         "id": 3,
         "language_id": 3,
         "category_id": 1,
-        "created_at": "2025-03-28 17:01:33.839708+00:00"
+        "created_at": "2025-03-28T17:01:33.839708+00:00"
       },
       {
         "id": 4,
         "language_id": 3,
         "category_id": 2,
-        "created_at": "2025-03-28 17:01:33.839708+00:00"
+        "created_at": "2025-03-28T17:01:33.839708+00:00"
       },
       {
         "id": 5,
         "language_id": 4,
         "category_id": 1,
-        "created_at": "2025-03-28 17:01:33.839708+00:00"
+        "created_at": "2025-03-28T17:01:33.839708+00:00"
       }
     ]
   },
   "languages": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('languages_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "slug",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "year_created",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "creator",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "logo_path",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      },
-      {
-        "column_name": "type",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "usage_rate",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "is_open_source",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "true"
-      },
-      {
-        "column_name": "short_description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "used_for",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "strengths",
-        "data_type": "ARRAY",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "popular_frameworks",
-        "data_type": "ARRAY",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "tools",
-        "data_type": "jsonb",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "logo_svg",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "default_accessibility_level_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "accessibility_score",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      }
+      "id",
+      "name",
+      "slug",
+      "year_created",
+      "creator",
+      "description",
+      "logo_path",
+      "created_at",
+      "updated_at",
+      "type",
+      "usage_rate",
+      "is_open_source",
+      "short_description",
+      "used_for",
+      "strengths",
+      "popular_frameworks",
+      "tools",
+      "logo_svg",
+      "default_accessibility_level_id",
+      "accessibility_score"
     ],
     "primary_keys": [
       "id"
@@ -2063,20 +1226,20 @@
         "slug": "python",
         "year_created": 1991,
         "creator": "Guido van Rossum",
-        "description": "Python est un langage de programmation interpr\u00e9t\u00e9, multi-paradigme et multiplateformes.",
+        "description": "Python est un langage de programmation interprété, multi-paradigme et multiplateformes.",
         "logo_path": "/images/python.svg",
-        "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-05-18 12:27:38.101555+00:00",
+        "created_at": "2025-03-28T16:59:15.614959+00:00",
+        "updated_at": "2025-05-18T12:27:38.101555+00:00",
         "type": "Backend",
         "usage_rate": 80,
         "is_open_source": true,
         "short_description": "Langage polyvalent avec une syntaxe claire et lisible",
-        "used_for": "Science des donn\u00e9es, IA, Web, Automatisation, Scripts",
+        "used_for": "Science des données, IA, Web, Automatisation, Scripts",
         "strengths": [
-          "Facile \u00e0 apprendre",
+          "Facile à apprendre",
           "Lisible",
-          "Grande biblioth\u00e8que standard",
-          "Communaut\u00e9 active"
+          "Grande bibliothèque standard",
+          "Communauté active"
         ],
         "popular_frameworks": [
           "Django",
@@ -2110,18 +1273,18 @@
         "slug": "java",
         "year_created": 1995,
         "creator": "Sun Microsystems",
-        "description": "Java est un langage de programmation orient\u00e9 objet con\u00e7u pour avoir le moins de d\u00e9pendances d'impl\u00e9mentation possibles.",
+        "description": "Java est un langage de programmation orienté objet conçu pour avoir le moins de dépendances d'implémentation possibles.",
         "logo_path": "/images/java.svg",
-        "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-05-20 21:01:49.613895+00:00",
+        "created_at": "2025-03-28T16:59:15.614959+00:00",
+        "updated_at": "2025-05-20T21:01:49.613895+00:00",
         "type": "Backend",
         "usage_rate": 75,
         "is_open_source": true,
-        "short_description": "Langage orient\u00e9 objet robuste et portable",
+        "short_description": "Langage orienté objet robuste et portable",
         "used_for": "Applications d'entreprise, Android, Web, Big Data",
         "strengths": [
           "Portable",
-          "S\u00e9curis\u00e9",
+          "Sécurisé",
           "Robuste",
           "Performant pour les grandes applications"
         ],
@@ -2155,21 +1318,21 @@
         "name": "Haskell",
         "slug": "haskell",
         "year_created": 1990,
-        "creator": "Comit\u00e9 Haskell",
-        "description": "Haskell est un langage de programmation fonctionnel pur, statiquement typ\u00e9 avec inf\u00e9rence de types et \u00e9valuation paresseuse. Il est nomm\u00e9 d'apr\u00e8s le logicien Haskell Curry.",
+        "creator": "Comité Haskell",
+        "description": "Haskell est un langage de programmation fonctionnel pur, statiquement typé avec inférence de types et évaluation paresseuse. Il est nommé d'après le logicien Haskell Curry.",
         "logo_path": "/images/languages/haskell.svg",
-        "created_at": "2025-04-08 06:58:58.330666+00:00",
-        "updated_at": "2025-05-18 12:27:37.746605+00:00",
+        "created_at": "2025-04-08T06:58:58.330666+00:00",
+        "updated_at": "2025-05-18T12:27:37.746605+00:00",
         "type": "Statique",
         "usage_rate": 20,
         "is_open_source": true,
-        "short_description": "Langage fonctionnel pur avec un syst\u00e8me de types avanc\u00e9 et \u00e9valuation paresseuse",
-        "used_for": "Recherche acad\u00e9mique, finance, compilation, analyse de donn\u00e9es, applications web",
+        "short_description": "Langage fonctionnel pur avec un système de types avancé et évaluation paresseuse",
+        "used_for": "Recherche académique, finance, compilation, analyse de données, applications web",
         "strengths": [
           "Programmation fonctionnelle pure",
-          "Typage statique avanc\u00e9",
-          "Inf\u00e9rence de type",
-          "\u00c9valuation paresseuse",
+          "Typage statique avancé",
+          "Inférence de type",
+          "Évaluation paresseuse",
           "Monades"
         ],
         "popular_frameworks": [
@@ -2205,20 +1368,20 @@
         "slug": "scala",
         "year_created": 2004,
         "creator": "Martin Odersky",
-        "description": "Scala est un langage de programmation multi-paradigme con\u00e7u pour exprimer des mod\u00e8les de programmation communs de mani\u00e8re concise, \u00e9l\u00e9gante et s\u00fbre. Il int\u00e8gre les fonctionnalit\u00e9s des langages orient\u00e9s objet et fonctionnels.",
+        "description": "Scala est un langage de programmation multi-paradigme conçu pour exprimer des modèles de programmation communs de manière concise, élégante et sûre. Il intègre les fonctionnalités des langages orientés objet et fonctionnels.",
         "logo_path": "/images/scala.svg",
-        "created_at": "2025-04-08 06:36:12.317748+00:00",
-        "updated_at": "2025-05-18 12:27:38.212347+00:00",
+        "created_at": "2025-04-08T06:36:12.317748+00:00",
+        "updated_at": "2025-05-18T12:27:38.212347+00:00",
         "type": "Statique",
         "usage_rate": 40,
         "is_open_source": true,
-        "short_description": "Langage multi-paradigme combinant programmation orient\u00e9e objet et fonctionnelle sur la JVM",
-        "used_for": "D\u00e9veloppement d'applications d'entreprise, traitement de donn\u00e9es, applications concurrentes et distribu\u00e9es",
+        "short_description": "Langage multi-paradigme combinant programmation orientée objet et fonctionnelle sur la JVM",
+        "used_for": "Développement d'applications d'entreprise, traitement de données, applications concurrentes et distribuées",
         "strengths": [
           "Programmation fonctionnelle",
-          "Programmation orient\u00e9e objet",
+          "Programmation orientée objet",
           "Typage statique",
-          "Inf\u00e9rence de type",
+          "Inférence de type",
           "Concurrence"
         ],
         "popular_frameworks": [
@@ -2256,20 +1419,20 @@
         "slug": "less",
         "year_created": 2009,
         "creator": "Alexis Sellier",
-        "description": "LESS est un langage de feuille de style dynamique qui peut \u00eatre compil\u00e9 en CSS.",
+        "description": "LESS est un langage de feuille de style dynamique qui peut être compilé en CSS.",
         "logo_path": "/images/less.svg",
-        "created_at": "2025-03-28 16:59:15.614959+00:00",
-        "updated_at": "2025-05-21 17:18:59.358994+00:00",
+        "created_at": "2025-03-28T16:59:15.614959+00:00",
+        "updated_at": "2025-05-21T17:18:59.358994+00:00",
         "type": "Frontend",
         "usage_rate": 45,
         "is_open_source": true,
-        "short_description": "Pr\u00e9processeur CSS avec variables et fonctions",
-        "used_for": "Stylisation web, Th\u00e8mes, Frameworks CSS",
+        "short_description": "Préprocesseur CSS avec variables et fonctions",
+        "used_for": "Stylisation web, Thèmes, Frameworks CSS",
         "strengths": [
           "Variables",
           "Mixins",
           "Imbrication",
-          "Op\u00e9rations math\u00e9matiques"
+          "Opérations mathématiques"
         ],
         "popular_frameworks": [
           "Bootstrap",
@@ -2298,62 +1461,14 @@
   },
   "languages_framework": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "slug",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "website",
-        "data_type": "character varying",
-        "character_maximum_length": 200,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "name",
+      "slug",
+      "description",
+      "website",
+      "created_at",
+      "updated_at",
+      "language_id"
     ],
     "primary_keys": [
       "id"
@@ -2363,160 +1478,28 @@
   },
   "libraries": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('frameworks_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "official_website",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "github_url",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "logo_path",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "popularity",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "is_open_source",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "true"
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "features",
-        "data_type": "ARRAY",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "'{}'::text[]"
-      },
-      {
-        "column_name": "unique_selling_point",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "best_for",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "used_for",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "documentation_url",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "version",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "technology_type",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "subtype",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "slug",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "license",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "website_url",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      }
+      "id",
+      "name",
+      "language_id",
+      "description",
+      "official_website",
+      "github_url",
+      "logo_path",
+      "popularity",
+      "is_open_source",
+      "created_at",
+      "updated_at",
+      "features",
+      "unique_selling_point",
+      "best_for",
+      "used_for",
+      "documentation_url",
+      "version",
+      "technology_type",
+      "subtype",
+      "slug",
+      "license",
+      "website_url"
     ],
     "primary_keys": [
       "id"
@@ -2533,27 +1516,27 @@
         "id": 69,
         "name": "JuMP",
         "language_id": 28,
-        "description": "Langage de mod\u00e9lisation pour l'optimisation math\u00e9matique en Julia",
+        "description": "Langage de modélisation pour l'optimisation mathématique en Julia",
         "official_website": "https://jump.dev/",
         "github_url": "https://github.com/jump-dev/JuMP.jl",
         "logo_path": null,
         "popularity": 80,
         "is_open_source": true,
-        "created_at": "2025-03-28 21:56:07.952591+00:00",
-        "updated_at": "2025-03-28 21:56:07.952591+00:00",
+        "created_at": "2025-03-28T21:56:07.952591+00:00",
+        "updated_at": "2025-03-28T21:56:07.952591+00:00",
         "features": [
-          "Fonctionnalit\u00e9 1",
-          "Fonctionnalit\u00e9 2",
-          "Fonctionnalit\u00e9 3",
-          "Fonctionnalit\u00e9 4",
-          "Fonctionnalit\u00e9 5"
+          "Fonctionnalité 1",
+          "Fonctionnalité 2",
+          "Fonctionnalité 3",
+          "Fonctionnalité 4",
+          "Fonctionnalité 5"
         ],
-        "unique_selling_point": "Mod\u00e9lisation d'optimisation math\u00e9matique expressive et performante",
-        "best_for": "Chercheurs et ing\u00e9nieurs travaillant sur des probl\u00e8mes d'optimisation",
-        "used_for": "Optimisation math\u00e9matique, recherche op\u00e9rationnelle, planification",
+        "unique_selling_point": "Modélisation d'optimisation mathématique expressive et performante",
+        "best_for": "Chercheurs et ingénieurs travaillant sur des problèmes d'optimisation",
+        "used_for": "Optimisation mathématique, recherche opérationnelle, planification",
         "documentation_url": "https://jump.dev/JuMP.jl/stable/",
         "version": "1.12.0",
-        "technology_type": "Biblioth\u00e8que sp\u00e9cialis\u00e9e",
+        "technology_type": "Bibliothèque spécialisée",
         "subtype": "Data",
         "slug": "jump",
         "license": null,
@@ -2563,24 +1546,24 @@
         "id": 264,
         "name": "Deno",
         "language_id": 4,
-        "description": "Deno est un runtime moderne pour JavaScript et TypeScript, cr\u00e9\u00e9 par Ryan Dahl (le cr\u00e9ateur original de Node.js). Il offre une s\u00e9curit\u00e9 renforc\u00e9e avec un syst\u00e8me de permissions explicites, un support natif de TypeScript, et utilise les modules ES standards. Deno inclut \u00e9galement des outils int\u00e9gr\u00e9s comme un formateur, un linter et un testeur.",
+        "description": "Deno est un runtime moderne pour JavaScript et TypeScript, créé par Ryan Dahl (le créateur original de Node.js). Il offre une sécurité renforcée avec un système de permissions explicites, un support natif de TypeScript, et utilise les modules ES standards. Deno inclut également des outils intégrés comme un formateur, un linter et un testeur.",
         "official_website": "https://deno.land",
         "github_url": "https://github.com/denoland/deno",
         "logo_path": null,
         "popularity": 65,
         "is_open_source": true,
-        "created_at": "2025-04-07 11:51:09.676664+00:00",
-        "updated_at": "2025-04-07 11:51:09.676664+00:00",
+        "created_at": "2025-04-07T11:51:09.676664+00:00",
+        "updated_at": "2025-04-07T11:51:09.676664+00:00",
         "features": [
-          "S\u00e9curit\u00e9 par d\u00e9faut",
-          "Support TypeScript int\u00e9gr\u00e9",
+          "Sécurité par défaut",
+          "Support TypeScript intégré",
           "Modules ES",
-          "Utilitaires int\u00e9gr\u00e9s",
+          "Utilitaires intégrés",
           "API fetch"
         ],
-        "unique_selling_point": "Runtime s\u00e9curis\u00e9 avec support TypeScript natif",
+        "unique_selling_point": "Runtime sécurisé avec support TypeScript natif",
         "best_for": "Applications serveur modernes et scripts",
-        "used_for": "D\u00e9veloppement web, scripts, applications serveur, outils CLI",
+        "used_for": "Développement web, scripts, applications serveur, outils CLI",
         "documentation_url": "https://deno.land/manual",
         "version": "1.0.0",
         "technology_type": "Runtime",
@@ -2593,22 +1576,22 @@
         "id": 5,
         "name": "Flask",
         "language_id": 5,
-        "description": "Un micro-framework web \u00e9crit en Python",
+        "description": "Un micro-framework web écrit en Python",
         "official_website": "https://flask.palletsprojects.com",
         "github_url": "https://github.com/pallets/flask",
         "logo_path": null,
         "popularity": 88,
         "is_open_source": true,
-        "created_at": "2025-03-28 17:54:44.110134+00:00",
-        "updated_at": "2025-03-28 17:54:44.110134+00:00",
+        "created_at": "2025-03-28T17:54:44.110134+00:00",
+        "updated_at": "2025-03-28T17:54:44.110134+00:00",
         "features": [
           "Routage",
-          "Gestion des requ\u00eates HTTP",
+          "Gestion des requêtes HTTP",
           "Middleware",
           "Templates",
-          "ORM int\u00e9gr\u00e9"
+          "ORM intégré"
         ],
-        "unique_selling_point": "Minimalisme et flexibilit\u00e9",
+        "unique_selling_point": "Minimalisme et flexibilité",
         "best_for": "Applications web simples et APIs",
         "used_for": "APIs RESTful, applications web simples, microservices, prototypes",
         "documentation_url": "https://flask.palletsprojects.com/en/2.3.x/tutorial/",
@@ -2623,30 +1606,30 @@
         "id": 288,
         "name": "Jansson",
         "language_id": 7,
-        "description": "Jansson est une biblioth\u00e8que C pour encoder, d\u00e9coder et manipuler des donn\u00e9es JSON. Elle est con\u00e7ue pour \u00eatre simple et bien document\u00e9e, offrant une API intuitive pour travailler avec JSON en C.",
+        "description": "Jansson est une bibliothèque C pour encoder, décoder et manipuler des données JSON. Elle est conçue pour être simple et bien documentée, offrant une API intuitive pour travailler avec JSON en C.",
         "official_website": "https://digip.org/jansson/",
         "github_url": "https://github.com/akheron/jansson",
         "logo_path": "/images/libraries/jansson.png",
         "popularity": 75,
         "is_open_source": true,
-        "created_at": "2025-04-10 18:16:32.398590+00:00",
-        "updated_at": "2025-04-10 18:16:32.398590+00:00",
+        "created_at": "2025-04-10T18:16:32.398590+00:00",
+        "updated_at": "2025-04-10T18:16:32.398590+00:00",
         "features": [
           "Parsing JSON",
-          "G\u00e9n\u00e9ration JSON",
+          "Génération JSON",
           "Manipulation d'objets JSON",
           "Validation",
           "Gestion des erreurs",
           "API simple",
-          "Faible empreinte m\u00e9moire",
+          "Faible empreinte mémoire",
           "Haute performance"
         ],
-        "unique_selling_point": "Biblioth\u00e8que JSON simple, \u00e9l\u00e9gante et performante pour le langage C",
-        "best_for": "Applications C n\u00e9cessitant un traitement JSON robuste et efficace",
-        "used_for": "APIs REST, configuration d'applications, \u00e9change de donn\u00e9es, int\u00e9grations web",
+        "unique_selling_point": "Bibliothèque JSON simple, élégante et performante pour le langage C",
+        "best_for": "Applications C nécessitant un traitement JSON robuste et efficace",
+        "used_for": "APIs REST, configuration d'applications, échange de données, intégrations web",
         "documentation_url": "https://digip.org/jansson/doc/2.14/",
         "version": "2.14",
-        "technology_type": "Biblioth\u00e8que",
+        "technology_type": "Bibliothèque",
         "subtype": "Data",
         "slug": "jansson",
         "license": null,
@@ -2662,17 +1645,17 @@
         "logo_path": null,
         "popularity": 60,
         "is_open_source": true,
-        "created_at": "2025-03-28 21:54:50.605740+00:00",
-        "updated_at": "2025-03-28 21:54:50.605740+00:00",
+        "created_at": "2025-03-28T21:54:50.605740+00:00",
+        "updated_at": "2025-03-28T21:54:50.605740+00:00",
         "features": [
           "Routage",
-          "Gestion des requ\u00eates HTTP",
+          "Gestion des requêtes HTTP",
           "Middleware",
           "Templates",
-          "ORM int\u00e9gr\u00e9"
+          "ORM intégré"
         ],
-        "unique_selling_point": "Framework web Lua complet avec ORM int\u00e9gr\u00e9",
-        "best_for": "Applications web Lua avec base de donn\u00e9es",
+        "unique_selling_point": "Framework web Lua complet avec ORM intégré",
+        "best_for": "Applications web Lua avec base de données",
         "used_for": "Applications web, APIs, sites dynamiques",
         "documentation_url": "https://leafo.net/lapis/reference.html",
         "version": "1.16.0",
@@ -2686,20 +1669,8 @@
   },
   "library_language_associations": {
     "columns": [
-      {
-        "column_name": "library_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "library_id",
+      "language_id"
     ],
     "primary_keys": [
       "library_id",
@@ -2742,41 +1713,11 @@
   },
   "library_languages": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('library_languages_id_seq'::regclass)"
-      },
-      {
-        "column_name": "library_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "primary_language",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "false"
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      }
+      "id",
+      "library_id",
+      "language_id",
+      "primary_language",
+      "created_at"
     ],
     "primary_keys": [
       "id"
@@ -2799,120 +1740,54 @@
         "library_id": 272,
         "language_id": 21,
         "primary_language": true,
-        "created_at": "2025-04-07 12:29:34.584791+00:00"
+        "created_at": "2025-04-07T12:29:34.584791+00:00"
       },
       {
         "id": 2,
         "library_id": 273,
         "language_id": 21,
         "primary_language": true,
-        "created_at": "2025-04-07 12:29:34.584791+00:00"
+        "created_at": "2025-04-07T12:29:34.584791+00:00"
       },
       {
         "id": 3,
         "library_id": 274,
         "language_id": 21,
         "primary_language": true,
-        "created_at": "2025-04-07 12:29:34.584791+00:00"
+        "created_at": "2025-04-07T12:29:34.584791+00:00"
       },
       {
         "id": 4,
         "library_id": 116,
         "language_id": 21,
         "primary_language": true,
-        "created_at": "2025-04-07 12:29:34.584791+00:00"
+        "created_at": "2025-04-07T12:29:34.584791+00:00"
       },
       {
         "id": 5,
         "library_id": 275,
         "language_id": 21,
         "primary_language": true,
-        "created_at": "2025-04-07 12:29:34.584791+00:00"
+        "created_at": "2025-04-07T12:29:34.584791+00:00"
       }
     ]
   },
   "profiles": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "username",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "avatar_url",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "full_name",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "bio",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "website",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "role",
-        "data_type": "character varying",
-        "character_maximum_length": 20,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "username",
+      "created_at",
+      "updated_at",
+      "avatar_url",
+      "full_name",
+      "bio",
+      "website",
+      "user_id",
+      "role"
     ],
     "primary_keys": [
-      "id"
+      "user_id"
     ],
     "foreign_keys": [
-      {
-        "column_name": "id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      },
       {
         "column_name": "user_id",
         "foreign_table_name": "auth_user",
@@ -2921,63 +1796,97 @@
     ],
     "sample_data": [
       {
-        "id": "d34510fc-dab1-4942-bb39-f093aa3defb2",
+        "username": "Synnv",
+        "created_at": "2025-05-22T11:34:29.528104+00:00",
+        "updated_at": "2025-05-22T11:35:33.064571+00:00",
+        "avatar_url": null,
+        "full_name": null,
+        "bio": null,
+        "website": null,
+        "user_id": 4,
+        "role": "registered"
+      },
+      {
         "username": "mous_tik",
-        "created_at": "2025-04-01 18:21:19.333871+00:00",
-        "updated_at": "2025-05-16 17:48:25.673811+00:00",
+        "created_at": "2025-04-01T18:21:19.333871+00:00",
+        "updated_at": "2025-05-23T11:33:14.601980+00:00",
         "avatar_url": "https://fastly.picsum.photos/id/828/536/354.jpg?hmac=XGZoH61TLSRykok6D4lLM6jItpyRGDjeTjeopmjT814",
         "full_name": null,
         "bio": "ma vie",
         "website": null,
         "user_id": 1,
         "role": "registered"
+      },
+      {
+        "username": "lilium",
+        "created_at": "2025-05-22T10:42:40.713975+00:00",
+        "updated_at": "2025-05-23T14:22:27.060020+00:00",
+        "avatar_url": null,
+        "full_name": "Lily Blanleuil",
+        "bio": "I'm like an inductor",
+        "website": null,
+        "user_id": 2,
+        "role": "registered"
       }
     ]
   },
+  "seo_seoconfig": {
+    "columns": [
+      "id",
+      "site_name",
+      "site_description",
+      "default_keywords",
+      "og_image",
+      "twitter_handle"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [],
+    "sample_data": [
+      {
+        "id": 1,
+        "site_name": "PokeDev",
+        "site_description": "Cartes interactives des langages de programmation et de leurs outils",
+        "default_keywords": "programmation, langages, frameworks, développement, code, tutoriels",
+        "og_image": null,
+        "twitter_handle": "@pokedev"
+      }
+    ]
+  },
+  "seo_seometadata": {
+    "columns": [
+      "id",
+      "object_id",
+      "custom_title",
+      "custom_description",
+      "custom_keywords",
+      "no_index",
+      "no_follow",
+      "created_at",
+      "updated_at",
+      "content_type_id"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "content_type_id",
+        "foreign_table_name": "django_content_type",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": []
+  },
   "skills": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('skills_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 100,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "skill_type",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "name",
+      "description",
+      "skill_type",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -2987,89 +1896,53 @@
       {
         "id": 1,
         "name": "Variables",
-        "description": "D\u00e9claration et utilisation de variables",
+        "description": "Déclaration et utilisation de variables",
         "skill_type": "syntax",
-        "created_at": "2025-05-21 23:43:35.832470+00:00",
-        "updated_at": "2025-05-21 23:43:35.832470+00:00"
+        "created_at": "2025-05-21T23:43:35.832470+00:00",
+        "updated_at": "2025-05-21T23:43:35.832470+00:00"
       },
       {
         "id": 2,
         "name": "Boucles",
         "description": "Utilisation des structures de boucle (for, while, etc.)",
         "skill_type": "concept",
-        "created_at": "2025-05-21 23:43:35.832470+00:00",
-        "updated_at": "2025-05-21 23:43:35.832470+00:00"
+        "created_at": "2025-05-21T23:43:35.832470+00:00",
+        "updated_at": "2025-05-21T23:43:35.832470+00:00"
       },
       {
         "id": 3,
         "name": "Conditions",
         "description": "Structures conditionnelles (if, else, switch, etc.)",
         "skill_type": "concept",
-        "created_at": "2025-05-21 23:43:35.832470+00:00",
-        "updated_at": "2025-05-21 23:43:35.832470+00:00"
+        "created_at": "2025-05-21T23:43:35.832470+00:00",
+        "updated_at": "2025-05-21T23:43:35.832470+00:00"
       },
       {
         "id": 4,
         "name": "Fonctions",
-        "description": "D\u00e9finition et appel de fonctions",
+        "description": "Définition et appel de fonctions",
         "skill_type": "concept",
-        "created_at": "2025-05-21 23:43:35.832470+00:00",
-        "updated_at": "2025-05-21 23:43:35.832470+00:00"
+        "created_at": "2025-05-21T23:43:35.832470+00:00",
+        "updated_at": "2025-05-21T23:43:35.832470+00:00"
       },
       {
         "id": 5,
         "name": "Tableaux/Listes",
-        "description": "Manipulation de collections ordonn\u00e9es d'\u00e9l\u00e9ments",
+        "description": "Manipulation de collections ordonnées d'éléments",
         "skill_type": "concept",
-        "created_at": "2025-05-21 23:43:35.832470+00:00",
-        "updated_at": "2025-05-21 23:43:35.832470+00:00"
+        "created_at": "2025-05-21T23:43:35.832470+00:00",
+        "updated_at": "2025-05-21T23:43:35.832470+00:00"
       }
     ]
   },
   "stats_languages": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "views_count",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "likes_count",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "shares_count",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "last_updated",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "language_id",
+      "views_count",
+      "likes_count",
+      "shares_count",
+      "last_updated"
     ],
     "primary_keys": [
       "id"
@@ -3085,219 +1958,57 @@
   },
   "stats_searches": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "search_term",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "results_count",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "search_term",
+      "user_id",
+      "results_count",
+      "created_at"
     ],
     "primary_keys": [
       "id"
     ],
-    "foreign_keys": [
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      }
-    ],
+    "foreign_keys": [],
     "sample_data": []
   },
   "stats_users": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "contributions_count",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "corrections_count",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "proposals_count",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "0"
-      },
-      {
-        "column_name": "last_activity",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "user_id",
+      "contributions_count",
+      "corrections_count",
+      "proposals_count",
+      "last_activity"
     ],
     "primary_keys": [
       "id"
     ],
-    "foreign_keys": [
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      }
-    ],
+    "foreign_keys": [],
     "sample_data": []
   },
   "stats_visits": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "page_path",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "referrer",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "user_agent",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "ip_address",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "session_id",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      }
+      "id",
+      "page_path",
+      "user_id",
+      "referrer",
+      "user_agent",
+      "ip_address",
+      "created_at",
+      "session_id"
     ],
     "primary_keys": [
       "id"
     ],
-    "foreign_keys": [
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      }
-    ],
+    "foreign_keys": [],
     "sample_data": []
   },
   "technology_categories": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('technology_categories_id_seq'::regclass)"
-      },
-      {
-        "column_name": "type",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "icon_name",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "color",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      }
+      "id",
+      "type",
+      "icon_name",
+      "color",
+      "created_at"
     ],
     "primary_keys": [
       "id"
@@ -3309,68 +2020,45 @@
         "type": "Framework",
         "icon_name": "Layers",
         "color": "text-blue-500",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00"
       },
       {
         "id": 2,
-        "type": "Biblioth\u00e8que",
+        "type": "Bibliothèque",
         "icon_name": "Library",
         "color": "text-green-500",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00"
       },
       {
         "id": 3,
         "type": "Toolkit",
         "icon_name": "Wrench",
         "color": "text-orange-500",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00"
       },
       {
         "id": 4,
         "type": "Plateforme",
         "icon_name": "Box",
         "color": "text-purple-500",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00"
       },
       {
         "id": 5,
         "type": "Moteur",
         "icon_name": "Gauge",
         "color": "text-red-500",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00"
       }
     ]
   },
   "technology_subtypes": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('technology_subtypes_id_seq'::regclass)"
-      },
-      {
-        "column_name": "category_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 50,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
-      }
+      "id",
+      "category_id",
+      "name",
+      "created_at",
+      "description"
     ],
     "primary_keys": [
       "id"
@@ -3387,64 +2075,45 @@
         "id": 1,
         "category_id": 1,
         "name": "Web",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00",
+        "description": null
       },
       {
         "id": 2,
         "category_id": 1,
         "name": "UI",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00",
+        "description": null
       },
       {
         "id": 3,
         "category_id": 1,
         "name": "Backend",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00",
+        "description": null
       },
       {
         "id": 4,
         "category_id": 1,
         "name": "Mobile",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00",
+        "description": null
       },
       {
         "id": 5,
         "category_id": 2,
         "name": "UI",
-        "created_at": "2025-04-08 08:10:34.748850+00:00"
+        "created_at": "2025-04-08T08:10:34.748850+00:00",
+        "description": null
       }
     ]
   },
   "todo_categories": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('todo_categories_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "color",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "name",
+      "color",
+      "created_at"
     ],
     "primary_keys": [
       "id"
@@ -3455,64 +2124,40 @@
         "id": 1,
         "name": "Personnel",
         "color": "#4CAF50",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 2,
         "name": "Travail",
         "color": "#2196F3",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 3,
-        "name": "\u00c9tudes",
+        "name": "Études",
         "color": "#9C27B0",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 4,
-        "name": "Sant\u00e9",
+        "name": "Santé",
         "color": "#F44336",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 5,
         "name": "Finances",
         "color": "#FF9800",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       }
     ]
   },
   "todo_status": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('todo_status_id_seq'::regclass)"
-      },
-      {
-        "column_name": "name",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "name",
+      "description",
+      "created_at"
     ],
     "primary_keys": [
       "id"
@@ -3521,102 +2166,42 @@
     "sample_data": [
       {
         "id": 1,
-        "name": "\u00c0 faire",
-        "description": "T\u00e2ches qui doivent \u00eatre commenc\u00e9es",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "name": "À faire",
+        "description": "Tâches qui doivent être commencées",
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 2,
         "name": "En cours",
-        "description": "T\u00e2ches qui sont actuellement en cours de r\u00e9alisation",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "description": "Tâches qui sont actuellement en cours de réalisation",
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 3,
         "name": "En attente",
-        "description": "T\u00e2ches qui sont en attente d'une action externe",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "description": "Tâches qui sont en attente d'une action externe",
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 4,
-        "name": "Termin\u00e9",
-        "description": "T\u00e2ches qui ont \u00e9t\u00e9 compl\u00e9t\u00e9es",
-        "created_at": "2025-04-10 08:11:04.369310+00:00"
+        "name": "Terminé",
+        "description": "Tâches qui ont été complétées",
+        "created_at": "2025-04-10T08:11:04.369310+00:00"
       }
     ]
   },
   "todos": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('todos_id_seq'::regclass)"
-      },
-      {
-        "column_name": "title",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "status_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "category_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "is_completed",
-        "data_type": "boolean",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "false"
-      },
-      {
-        "column_name": "due_date",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "title",
+      "description",
+      "status_id",
+      "category_id",
+      "user_id",
+      "is_completed",
+      "due_date",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -3631,186 +2216,231 @@
         "column_name": "status_id",
         "foreign_table_name": "todo_status",
         "foreign_column_name": "id"
-      },
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
       }
     ],
     "sample_data": [
       {
         "id": 1,
         "title": "Faire les courses",
-        "description": "Acheter des fruits, l\u00e9gumes et du pain",
+        "description": "Acheter des fruits, légumes et du pain",
         "status_id": 1,
         "category_id": 1,
         "user_id": null,
         "is_completed": false,
-        "due_date": "2025-04-12 08:11:04.369310+00:00",
-        "created_at": "2025-04-10 08:11:04.369310+00:00",
-        "updated_at": "2025-04-10 08:11:04.369310+00:00"
+        "due_date": "2025-04-12T08:11:04.369310+00:00",
+        "created_at": "2025-04-10T08:11:04.369310+00:00",
+        "updated_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 2,
-        "title": "R\u00e9union d'\u00e9quipe",
-        "description": "Pr\u00e9parer la pr\u00e9sentation pour la r\u00e9union hebdomadaire",
+        "title": "Réunion d'équipe",
+        "description": "Préparer la présentation pour la réunion hebdomadaire",
         "status_id": 2,
         "category_id": 2,
         "user_id": null,
         "is_completed": false,
-        "due_date": "2025-04-11 08:11:04.369310+00:00",
-        "created_at": "2025-04-10 08:11:04.369310+00:00",
-        "updated_at": "2025-04-10 08:11:04.369310+00:00"
+        "due_date": "2025-04-11T08:11:04.369310+00:00",
+        "created_at": "2025-04-10T08:11:04.369310+00:00",
+        "updated_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 3,
-        "title": "R\u00e9viser pour l'examen",
-        "description": "Chapitres 3 \u00e0 5 du cours de programmation",
+        "title": "Réviser pour l'examen",
+        "description": "Chapitres 3 à 5 du cours de programmation",
         "status_id": 1,
         "category_id": 3,
         "user_id": null,
         "is_completed": false,
-        "due_date": "2025-04-15 08:11:04.369310+00:00",
-        "created_at": "2025-04-10 08:11:04.369310+00:00",
-        "updated_at": "2025-04-10 08:11:04.369310+00:00"
+        "due_date": "2025-04-15T08:11:04.369310+00:00",
+        "created_at": "2025-04-10T08:11:04.369310+00:00",
+        "updated_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 4,
-        "title": "Rendez-vous m\u00e9dical",
-        "description": "Consultation annuelle chez le m\u00e9decin",
+        "title": "Rendez-vous médical",
+        "description": "Consultation annuelle chez le médecin",
         "status_id": 3,
         "category_id": 4,
         "user_id": null,
         "is_completed": false,
-        "due_date": "2025-04-17 08:11:04.369310+00:00",
-        "created_at": "2025-04-10 08:11:04.369310+00:00",
-        "updated_at": "2025-04-10 08:11:04.369310+00:00"
+        "due_date": "2025-04-17T08:11:04.369310+00:00",
+        "created_at": "2025-04-10T08:11:04.369310+00:00",
+        "updated_at": "2025-04-10T08:11:04.369310+00:00"
       },
       {
         "id": 5,
         "title": "Payer les factures",
-        "description": "\u00c9lectricit\u00e9, internet et assurance",
+        "description": "Électricité, internet et assurance",
         "status_id": 1,
         "category_id": 5,
         "user_id": null,
         "is_completed": false,
-        "due_date": "2025-04-13 08:11:04.369310+00:00",
-        "created_at": "2025-04-10 08:11:04.369310+00:00",
-        "updated_at": "2025-04-10 08:11:04.369310+00:00"
+        "due_date": "2025-04-13T08:11:04.369310+00:00",
+        "created_at": "2025-04-10T08:11:04.369310+00:00",
+        "updated_at": "2025-04-10T08:11:04.369310+00:00"
       }
     ]
   },
-  "usage_categories": {
+  "tool": {
     "columns": [
+      "id",
+      "name",
+      "description",
+      "structure",
+      "usage",
+      "category_id",
+      "type_id",
+      "technology_category_id",
+      "technology_subtype_id",
+      "official_website",
+      "documentation_url",
+      "is_open_source",
+      "license",
+      "logo_path",
+      "author",
+      "created_at",
+      "updated_at"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
       {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('usage_categories_id_seq'::regclass)"
+        "column_name": "category_id",
+        "foreign_table_name": "tool_category",
+        "foreign_column_name": "id"
       },
       {
-        "column_name": "name",
-        "data_type": "character varying",
-        "character_maximum_length": 255,
-        "is_nullable": "NO",
-        "column_default": null
+        "column_name": "technology_category_id",
+        "foreign_table_name": "technology_categories",
+        "foreign_column_name": "id"
       },
       {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
+        "column_name": "technology_subtype_id",
+        "foreign_table_name": "technology_subtypes",
+        "foreign_column_name": "id"
       },
       {
-        "column_name": "description",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "CURRENT_TIMESTAMP"
+        "column_name": "type_id",
+        "foreign_table_name": "tool_type",
+        "foreign_column_name": "id"
       }
+    ],
+    "sample_data": [
+      {
+        "id": 8,
+        "name": "IntelliJ IDEA",
+        "description": null,
+        "structure": null,
+        "usage": null,
+        "category_id": null,
+        "type_id": null,
+        "technology_category_id": null,
+        "technology_subtype_id": null,
+        "official_website": null,
+        "documentation_url": null,
+        "is_open_source": false,
+        "license": null,
+        "logo_path": null,
+        "author": null,
+        "created_at": "2025-05-26T19:24:28.832914",
+        "updated_at": "2025-05-26T19:24:28.832914"
+      },
+      {
+        "id": 9,
+        "name": "Eclipse",
+        "description": null,
+        "structure": null,
+        "usage": null,
+        "category_id": null,
+        "type_id": null,
+        "technology_category_id": null,
+        "technology_subtype_id": null,
+        "official_website": null,
+        "documentation_url": null,
+        "is_open_source": false,
+        "license": null,
+        "logo_path": null,
+        "author": null,
+        "created_at": "2025-05-26T19:24:28.832914",
+        "updated_at": "2025-05-26T19:24:28.832914"
+      },
+      {
+        "id": 10,
+        "name": "Tomcat",
+        "description": null,
+        "structure": null,
+        "usage": null,
+        "category_id": null,
+        "type_id": null,
+        "technology_category_id": null,
+        "technology_subtype_id": null,
+        "official_website": null,
+        "documentation_url": null,
+        "is_open_source": false,
+        "license": null,
+        "logo_path": null,
+        "author": null,
+        "created_at": "2025-05-26T19:24:28.832914",
+        "updated_at": "2025-05-26T19:24:28.832914"
+      },
+      {
+        "id": 11,
+        "name": "Jetty",
+        "description": null,
+        "structure": null,
+        "usage": null,
+        "category_id": null,
+        "type_id": null,
+        "technology_category_id": null,
+        "technology_subtype_id": null,
+        "official_website": null,
+        "documentation_url": null,
+        "is_open_source": false,
+        "license": null,
+        "logo_path": null,
+        "author": null,
+        "created_at": "2025-05-26T19:24:28.832914",
+        "updated_at": "2025-05-26T19:24:28.832914"
+      },
+      {
+        "id": 12,
+        "name": "WildFly",
+        "description": null,
+        "structure": null,
+        "usage": null,
+        "category_id": null,
+        "type_id": null,
+        "technology_category_id": null,
+        "technology_subtype_id": null,
+        "official_website": null,
+        "documentation_url": null,
+        "is_open_source": false,
+        "license": null,
+        "logo_path": null,
+        "author": null,
+        "created_at": "2025-05-26T19:24:28.832914",
+        "updated_at": "2025-05-26T19:24:28.832914"
+      }
+    ]
+  },
+  "tool_category": {
+    "columns": [
+      "id",
+      "name"
     ],
     "primary_keys": [
       "id"
     ],
     "foreign_keys": [],
-    "sample_data": [
-      {
-        "id": 1,
-        "name": "Web",
-        "created_at": "2025-03-28 16:57:45.475008+00:00",
-        "description": null,
-        "updated_at": "2025-04-18 13:14:52.597492+00:00"
-      },
-      {
-        "id": 2,
-        "name": "Mobile",
-        "created_at": "2025-03-28 16:57:45.475008+00:00",
-        "description": null,
-        "updated_at": "2025-04-18 13:14:52.597492+00:00"
-      },
-      {
-        "id": 3,
-        "name": "Bureau",
-        "created_at": "2025-03-28 16:57:45.475008+00:00",
-        "description": null,
-        "updated_at": "2025-04-18 13:14:52.597492+00:00"
-      },
-      {
-        "id": 4,
-        "name": "Syst\u00e8me",
-        "created_at": "2025-03-28 16:57:45.475008+00:00",
-        "description": null,
-        "updated_at": "2025-04-18 13:14:52.597492+00:00"
-      },
-      {
-        "id": 5,
-        "name": "Embarqu\u00e9",
-        "created_at": "2025-03-28 16:57:45.475008+00:00",
-        "description": null,
-        "updated_at": "2025-04-18 13:14:52.597492+00:00"
-      }
-    ]
+    "sample_data": []
   },
-  "user_language_likes": {
+  "tool_language": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "nextval('user_language_likes_id_seq'::regclass)"
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "tool_id",
+      "language_id",
+      "is_primary"
     ],
     "primary_keys": [
       "id"
@@ -3822,8 +2452,328 @@
         "foreign_column_name": "id"
       },
       {
-        "column_name": "user_id",
-        "foreign_table_name": "users",
+        "column_name": "tool_id",
+        "foreign_table_name": "tool",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": [
+      {
+        "id": 1,
+        "tool_id": 1,
+        "language_id": 5,
+        "is_primary": false
+      },
+      {
+        "id": 2,
+        "tool_id": 2,
+        "language_id": 5,
+        "is_primary": false
+      },
+      {
+        "id": 3,
+        "tool_id": 3,
+        "language_id": 5,
+        "is_primary": false
+      },
+      {
+        "id": 4,
+        "tool_id": 4,
+        "language_id": 5,
+        "is_primary": false
+      },
+      {
+        "id": 5,
+        "tool_id": 5,
+        "language_id": 5,
+        "is_primary": false
+      }
+    ]
+  },
+  "tool_technology_category": {
+    "columns": [
+      "id",
+      "tool_id",
+      "technology_category_id"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "technology_category_id",
+        "foreign_table_name": "technology_categories",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "tool_id",
+        "foreign_table_name": "tool",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": [
+      {
+        "id": 1,
+        "tool_id": 1,
+        "technology_category_id": 6
+      },
+      {
+        "id": 2,
+        "tool_id": 2,
+        "technology_category_id": 6
+      },
+      {
+        "id": 3,
+        "tool_id": 3,
+        "technology_category_id": 6
+      },
+      {
+        "id": 4,
+        "tool_id": 4,
+        "technology_category_id": 11
+      },
+      {
+        "id": 5,
+        "tool_id": 5,
+        "technology_category_id": 11
+      }
+    ]
+  },
+  "tool_technology_subtype": {
+    "columns": [
+      "id",
+      "tool_id",
+      "technology_subtype_id"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "technology_subtype_id",
+        "foreign_table_name": "technology_subtypes",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "tool_id",
+        "foreign_table_name": "tool",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": [
+      {
+        "id": 1,
+        "tool_id": 581,
+        "technology_subtype_id": 18
+      },
+      {
+        "id": 2,
+        "tool_id": 587,
+        "technology_subtype_id": 13
+      },
+      {
+        "id": 4,
+        "tool_id": 582,
+        "technology_subtype_id": 48
+      },
+      {
+        "id": 6,
+        "tool_id": 583,
+        "technology_subtype_id": 58
+      },
+      {
+        "id": 7,
+        "tool_id": 584,
+        "technology_subtype_id": 59
+      }
+    ]
+  },
+  "tool_tool": {
+    "columns": [
+      "id",
+      "tool_id",
+      "related_tool_id",
+      "relation_type"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "related_tool_id",
+        "foreign_table_name": "tool",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "tool_id",
+        "foreign_table_name": "tool",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": []
+  },
+  "tool_tool_usage": {
+    "columns": [
+      "id",
+      "tool_id",
+      "usage_id"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "tool_id",
+        "foreign_table_name": "tool",
+        "foreign_column_name": "id"
+      },
+      {
+        "column_name": "usage_id",
+        "foreign_table_name": "tool_usage",
+        "foreign_column_name": "id"
+      }
+    ],
+    "sample_data": [
+      {
+        "id": 1,
+        "tool_id": 4,
+        "usage_id": 6
+      },
+      {
+        "id": 2,
+        "tool_id": 5,
+        "usage_id": 6
+      },
+      {
+        "id": 3,
+        "tool_id": 3,
+        "usage_id": 3
+      },
+      {
+        "id": 4,
+        "tool_id": 3,
+        "usage_id": 12
+      },
+      {
+        "id": 5,
+        "tool_id": 7,
+        "usage_id": 3
+      }
+    ]
+  },
+  "tool_type": {
+    "columns": [
+      "id",
+      "name"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [],
+    "sample_data": []
+  },
+  "tool_usage": {
+    "columns": [
+      "id",
+      "name",
+      "description"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [],
+    "sample_data": [
+      {
+        "id": 1,
+        "name": "Développement web",
+        "description": "Création d’applications web et de sites internet"
+      },
+      {
+        "id": 2,
+        "name": "Développement mobile",
+        "description": "Applications pour smartphones et tablettes"
+      },
+      {
+        "id": 3,
+        "name": "Data Science",
+        "description": "Analyse et traitement de données"
+      },
+      {
+        "id": 4,
+        "name": "Machine Learning",
+        "description": "Outils pour l’apprentissage automatique"
+      },
+      {
+        "id": 5,
+        "name": "DevOps",
+        "description": "Automatisation, CI/CD, gestion d’infrastructure"
+      }
+    ]
+  },
+  "usage_categories": {
+    "columns": [
+      "id",
+      "name",
+      "created_at",
+      "description",
+      "updated_at"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [],
+    "sample_data": [
+      {
+        "id": 1,
+        "name": "Web",
+        "created_at": "2025-03-28T16:57:45.475008+00:00",
+        "description": null,
+        "updated_at": "2025-04-18T13:14:52.597492+00:00"
+      },
+      {
+        "id": 2,
+        "name": "Mobile",
+        "created_at": "2025-03-28T16:57:45.475008+00:00",
+        "description": null,
+        "updated_at": "2025-04-18T13:14:52.597492+00:00"
+      },
+      {
+        "id": 3,
+        "name": "Bureau",
+        "created_at": "2025-03-28T16:57:45.475008+00:00",
+        "description": null,
+        "updated_at": "2025-04-18T13:14:52.597492+00:00"
+      },
+      {
+        "id": 4,
+        "name": "Système",
+        "created_at": "2025-03-28T16:57:45.475008+00:00",
+        "description": null,
+        "updated_at": "2025-04-18T13:14:52.597492+00:00"
+      },
+      {
+        "id": 5,
+        "name": "Embarqué",
+        "created_at": "2025-03-28T16:57:45.475008+00:00",
+        "description": null,
+        "updated_at": "2025-04-18T13:14:52.597492+00:00"
+      }
+    ]
+  },
+  "user_language_likes": {
+    "columns": [
+      "id",
+      "user_id",
+      "language_id",
+      "created_at"
+    ],
+    "primary_keys": [
+      "id"
+    ],
+    "foreign_keys": [
+      {
+        "column_name": "language_id",
+        "foreign_table_name": "languages",
         "foreign_column_name": "id"
       }
     ],
@@ -3831,156 +2781,47 @@
   },
   "user_roles": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "role",
-        "data_type": "USER-DEFINED",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "'registered'::user_role"
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "role",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
     ],
-    "foreign_keys": [
-      {
-        "column_name": "id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      }
-    ],
+    "foreign_keys": [],
     "sample_data": [
       {
         "id": "d34510fc-dab1-4942-bb39-f093aa3defb2",
         "role": "admin",
-        "created_at": "2025-04-04 08:37:03.503180+00:00",
-        "updated_at": "2025-04-04 08:37:03.503180+00:00"
+        "created_at": "2025-04-04T08:37:03.503180+00:00",
+        "updated_at": "2025-04-04T08:37:03.503180+00:00"
       }
     ]
   },
   "users": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "email",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "role",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": "'registered'::text"
-      },
-      {
-        "column_name": "name",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": "now()"
-      }
+      "id",
+      "email",
+      "role",
+      "name",
+      "created_at",
+      "updated_at"
     ],
     "primary_keys": [
-      "id",
       "id"
     ],
-    "foreign_keys": [
-      {
-        "column_name": "id",
-        "foreign_table_name": "users",
-        "foreign_column_name": "id"
-      }
-    ],
+    "foreign_keys": [],
     "sample_data": []
   },
   "utilisateurs_correctioncomment": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "content",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "updated_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "correction_id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "integer",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "content",
+      "created_at",
+      "updated_at",
+      "correction_id",
+      "user_id"
     ],
     "primary_keys": [
       "id"
@@ -4001,48 +2842,13 @@
   },
   "utilisateurs_languageexpertise": {
     "columns": [
-      {
-        "column_name": "id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "expertise_level",
-        "data_type": "character varying",
-        "character_maximum_length": 20,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "notes",
-        "data_type": "text",
-        "character_maximum_length": null,
-        "is_nullable": "YES",
-        "column_default": null
-      },
-      {
-        "column_name": "created_at",
-        "data_type": "timestamp with time zone",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "language_id",
-        "data_type": "bigint",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      },
-      {
-        "column_name": "user_id",
-        "data_type": "uuid",
-        "character_maximum_length": null,
-        "is_nullable": "NO",
-        "column_default": null
-      }
+      "id",
+      "expertise_level",
+      "notes",
+      "created_at",
+      "language_id",
+      "user_id",
+      "updated_at"
     ],
     "primary_keys": [
       "id"
@@ -4051,11 +2857,6 @@
       {
         "column_name": "language_id",
         "foreign_table_name": "languages",
-        "foreign_column_name": "id"
-      },
-      {
-        "column_name": "user_id",
-        "foreign_table_name": "profiles",
         "foreign_column_name": "id"
       }
     ],
