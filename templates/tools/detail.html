@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto py-8">
+    <div class="flex flex-col md:flex-row gap-8">
+        <div class="flex-shrink-0">
+            {% if tool.logo_path %}
+                <img src="{{ tool.logo_path }}" alt="Logo {{ tool.name }}" class="w-32 h-32 object-contain rounded shadow">
+            {% endif %}
+        </div>
+        <div>
+            <h1 class="text-3xl font-bold mb-2">{{ tool.name }}</h1>
+            <p class="mb-4 text-lg">{{ tool.description }}</p>
+            <ul class="mb-4">
+                <li><strong>Catégorie :</strong> {{ tool.technology_category }}</li>
+                <li><strong>Sous-catégories :</strong>
+                    {% for sub in tool.technology_subtypes.all %}
+                        {{ sub.name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        <span>Aucune</span>
+                    {% endfor %}
+                </li>
+                <li><strong>Langages :</strong>
+                    {% for lang in tool.languages.all %}
+                        {{ lang.name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        <span>Aucun</span>
+                    {% endfor %}
+                </li>
+                <li><strong>Type :</strong> {{ tool.type }}</li>
+                <li><strong>Licence :</strong> {{ tool.license }}</li>
+                <li><strong>Auteur :</strong> {{ tool.author }}</li>
+                <li><strong>Open source :</strong> {{ tool.is_open_source|yesno:"Oui,Non" }}</li>
+            </ul>
+            <div class="flex gap-4">
+                {% if tool.official_website %}
+                    <a href="{{ tool.official_website }}" class="btn" target="_blank" rel="noopener">Site officiel</a>
+                {% endif %}
+                {% if tool.documentation_url %}
+                    <a href="{{ tool.documentation_url }}" class="btn" target="_blank" rel="noopener">Documentation</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="mt-8">
+        <h2 class="text-2xl font-semibold mb-2">Usage</h2>
+        <p>{{ tool.usage|linebreaks }}</p>
+    </div>
+    <div class="mt-8">
+        <h2 class="text-2xl font-semibold mb-2">Critères d’évaluation</h2>
+        <p class="italic text-gray-500">À venir…</p>
+    </div>
+</div>
+{% endblock %}

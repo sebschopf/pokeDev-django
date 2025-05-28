@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Proposer une correction pour {{ tool.name }}{% endblock %}
+{% block meta_description %}Proposez des corrections et améliorations concernant l'outil {{ tool.name }}.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-pokedev-yellow">
+  <div class="container mx-auto px-4 py-8">
+    <nav class="mb-8" aria-label="Fil d'Ariane">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="{% url 'tool_list' %}" class="text-neo-black hover:underline font-bold">Outils</a></li>
+        <li class="text-neo-black font-black">></li>
+        <li><a href="{% url 'tool_detail' tool.pk %}" class="text-neo-black hover:underline font-bold">{{ tool.name }}</a></li>
+        <li class="text-neo-black font-black">></li>
+        <li class="text-neo-black font-black">Correction</li>
+      </ol>
+    </nav>
+    <header class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+      <h1 class="text-3xl font-black text-neo-black mb-4">
+        Proposer une correction pour {{ tool.name }}
+      </h1>
+      <p class="text-neo-black">
+        Aidez-nous à améliorer les informations sur cet outil en proposant des corrections ou des ajouts.
+      </p>
+    </header>
+    <div class="bg-neo-white border-4 border-neo-black shadow-neo p-8">
+      <form method="post" class="space-y-8" id="correction-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button type="submit" class="px-6 py-3 bg-neo-black text-pokedev-yellow border-4 border-neo-black font-black hover:bg-pokedev-yellow hover:text-neo-black transition-all duration-200">
+            Soumettre la correction
+          </button>
+          <a href="{% url 'tool_detail' tool.pk %}" class="px-6 py-3 bg-pokedev-yellow text-neo-black border-4 border-neo-black font-black hover:bg-neo-black hover:text-pokedev-yellow transition-all duration-200">
+            Annuler
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

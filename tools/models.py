@@ -1,60 +1,53 @@
 from django.db import models
-from django.utils.text import slugify
-import json
+from languages.models import Languages
+
+class TechnologyCategory(models.Model):
+    type = models.CharField(max_length=255, unique=True)
+    icon_name = models.CharField(max_length=255, blank=True, null=True)
+    color = models.CharField(max_length=255, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'technology_category'
+
+    def __str__(self):
+        return self.type
+
+class TechnologySubtype(models.Model):
+    category = models.ForeignKey(TechnologyCategory, on_delete=models.CASCADE, related_name='subtypes')
+    name = models.CharField(max_length=255, db_index=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'technology_subtype'
+        unique_together = ('category', 'name')
+        indexes = [
+            models.Index(fields=['name']),
+        ]
+
+    def __str__(self):
+        return f"{self.name} ({self.category.type})"
 
 class Tool(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
-    
-    # Relation avec les langages
-    language_id = models.IntegerField()
-    
-    # URLs
+    usage = models.TextField(blank=True, null=True)
+    type_id = models.IntegerField(null=True, blank=True)
+    technology_category = models.ForeignKey(TechnologyCategory, on_delete=models.SET_NULL, null=True, blank=True, db_column='technology_category_id')
+    technology_subtypes = models.ManyToManyField(TechnologySubtype, related_name='tools', blank=True)
+    languages = models.ManyToManyField(Languages, related_name='tools', blank=True)
     official_website = models.URLField(blank=True, null=True)
-    github_url = models.URLField(blank=True, null=True)
     documentation_url = models.URLField(blank=True, null=True)
-    website_url = models.URLField(blank=True, null=True)
-    
-    # Métadonnées
+    is_open_source = models.BooleanField(default=False)
+    license = models.CharField(max_length=255, blank=True, null=True)
     logo_path = models.CharField(max_length=255, blank=True, null=True)
-    popularity = models.FloatField(blank=True, null=True)
-    is_open_source = models.BooleanField(default=True)
-    version = models.CharField(max_length=50, blank=True, null=True)
-    license = models.CharField(max_length=100, blank=True, null=True)
-    
-    # Catégorisation
-    technology_type = models.CharField(max_length=100, blank=True, null=True)
-    subtype = models.CharField(max_length=100, blank=True, null=True)
-    
-    # Caractéristiques
-    features = models.JSONField(blank=True, null=True)
-    unique_selling_point = models.TextField(blank=True, null=True)
-    best_for = models.TextField(blank=True, null=True)
-    used_for = models.TextField(blank=True, null=True)
-    
-    # Timestamps
+    author = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
-        db_table = 'libraries'  # Utiliser la table 'libraries' existante
-        managed = False  # Django ne gérera pas cette table
-    
-    def get_features_list(self):
-        """Retourne les features sous forme de liste."""
-        if not self.features:
-            return []
-        
-        # Si features est déjà une liste
-        if isinstance(self.features, list):
-            return self.features
-        
-        # Si features est une chaîne JSON
-        try:
-            return json.loads(self.features)
-        except (TypeError, json.JSONDecodeError):
-            return []
-    
+        db_table = 'tool'
+
     def __str__(self):
         return self.name

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+  <h1 class="text-3xl font-black text-neo-black mb-6 uppercase">Corrections proposées</h1>
+  <ul>
+    {% for correction in corrections %}
+      <li>
+        <a href="{% url 'tool_correction_detail' correction.pk %}" class="text-blue-600 hover:underline">
+          Correction pour {{ correction.tool.name }} ({{ correction.get_status_display }})
+        </a>
+      </li>
+    {% empty %}
+      <li>Aucune correction proposée.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

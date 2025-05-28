@@ -7,6 +7,7 @@ from ..models.library import LibraryLanguages
 from ..models.usage import LanguageUsage
 from ..models.accessibility import AccessibilityLevels, LanguageAccessibilityLevels, LanguageAccessibilityEvaluations
 from ..models.features import LanguageFeatures
+from tools.models import Tool, TechnologyCategory
 
 # Vue basée sur une fonction pour la liste des langages
 def list(request):
@@ -75,10 +76,6 @@ class LanguageDetailView(DetailView):
             )
             context['usage_categories'] = usage_categories
         
-        # Ajouter les frameworks populaires s'ils ne sont pas déjà dans la liste des frameworks
-        if language.popular_frameworks:
-            context['popular_frameworks'] = language.popular_frameworks
-        
         # Utiliser les données préchargées pour l'accessibilité
         try:
             # Récupérer le niveau d'accessibilité par défaut
@@ -133,23 +130,19 @@ class LanguageDetailView(DetailView):
             # En cas d'erreur, logger l'erreur mais ne pas planter la page
             print(f"Erreur lors de la récupération des caractéristiques: {e}")
         
-        # Utiliser les données préchargées pour les bibliothèques
+                # Utiliser les données préchargées pour les outils associés
         try:
-            if hasattr(language, 'prefetched_library_languages'):
-                library_languages = language.prefetched_library_languages
-                
-                # Organiser les bibliothèques par type
-                libraries_by_type = {}
-                for ll in library_languages:
-                    library = ll.library
-                    tech_type = library.technology_type
-                    if tech_type not in libraries_by_type:
-                        libraries_by_type[tech_type] = []
-                    libraries_by_type[tech_type].append(library)
-                
-                context['libraries_by_type'] = libraries_by_type
+            # On récupère tous les outils liés à ce langage, avec leur catégorie technologique
+            tools = Tool.objects.filter(languages=language).select_related('technology_category').order_by('technology_category__type', 'name')
+            # On groupe les outils par catégorie technologique
+            tools_by_category = {}
+            for tool in tools:
+                cat = tool.technology_category
+            if cat not in tools_by_category:
+                tools_by_category[cat] = []
+            tools_by_category[cat].append(tool)
+            context['tools_by_category'] = tools_by_category.items()  # Pour itérer dans le template
         except Exception as e:
-            # En cas d'erreur, logger l'erreur mais ne pas planter la page
-            print(f"Erreur lors de la récupération des bibliothèques: {e}")
+            print(f"Erreur lors de la récupération des outils associés: {e}")
 
         return context

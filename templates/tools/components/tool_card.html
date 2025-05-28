@@ -1,0 +1,17 @@
+<article class="card p-6 flex flex-col h-full">
+    <h2><a href="{% url 'tools:detail' tool.id %}">{{ tool.name }}</a></h2>
+    {% if tool.logo_path %}
+        <img src="{{ tool.logo_path }}" alt="{{ tool.name }} logo" class="tool-logo">
+    {% endif %}
+    <p>{{ tool.description|truncatewords:20 }}</p>
+    <ul>
+        <li>Catégorie : {{ tool.technology_category }}</li>
+        <li>Sous-catégories : 
+            {% for sub in tool.technology_subtypes.all %}{{ sub.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+        </li>
+        <li>Langages : 
+            {% for lang in tool.languages.all %}{{ lang.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+        </li>
+    </ul>
+    <a href="{% url 'tools:detail' tool.id %}">Voir le détail</a>
+</article>

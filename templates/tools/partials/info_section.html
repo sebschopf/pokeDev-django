@@ -1,0 +1,27 @@
+<section class="bg-neo-white border-4 border-neo-black shadow-neo p-6">
+  <h2 class="text-2xl font-black text-neo-black mb-4 uppercase">Informations techniques</h2>
+  <div class="space-y-3">
+    {% if tool.official_website %}
+      <div>
+        <span class="text-neo-black font-bold block mb-1">Site officiel:</span>
+        <a href="{{ tool.official_website }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline break-all">
+          {{ tool.official_website }}
+        </a>
+      </div>
+    {% endif %}
+    {% if tool.documentation_url %}
+      <div>
+        <span class="text-neo-black font-bold block mb-1">Documentation:</span>
+        <a href="{{ tool.documentation_url }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline break-all">
+          {{ tool.documentation_url }}
+        </a>
+      </div>
+    {% endif %}
+    {% if tool.license %}
+      <div class="flex justify-between">
+        <span class="text-neo-black font-bold">Licence:</span>
+        <span class="text-neo-black">{{ tool.license }}</span>
+      </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="bg-neo-white border-4 border-neo-black shadow-neo p-8 mb-8">
+  <h1 class="text-3xl font-black text-neo-black mb-6 uppercase">Détail de la correction</h1>
+  <div>
+    <strong>Outil :</strong> {{ correction.tool.name }}<br>
+    <strong>Champ :</strong> {{ correction.field }}<br>
+    <strong>Valeur proposée :</strong> {{ correction.correction_text }}<br>
+    <strong>Justification :</strong> {{ correction.suggestion }}<br>
+    <strong>Status :</strong> {{ correction.get_status_display }}<br>
+    <strong>Proposé par :</strong> {{ correction.user.username }}<br>
+    <strong>Date :</strong> {{ correction.created_at|date:"d/m/Y H:i" }}
+  </div>
+</section>
+{% endblock %}

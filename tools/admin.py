@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Tool
+from .models import Tool, TechnologyCategory, TechnologySubtype
 
-@admin.register(Tool)
-class ToolAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-    search_fields = ('name',)
-    prepopulated_fields = {'slug': ('name',)}
+
+admin.site.register(Tool)
+admin.site.register(TechnologyCategory)
+admin.site.register(TechnologySubtype)

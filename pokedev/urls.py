@@ -27,7 +27,7 @@ urlpatterns = [
     path('db-docs/', include('db_docs.urls')),
     path('utilisateurs/', include('utilisateurs.urls')),
     path('stats/', include('stats.urls')),
-    path('outils/', include('tools.urls')),
+    path('tools/', include('tools.urls', namespace='tools')),
     path('languages/', include('languages.urls')),
     path('', include('system.urls')),
     path('dependencies/', include('dependencies.urls')),
